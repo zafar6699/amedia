@@ -241,6 +241,7 @@
         </div>
 
         <header>
+            <div class="blur"></div>
             <div class="site-container">
                 <div class="header-inner">
                     <div class="header-left">
@@ -250,7 +251,8 @@
                             </span>
                         </nuxt-link>
                     </div>
-                    <div class="header-right">
+
+                    <div class="header-center">
                         <div class="header-nav">
                             <ul>
                                 <li>
@@ -306,14 +308,20 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <nuxt-link to="/">O'qituvchilar</nuxt-link>
-                                </li>
-                                <li>
-                                    <nuxt-link to="/">Yangiliklar</nuxt-link>
-                                </li>
-                                <li><nuxt-link to="/">About</nuxt-link></li>
                             </ul>
+                        </div>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="search-box">
+                            <input type="text" placeholder="Izlash..." />
+                            <button><fa icon="search" /></button>
+                        </div>
+
+                        <div class="lang">
+                            <a href="#">UZ</a>
+                            <span></span>
+                            <a href="#">RU</a>
                         </div>
 
                         <div class="header-login">
@@ -568,20 +576,32 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: $bc;
+    opacity: 0.5;
     z-index: 7;
+    div.blur {
+        position: absolute;
+        opacity: 0.9;
+        z-index: 4;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        backdrop-filter: blur(8px);
+    }
     div.header-inner {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative;
+        z-index: 7;
         span.logo {
             img {
                 width: 140px;
             }
         }
-        div.header-right {
-            display: flex;
-            align-items: center;
+
+        div.header-center {
             div.header-nav {
                 ul {
                     list-style-type: none;
@@ -593,7 +613,7 @@ header {
                         a {
                             display: block;
                             text-decoration: none;
-                            color: #11142d;
+                            color: #fff;
                             font-size: 16px;
                             font-weight: 500;
                             transition: 0.2s;
@@ -612,7 +632,7 @@ header {
                         ul.dropdown {
                             position: absolute;
                             display: none;
-                            background-color: #fff;
+                            background-color: $bc;
                             box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%);
                             width: 210px;
                             z-index: 6;
@@ -665,7 +685,66 @@ header {
                     }
                 }
             }
+        }
+        div.header-right {
+            display: flex;
+            align-items: center;
 
+            div.search-box {
+                display: flex;
+                input {
+                    width: 250px;
+                    height: 35px;
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                    border: 1px solid $gc;
+                    padding: 0px 10px;
+                    background-color: transparent;
+                    color: $gc;
+                    font-weight: 400;
+                    font-size: 18px;
+                    &::placeholder {
+                        font-weight: 400;
+                        // color: $gh;
+                    }
+                    &:focus {
+                        outline: none;
+                        box-shadow: 0px 0px 5px $gc;
+                    }
+                }
+
+                button {
+                    height: 35px;
+                    padding: 2px 12px;
+                    border-top-right-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    background-color: $gc;
+                    svg {
+                        color: #fff;
+                    }
+                }
+            }
+            div.lang {
+                display: flex;
+                align-items: center;
+                margin-left: 30px;
+                a {
+                    font-size: 16px;
+                    color: #fff;
+                    font-weight: 400;
+                    line-height: 15px;
+                    &:hover {
+                        color: $gc;
+                    }
+                }
+                span {
+                    height: 15px;
+                    width: 1px;
+                    background-color: #fff;
+                    display: inline-block;
+                    margin: 0px 5px;
+                }
+            }
             div.header-login {
                 margin-left: 30px;
                 display: flex;
@@ -716,7 +795,7 @@ header {
                         box-shadow: 0px 0px 30px 0px rgb(0 0 0 / 8%);
                         right: 0;
                         top: 60px;
-                        background-color: #fff;
+                        background-color: $bc;
                         border-radius: 5px;
                         min-width: 180px;
                         padding: 5px;
@@ -729,14 +808,14 @@ header {
                             padding-bottom: 5px;
                         }
                         ul {
-                            border-bottom: 1px solid $gh;
+                            // border-bottom: 1px solid $gh;
                             // margin-bottom: 5px;
 
                             li {
                                 display: block;
                                 a {
                                     font-size: 14px;
-                                    color: $tc;
+                                    color: #fff;
                                     padding: 8px 10px;
                                     display: block;
                                     font-weight: 500;

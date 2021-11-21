@@ -241,8 +241,7 @@
         </div>
 
         <header>
-            <div class="blur"></div>
-            <div class="site-container">
+            <div class="container">
                 <div class="header-inner">
                     <div class="header-left">
                         <nuxt-link :to="{ name: `index___${$i18n.locale}` }">
@@ -576,25 +575,12 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: $bc;
-    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.75);
     z-index: 7;
-    div.blur {
-        position: absolute;
-        opacity: 0.9;
-        z-index: 4;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        backdrop-filter: blur(8px);
-    }
     div.header-inner {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        position: relative;
-        z-index: 7;
         span.logo {
             img {
                 width: 140px;

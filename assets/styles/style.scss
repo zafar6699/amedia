@@ -22,7 +22,7 @@ body {
     min-height: 80vh;
 }
 
-.site-container {
+.container {
     max-width: 1320px;
     padding: 0px 15px;
     margin: 0 auto;
@@ -53,6 +53,10 @@ button.btn-simple {
     &:hover {
         color: $gc;
     }
+}
+
+body {
+    background-color: $bc;
 }
 
 button.btn-simple-active {

@@ -1,8 +1,6 @@
 <template>
     <div>
-        <nuxt-link
-            :to="{ name: `video-id___${$i18n.locale}`, params: { id: 1 } }"
-        >
+        <nuxt-link to="/">
             <div class="course-card">
                 <span class="level beginner"> Elementary </span>
 

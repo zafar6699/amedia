@@ -132,7 +132,7 @@ export default {}
 
 <style lang="scss" scoped>
 footer {
-    background-color: #f9fafd;
+    background-color: #2e3035;
     padding-top: 80px;
     div.footer-top {
         padding-bottom: 50px;

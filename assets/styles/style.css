@@ -14,7 +14,7 @@
   min-height: 80vh;
 }
 
-.site-container {
+.container {
   max-width: 1320px;
   padding: 0px 15px;
   margin: 0 auto;
@@ -43,13 +43,17 @@ button.btn-simple {
 }
 
 button.btn-simple:hover {
-  color: #0071dc;
+  color: #f29824;
+}
+
+body {
+  background-color: #252831;
 }
 
 button.btn-simple-active {
-  background: #e1f0ff;
+  background: #fff5e8;
   border: 1px solid transparent;
-  color: #0071dc;
+  color: #f29824;
 }
 
 button.btn-sm {
@@ -64,7 +68,7 @@ button.btn-sm {
 }
 
 button.btn-sm-active {
-  background: #0071dc;
+  background: #f29824;
   border: 1px solid transparent;
   color: #fff;
 }
@@ -151,7 +155,7 @@ button.btn-sm-active {
 }
 
 .modal-card .modal-title .times:hover {
-  color: #0071dc;
+  color: #f29824;
 }
 
 @media (max-width: 475px) {
@@ -197,7 +201,7 @@ div.input-form input:hover {
 
 div.input-form input:focus {
   outline: none;
-  border: 1px solid #0071dc;
+  border: 1px solid #f29824;
 }
 
 .card-row {
@@ -315,16 +319,16 @@ div.check-custom .checkmark {
   height: 20px;
   width: 20px;
   border-radius: 2px;
-  border: 1px solid #0071dc;
+  border: 1px solid #f29824;
   background-color: #fff;
 }
 
 div.check-custom .cont:hover input ~ .checkmark {
-  background-color: #e1f0ff;
+  background-color: #fff5e8;
 }
 
 div.check-custom .cont input:checked ~ .checkmark {
-  background-color: #0071dc;
+  background-color: #f29824;
 }
 
 div.check-custom .checkmark:after {
@@ -388,12 +392,12 @@ div.check-custom .cont .checkmark:after {
 }
 
 .pagination button:hover {
-  color: #0071dc;
-  background-color: #e1f0ff;
+  color: #f29824;
+  background-color: #fff5e8;
 }
 
 .pagination button.vue-ads-text-white {
-  background-color: #0071dc;
+  background-color: #f29824;
   color: #fff;
 }
 

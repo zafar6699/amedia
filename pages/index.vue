@@ -1,22 +1,19 @@
 <template>
     <div>
-        <Banner />
-        <TrendingCourses />
-        <Information />
-        <FindCourse />
-        <RecomendedCourse />
+        <Animes />
+        <News />
     </div>
 </template>
 
 <script>
-import Banner from '../components/home/Banner.vue'
-import TrendingCourses from '../components/home/TrendingCourses.vue'
+import News from '../components/home/News.vue'
+import Animes from '../components/home/Animes.vue'
 
 export default {
     layout: 'home',
     components: {
-        Banner,
-        TrendingCourses,
+        Animes,
+        News,
     },
 }
 </script>

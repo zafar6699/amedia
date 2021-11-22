@@ -22,6 +22,18 @@ body {
     min-height: 80vh;
 }
 
+div.home-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    h4 {
+        font-size: 32px;
+        color: $gc;
+        font-weight: 500;
+    }
+}
+
 .container {
     max-width: 1220px;
     padding: 0px 15px;
@@ -38,31 +50,42 @@ button {
     background-color: transparent;
 }
 
-button.btn-simple {
-    background: #fbfcff;
-    border: 1px solid #e5f1fb;
+.btn-simple {
+    background: #fff;
+    border: 1px solid $gc;
     border-radius: 6px;
     // line-height: 46px;
-    padding: 15px 30px;
+    padding: 8px 15px;
     display: inline-block;
     // padding: 0 30px;
     font-weight: 500;
     font-size: 14px;
-    color: $pc;
-    margin-right: 10px;
+    color: $gc;
     &:hover {
-        color: $gc;
+        color: #fff;
+        background-color: $gc;
     }
 }
 
 body {
-    // background-color: $bc;
+    background-color: #fff;
 }
 
-button.btn-simple-active {
-    background: $gh;
+.btn-simple-active {
+    background: $gc;
     border: 1px solid transparent;
-    color: $gc;
+    color: #fff;
+}
+
+.anime-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -15px;
+}
+
+.anime-item {
+    width: 25%;
+    padding: 0px 15px;
 }
 
 button.btn-sm {
@@ -277,7 +300,7 @@ div.check-custom {
         font-size: 16px;
         line-height: 22px;
         cursor: pointer;
-        color: #000000;
+        color: #fff;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -347,7 +370,7 @@ div.check-custom {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        color: #4d4d4d;
+        color: #fff;
         border-radius: 4px;
         font-size: 16px;
         line-height: 24px;

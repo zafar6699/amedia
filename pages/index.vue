@@ -1,28 +1,22 @@
 <template>
     <div>
         <Slider12 />
-        <Trailer />
-        <!-- <Banner /> -->
-        <!-- <TrendingCourses /> -->
-        <Information />
-        <FindCourse />
-        <RecomendedCourse />
+        <Animes />
+        <News />
     </div>
 </template>
 
 <script>
-import Banner from '../components/home/Banner.vue'
-import Trailer from '../components/home/Trailer.vue'
+import News from '../components/home/News.vue'
+import Animes from '../components/home/Animes.vue'
 import Slider12 from '../components/home/Slider12.vue'
-import TrendingCourses from '../components/home/TrendingCourses.vue'
 
 export default {
     layout: 'home',
     components: {
-        Banner,
-        Trailer,
+        Animes,
+        News,
         Slider12,
-        TrendingCourses,
     },
 }
 </script>

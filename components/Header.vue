@@ -241,6 +241,7 @@
         </div>
 
         <header>
+            <div class="blur"></div>
             <div class="container">
                 <div class="header-inner">
                     <div class="header-left">
@@ -256,7 +257,7 @@
                             <ul>
                                 <li>
                                     <nuxt-link to="/"
-                                        >Kurslar
+                                        >Janrlar
                                         <span class="plus"
                                             ><fa icon="plus"
                                         /></span>
@@ -577,10 +578,24 @@ header {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 7;
+
+    div.blur {
+        position: absolute;
+        opacity: 0.9;
+        z-index: 4;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+    }
     div.header-inner {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative;
+        z-index: 10;
         span.logo {
             img {
                 width: 140px;

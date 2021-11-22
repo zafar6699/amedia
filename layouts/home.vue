@@ -5,7 +5,6 @@
         <div class="layout-home">
             <Nuxt :key="$route.fullPath" />
         </div>
-        <Footer />
         <Loading />
     </div>
 </template>

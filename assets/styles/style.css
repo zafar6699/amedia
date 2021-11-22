@@ -14,6 +14,25 @@
   min-height: 80vh;
 }
 
+div.home-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 30px;
+}
+
+div.home-title h4 {
+  font-size: 32px;
+  color: #f29824;
+  font-weight: 500;
+}
+
 .container {
   max-width: 1320px;
   padding: 0px 15px;
@@ -30,30 +49,44 @@ button {
   background-color: transparent;
 }
 
-button.btn-simple {
-  background: #fbfcff;
-  border: 1px solid #e5f1fb;
+.btn-simple {
+  background: #fff;
+  border: 1px solid #f29824;
   border-radius: 6px;
-  padding: 15px 30px;
+  padding: 8px 15px;
   display: inline-block;
   font-weight: 500;
   font-size: 14px;
-  color: #808191;
-  margin-right: 10px;
+  color: #f29824;
 }
 
-button.btn-simple:hover {
-  color: #f29824;
+.btn-simple:hover {
+  color: #fff;
+  background-color: #f29824;
 }
 
 body {
-  background-color: #252831;
+  background-color: #fff;
 }
 
-button.btn-simple-active {
-  background: #fff5e8;
+.btn-simple-active {
+  background: #f29824;
   border: 1px solid transparent;
-  color: #f29824;
+  color: #fff;
+}
+
+.anime-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0px -15px;
+}
+
+.anime-item {
+  width: 25%;
+  padding: 0px 15px;
 }
 
 button.btn-sm {
@@ -297,7 +330,7 @@ div.check-custom .cont {
   font-size: 16px;
   line-height: 22px;
   cursor: pointer;
-  color: #000000;
+  color: #fff;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -378,7 +411,7 @@ div.check-custom .cont .checkmark:after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #4d4d4d;
+  color: #fff;
   border-radius: 4px;
   font-size: 16px;
   line-height: 24px;

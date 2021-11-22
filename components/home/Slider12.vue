@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="slider">
-            <Carousel v-bind="settings">
+            <Vue-slick-carousel v-bind="settings">
                 <div class="carousel-item">
                     <img class="back" src="@/assets/img/3.jpg" alt />
                     <div class="opacity-banner"></div>
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                 </div>
-            </Carousel>
+            </Vue-slick-carousel>
         </div>
     </div>
 </template>

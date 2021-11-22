@@ -159,6 +159,44 @@
             </div>
         </div>
 
+        <div @click="closeModal" v-if="isJanr" class="fixvh"></div>
+        <div v-if="isJanr" class="modal-card" style="width: 800px">
+            <div class="modal-title">
+                <h2>Janrlar</h2>
+                <button @click="closeModal">
+                    <fa class="times" icon="times" />
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="min-body">
+                    <div class="card-row">
+                        <div class="item-4">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-4">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-4">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-4">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-4">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-4">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-4">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div @click="closeModal" v-if="isLogin" class="fixvh"></div>
         <div v-if="isLogin" class="modal-card" style="width: 400px">
             <div class="modal-title">
@@ -240,7 +278,7 @@
             </div>
         </div>
 
-        <header>
+        <header :class="dheader ? 'dark' : '22'">
             <div class="blur"></div>
             <div class="container">
                 <div class="header-inner">
@@ -252,74 +290,37 @@
                         </nuxt-link>
                     </div>
 
-                    <div class="header-center">
-                        <div class="header-nav">
-                            <ul>
-                                <li>
-                                    <nuxt-link to="/"
-                                        >Janrlar
-                                        <span class="plus"
-                                            ><fa icon="plus"
-                                        /></span>
-                                        <span class="minus"
-                                            ><fa icon="minus"
-                                        /></span>
-                                    </nuxt-link>
-
-                                    <ul class="dropdown">
-                                        <li>
-                                            <nuxt-link
-                                                :to="{
-                                                    name: `filter___${$i18n.locale}`,
-                                                    query: { category: 1 },
-                                                }"
-                                            >
-                                                <span class="icon-right">
-                                                    <fa icon="angle-right" />
-                                                </span>
-                                                Dasturlash</nuxt-link
-                                            >
-                                        </li>
-                                        <li>
-                                            <nuxt-link
-                                                :to="{
-                                                    name: `filter___${$i18n.locale}`,
-                                                    query: { category: 2 },
-                                                }"
-                                            >
-                                                <span class="icon-right">
-                                                    <fa icon="angle-right" />
-                                                </span>
-                                                Til kurslar</nuxt-link
-                                            >
-                                        </li>
-                                        <li>
-                                            <nuxt-link
-                                                :to="{
-                                                    name: `filter___${$i18n.locale}`,
-                                                    query: { category: 3 },
-                                                }"
-                                            >
-                                                <span class="icon-right">
-                                                    <fa icon="angle-right" />
-                                                </span>
-                                                Biznes</nuxt-link
-                                            >
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
                     <div class="header-right">
-                        <div class="search-box">
-                            <input type="text" placeholder="Izlash..." />
-                            <button><fa icon="search" /></button>
+                        <div class="header-center">
+                            <div class="header-nav">
+                                <ul>
+                                    <li>
+                                        <a href="#" @click="isJanr = true">
+                                            Janrlar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Yillar </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            v-click-other="closeSearch"
+                            :class="isSearch ? 'open search-box' : 'search-box'"
+                        >
+                            <input
+                                v-model="search"
+                                type="text"
+                                placeholder="Izlash..."
+                            />
+                            <button @click="openSearch">
+                                <fa icon="search" />
+                            </button>
                         </div>
 
                         <div class="lang">
-                            <a href="#">UZ</a>
+                            <a class="active" href="#">UZ</a>
                             <span></span>
                             <a href="#">RU</a>
                         </div>
@@ -404,8 +405,12 @@ export default {
     data() {
         return {
             isProfile: false,
+            isSearch: false,
+            isJanr: false,
             type: 'text',
+            search: '',
             visiblePassword: false,
+            dheader: false,
             register: {
                 name: '',
                 email: '',
@@ -462,7 +467,27 @@ export default {
             return this.$store.state.isRegister
         },
     },
+    async mounted() {
+        window.addEventListener('scroll', this.scrollBody)
+    },
+    created() {},
     methods: {
+        scrollBody() {
+            if (window.scrollY > 200) {
+                this.dheader = true
+                console.log('tt', this.dheader)
+            } else {
+                this.dheader = false
+            }
+        },
+        openSearch() {
+            this.isSearch = true
+        },
+        closeSearch() {
+            if (this.search == '') {
+                this.isSearch = false
+            }
+        },
         changePasswordVisible() {
             if (this.type == 'text') {
                 this.type = 'password'
@@ -568,28 +593,28 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 header {
     padding: 10px 0px;
-    box-shadow: 0px 4px 6px 0px rgb(12 0 46 / 5%);
+    // box-shadow: 0px 4px 6px 0px rgb(12 0 46 / 5%);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
+    // background-color: rgba(0, 0, 0, 0.75);
     z-index: 7;
-
-    div.blur {
-        position: absolute;
-        opacity: 0.9;
-        z-index: 4;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-    }
+    transition: 0.3s;
+    // div.blur {
+    //     position: absolute;
+    //     opacity: 0.9;
+    //     z-index: 4;
+    //     width: 100%;
+    //     height: 100%;
+    //     top: 0;
+    //     left: 0;
+    //     -webkit-backdrop-filter: blur(8px);
+    //     backdrop-filter: blur(8px);
+    // }
     div.header-inner {
         display: flex;
         justify-content: space-between;
@@ -604,19 +629,20 @@ header {
 
         div.header-center {
             div.header-nav {
+                margin-right: 100px;
                 ul {
                     list-style-type: none;
                     li {
                         display: inline-block;
                         margin-left: 30px;
                         position: relative;
-                        padding: 20px 0px;
+                        padding: 15px 0px;
                         a {
                             display: block;
                             text-decoration: none;
                             color: #fff;
-                            font-size: 16px;
-                            font-weight: 500;
+                            font-size: 20px;
+                            font-weight: 400;
                             transition: 0.2s;
                             &:hover {
                                 color: $gc;
@@ -690,18 +716,21 @@ header {
         div.header-right {
             display: flex;
             align-items: center;
-
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             div.search-box {
                 display: flex;
+
                 input {
-                    width: 250px;
+                    width: 0px;
+                    transition: 0.2s;
                     height: 35px;
-                    border-top-left-radius: 5px;
-                    border-bottom-left-radius: 5px;
-                    border: 1px solid $gc;
-                    padding: 0px 10px;
+                    // border-top-left-radius: 5px;
+                    // border-bottom-left-radius: 5px;
+                    border: none;
+                    border-bottom: 1px solid #704f24;
+                    padding: 0px;
                     background-color: transparent;
-                    color: $gc;
+                    color: #fff;
                     font-weight: 400;
                     font-size: 18px;
                     &::placeholder {
@@ -710,19 +739,32 @@ header {
                     }
                     &:focus {
                         outline: none;
-                        box-shadow: 0px 0px 5px $gc;
                     }
                 }
 
                 button {
                     height: 35px;
                     padding: 2px 12px;
-                    border-top-right-radius: 5px;
-                    border-bottom-right-radius: 5px;
-                    background-color: $gc;
+                    // border-top-right-radius: 5px;
+                    // border-bottom-right-radius: 5px;
+                    // border-bottom: 1px solid #704f24;
+                    // background-color: $gc;
                     svg {
                         color: #fff;
+                        font-size: 18px;
                     }
+
+                    &:hover {
+                        svg {
+                            color: $gc;
+                        }
+                    }
+                }
+            }
+            div.open {
+                input {
+                    width: 200px;
+                    padding: 0px 10px;
                 }
             }
             div.lang {
@@ -745,17 +787,20 @@ header {
                     display: inline-block;
                     margin: 0px 5px;
                 }
+                a.active {
+                    color: $gc;
+                    font-weight: 600;
+                }
             }
             div.header-login {
                 margin-left: 30px;
                 display: flex;
                 button.login {
-                    color: $gc;
                     font-size: 16px;
-                    color: $gc;
+                    color: #fff;
                     border-radius: 8px;
                     padding: 10px 20px;
-                    background-color: $gh;
+                    background-color: transparent;
                     font-weight: 500;
                     border: 1px solid transparent;
                     transition: 0.2s;
@@ -846,6 +891,14 @@ header {
                 }
             }
         }
+    }
+}
+
+.dark {
+    background: $bc !important;
+
+    div.header-right {
+        border-bottom: 1px solid transparent !important;
     }
 }
 </style>

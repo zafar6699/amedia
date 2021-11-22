@@ -160,7 +160,7 @@
         </div>
 
         <div @click="closeModal" v-if="isJanr" class="fixvh"></div>
-        <div v-if="isJanr" class="modal-card" style="width: 800px">
+        <div v-if="isJanr" class="modal-card" style="width: 900px">
             <div class="modal-title">
                 <h2>Janrlar</h2>
                 <button @click="closeModal">
@@ -171,26 +171,214 @@
             <div class="modal-body">
                 <div class="min-body">
                     <div class="card-row">
-                        <div class="item-4">
+                        <div class="item-md-3 item-6">
                             <nuxt-link to="/">Anime filmlar</nuxt-link>
                         </div>
-                        <div class="item-4">
+                        <div class="item-md-3 item-6">
                             <nuxt-link to="/">Anime filmlar</nuxt-link>
                         </div>
-                        <div class="item-4">
+                        <div class="item-md-3 item-6">
                             <nuxt-link to="/">Anime filmlar</nuxt-link>
                         </div>
-                        <div class="item-4">
+                        <div class="item-md-3 item-6">
                             <nuxt-link to="/">Anime filmlar</nuxt-link>
                         </div>
-                        <div class="item-4">
+                        <div class="item-md-3 item-6">
                             <nuxt-link to="/">Anime filmlar</nuxt-link>
                         </div>
-                        <div class="item-4">
+                        <div class="item-md-3 item-6">
                             <nuxt-link to="/">Anime filmlar</nuxt-link>
                         </div>
-                        <div class="item-4">
+                        <div class="item-md-3 item-6">
                             <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div @click="closeModal" v-if="isYear" class="fixvh"></div>
+        <div v-if="isYear" class="modal-card" style="width: 900px">
+            <div class="modal-title">
+                <h2>Yillar</h2>
+                <button @click="closeModal">
+                    <fa class="times" icon="times" />
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="min-body">
+                    <div class="card-row">
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
+                        </div>
+                        <div class="item-md-3 item-6">
+                            <nuxt-link to="/">2022</nuxt-link>
                         </div>
                     </div>
                 </div>
@@ -300,7 +488,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">Yillar </a>
+                                        <a href="#" @click="isYear = true"
+                                            >Yillar
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -407,10 +597,11 @@ export default {
             isProfile: false,
             isSearch: false,
             isJanr: false,
+            isYear: false,
             type: 'text',
             search: '',
             visiblePassword: false,
-            dheader: false,
+            dheader: true,
             register: {
                 name: '',
                 email: '',
@@ -469,13 +660,15 @@ export default {
     },
     async mounted() {
         window.addEventListener('scroll', this.scrollBody)
+        if (window.scrollY < 1) {
+            this.dheader = false
+        }
     },
     created() {},
     methods: {
         scrollBody() {
-            if (window.scrollY > 200) {
+            if (window.scrollY > 1) {
                 this.dheader = true
-                console.log('tt', this.dheader)
             } else {
                 this.dheader = false
             }
@@ -524,6 +717,9 @@ export default {
         closeModal() {
             this.$store.commit('CHANGE_LOGIN', false)
             this.$store.commit('CHANGE_REGISTER', false)
+
+            this.isJanr = false
+            this.isYear = false
         },
         handleType(event) {
             const { srcElement, type } = event
@@ -594,6 +790,30 @@ export default {
 </script>
 
 <style lang="scss">
+div.min-body {
+    a {
+        font-size: 16px;
+        color: $tc;
+        display: block;
+        padding: 8px 15px;
+        border-radius: 10px;
+        border: 1px solid $gc;
+        margin-bottom: 10px;
+
+        &:hover {
+            background-color: $gc;
+            color: #fff;
+        }
+    }
+}
+
+@media (max-width: 567px) {
+    div.min-body {
+        max-height: calc(100vh - 150px);
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}
 header {
     padding: 10px 0px;
     // box-shadow: 0px 4px 6px 0px rgb(12 0 46 / 5%);

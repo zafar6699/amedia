@@ -9,16 +9,13 @@
                 </div>
 
                 <div class="card-row">
-                    <div class="item-3">
+                    <div class="item-4">
                         <NewsCard />
                     </div>
-                    <div class="item-3">
+                    <div class="item-4">
                         <NewsCard />
                     </div>
-                    <div class="item-3">
-                        <NewsCard />
-                    </div>
-                    <div class="item-3">
+                    <div class="item-4">
                         <NewsCard />
                     </div>
                 </div>

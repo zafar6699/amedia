@@ -95,9 +95,9 @@ div.anime-card {
             }
         }
         div.text-bottom {
-            // background-color: #fff;
+            background-color: #fff;
             div.text-inner {
-                background-color: rgba($color: #fff, $alpha: 0.8);
+                background-color: unset !important;
             }
 
             h2 {

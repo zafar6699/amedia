@@ -1,12 +1,11 @@
 <template>
     <div>
         <Header />
-
+        <div class="header-back"></div>
         <div class="layout-content">
             <Nuxt :key="$route.fullPath" />
         </div>
         <Loading />
-
         <Footer />
     </div>
 </template>

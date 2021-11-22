@@ -18,8 +18,12 @@ body {
 }
 
 .layout-content {
-    margin-top: 82px;
     min-height: 80vh;
+}
+
+.header-back {
+    height: 82px;
+    background-color: $bc;
 }
 
 div.home-title {
@@ -272,6 +276,36 @@ div.input-form {
     width: calc((100% / 6) * 5);
 }
 
+@media (min-width: 567px) {
+    .item-md-2 {
+        width: calc(100% / 6);
+    }
+    .item-md-3 {
+        width: 25%;
+    }
+    .item-md-4 {
+        width: calc(100% / 3);
+    }
+    .item-md-5 {
+        width: calc((100% / 12) * 5);
+    }
+    .item-md-7 {
+        width: calc((100% / 12) * 7);
+    }
+    .item-md-8 {
+        width: calc((100% / 3) * 2);
+    }
+    .item-md-6 {
+        width: 50%;
+    }
+    .item-md-9 {
+        width: 75%;
+    }
+    .item-md-10 {
+        width: calc((100% / 6) * 5);
+    }
+}
+
 div.form-error {
     input {
         border: 1px solid #f94040 !important;
@@ -300,7 +334,7 @@ div.check-custom {
         font-size: 16px;
         line-height: 22px;
         cursor: pointer;
-        color: #fff;
+        color: $tc;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -370,7 +404,7 @@ div.check-custom {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        color: #fff;
+        color: $tc;
         border-radius: 4px;
         font-size: 16px;
         line-height: 24px;

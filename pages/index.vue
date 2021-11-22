@@ -3,7 +3,6 @@
         <Slider />
         <Animes />
         <Trailer />
-
         <News />
     </div>
 </template>

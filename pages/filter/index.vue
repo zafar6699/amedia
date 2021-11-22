@@ -78,35 +78,31 @@
                         <div class="item-9">
                             <div class="filter-courses">
                                 <div class="card-row">
-                                    <div class="item-3 mb-30">
+                                    <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
-                                    <div class="item-3 mb-30">
+                                    <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
-                                    <div class="item-3 mb-30">
+                                    <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
-                                    <div class="item-3 mb-30">
+                                    <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
-                                    <div class="item-3 mb-30">
+                                    <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
-                                    <div class="item-3 mb-30">
+                                    <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
-                                    <div class="item-3 mb-30">
+                                    <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
-                                    <div class="item-3 mb-30">
+                                    <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
-                                    <div class="item-3 mb-30">
-                                        <AnimeCard />
-                                    </div>
-                                    <div class="item-3 mb-30">
-                                        <AnimeCard />
+                                       <AnimeCard />
                                     </div>
                                 </div>
 
@@ -150,7 +146,7 @@ export default {
 div.filter-page {
     margin-bottom: 50px;
     div.filter-title {
-        background-color: #33363f;
+        background-color: $gh;
         padding: 45px 0px;
         h2 {
             font-size: 34px;

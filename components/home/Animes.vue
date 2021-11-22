@@ -2,8 +2,6 @@
     <div>
         <div class="trending-courses">
             <div class="container">
-                <h1 class="title-content">Eng ommabop kurslar</h1>
-
                 <div class="category-box">
                     <div class="anime-cat">
                         <button class="btn-simple btn-simple-active">

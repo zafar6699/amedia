@@ -94,13 +94,13 @@ export default {
     },
     i18n: {
         locales: [{
-                code: 'uz',
-                file: 'uz.js',
-            },
-            {
-                code: 'ru',
-                file: 'ru.js',
-            },
+            code: 'uz',
+            file: 'uz.js',
+        },
+        {
+            code: 'ru',
+            file: 'ru.js',
+        },
         ],
         lazy: true,
         langDir: 'lang/',
@@ -109,7 +109,7 @@ export default {
     },
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
-        baseURL: 'https://edulife-umdsoft.herokuapp.com/api/',
+        baseURL: 'https://cdn.amediatv.uz/api/',
     },
 
     // PWA module configuration: https://go.nuxtjs.dev/pwa

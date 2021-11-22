@@ -1,123 +1,36 @@
 <template>
     <div>
         <footer>
-            <div class="site-container">
-                <div class="footer-top">
-                    <div class="card-row">
-                        <div class="item-8">
-                            <h3 class="footer-title">Kategoriyalar</h3>
-                            <div class="card-row">
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                                <div class="item-4">
-                                    <nuxt-link class="footer-link" to="/"
-                                        >Development</nuxt-link
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-2">
-                            <h3 class="footer-title">Havolalar</h3>
-                            <nuxt-link class="footer-link" to="/"
-                                >O'qituvchilar</nuxt-link
-                            >
-                            <nuxt-link class="footer-link" to="/"
-                                >Bloglar</nuxt-link
-                            >
-                        </div>
-                        <!-- <div class="item-2">
-                            <h3 class="footer-title">Aloqa</h3>
-                            <nuxt-link class="footer-link" to="/"
-                                >O'qituvchilar</nuxt-link
-                            >
-                            <nuxt-link class="footer-link" to="/"
-                                >Bloglar</nuxt-link
-                            >
-                        </div> -->
-                        <div class="item-2">
-                            <h3 class="footer-title">Ijtimoiy tarmoqlar</h3>
-
-                            <div class="social-links">
-                                <a href="#">
-                                    <svg
-                                        data-v-2e32ab3b=""
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="25"
-                                        height="20"
-                                        viewBox="0 0 25 20"
-                                        fill="none"
-                                    >
-                                        <path
-                                            data-v-2e32ab3b=""
-                                            d="M22.6681 0.131505L1.40874 8.27737C-0.0421283 8.85641 -0.0337346 9.66062 1.14255 10.0192L6.60068 11.7111L19.2292 3.79398C19.8263 3.43298 20.3719 3.62718 19.9235 4.02274L9.69186 13.198H9.68947L9.69186 13.1992L9.31536 18.7894C9.86693 18.7894 10.1103 18.538 10.4197 18.2414L13.0708 15.6798L18.5853 19.7271C19.6021 20.2835 20.3323 19.9975 20.5854 18.7918L24.2053 1.84003C24.5758 0.363835 23.6382 -0.304562 22.6681 0.131505Z"
-                                            fill="white"
-                                        ></path>
-                                    </svg>
-                                </a>
-                                <a href="#">
-                                    <svg
-                                        data-v-2e32ab3b=""
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="11"
-                                        height="20"
-                                        viewBox="0 0 11 20"
-                                        fill="none"
-                                    >
-                                        <path
-                                            data-v-2e32ab3b=""
-                                            d="M9.63282 11.2494L10.1515 7.63H6.90905V5.28125C6.90905 4.29125 7.36184 3.32562 8.81417 3.32562H10.2881V0.244375C10.2881 0.244375 8.95071 0 7.67168 0C5.00159 0 3.25634 1.73375 3.25634 4.87187V7.63062H0.288086V11.25H3.25634V20H6.90905V11.25L9.63282 11.2494Z"
-                                            fill="white"
-                                        ></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
+            <div class="container">
+                <div class="footer-top">AMEDIATV</div>
+                <div class="card-row">
+                    <div class="item-4"><h3>Manzil</h3></div>
+                    <div class="item-4"><h3>Ijtimoiy tarmoqlar</h3></div>
+                    <div class="item-4"><h3>Kontaktlar</h3></div>
+                </div>
+                <div class="footer-body">
+                    <h2>Ijtimoiy tarmoqlar</h2>
+                    <div class="social-links">
+                        <ul>
+                            <li>
+                                <a href="#"><fa icon="star" /> </a>
+                            </li>
+                            <li>
+                                <a href="#"><fa icon="star" /> </a>
+                            </li>
+                            <li>
+                                <a href="#"><fa icon="star" /> </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-
+                <!-- <div class="category">
+                    <ul>
+                        <li><nuxt-link to="/"> Ongoing </nuxt-link></li>
+                        <li><nuxt-link to="/"> Ongoing </nuxt-link></li>
+                        <li><nuxt-link to="/"> Ongoing </nuxt-link></li>
+                    </ul>
+                </div> -->
                 <!-- <div class="footer-bottom">
 
                 </div> -->
@@ -132,18 +45,71 @@ export default {}
 
 <style lang="scss" scoped>
 footer {
-    background-color: #2e3035;
-    padding-top: 80px;
-    div.footer-top {
-        padding-bottom: 50px;
-        border-bottom: 1px solid #e5f1fb;
+    padding: 100px 0;
+    background-color: #1a1919 !important;
+    position: relative;
+    h3 {
+        text-align: center;
     }
+    div.footer-top {
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        position: absolute;
+        font-size: 170px;
+        opacity: 0.5;
+        z-index: 0;
+        color: #222;
+        font-weight: 600;
+        pointer-events: none;
+    }
+    .footer-body {
+        z-index: 12;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        h2 {
+            z-index: 12;
+            color: #e1e1e1;
+            font-size: 1.75em;
+            font-weight: 500;
+        }
+    }
+    .category {
+        margin: 40px 0;
+        padding: 20px 0;
+        border: 1px solid #161515;
+        border-left: 0px solid #000;
+        border-right: 0px solid #000;
+        display: flex;
+        justify-content: center;
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+
+            align-items: center;
+            li {
+                a {
+                    color: #fff;
+                    padding: 10px 20px;
+                    transition: 0.3s;
+                    &:hover {
+                        color: $gc;
+                    }
+                }
+            }
+        }
+    }
+
     h3.footer-title {
         font-size: 18px;
         color: $tc;
         margin-bottom: 20px;
     }
     a.footer-link {
+        z-index: 12;
         color: #7c7d94;
         display: inline-block;
         font-size: 14px;
@@ -156,6 +122,12 @@ footer {
     }
 
     div.social-links {
+        z-index: 12;
+        margin-top: 60px;
+        ul {
+            display: flex;
+            list-style: none;
+        }
         a {
             margin-right: 15px;
             display: inline-flex;

@@ -212,7 +212,7 @@ div.anime-card::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba($color: #000000, $alpha: 0.2);
+    background-color: rgba($color: #000000, $alpha: 0.3);
     z-index: 2;
 }
 </style>

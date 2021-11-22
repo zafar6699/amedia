@@ -37,7 +37,11 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="back" src="@/assets/img/3.jpg" alt />
+                    <img
+                        class="back"
+                        src="http://cdn.amediatv.uz/public/uploads/cinema/org/9359fbaba3d664a2173f7b640eadab05.jpg"
+                        alt
+                    />
                     <div class="opacity-banner"></div>
                     <div class="text">
                         <div class="container">
@@ -188,6 +192,7 @@ export default {
     align-items: center;
 }
 .slider {
+    margin-bottom: 50px;
     .carousel-item {
         // padding: 30px 0;
         width: 100%;

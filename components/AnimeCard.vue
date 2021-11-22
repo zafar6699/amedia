@@ -88,10 +88,16 @@ div.anime-card {
     }
     &:hover {
         box-shadow: 5px 5px 25px rgb(0 0 0 / 8%);
+
+        div.img {
+            img {
+                transform: scale(1.1);
+            }
+        }
         div.text-bottom {
-            background-color: #fff;
+            // background-color: #fff;
             div.text-inner {
-                background-color: unset !important;
+                background-color: rgba($color: #fff, $alpha: 0.8);
             }
 
             h2 {
@@ -114,6 +120,7 @@ div.anime-card {
         z-index: 1;
         img {
             height: 100%;
+            transition: 0.3s;
             width: 100%;
             object-fit: cover;
         }

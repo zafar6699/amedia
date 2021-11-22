@@ -2,41 +2,16 @@
     <div>
         <div class="filter-page">
             <div class="filter-title">
-                <div class="site-container">
-                    <h2>Dasturlash</h2>
+                <div class="container">
+                    <h2>Anime filmlar</h2>
                 </div>
             </div>
 
             <div class="filter-content">
-                <div class="site-container">
+                <div class="container">
                     <div class="card-row">
                         <div class="item-3">
-                            <h3 class="cat-title">Bo'limlar</h3>
-
-                            <div class="check-box check-custom">
-                                <label class="cont">
-                                    Vuejs
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    Vuejs
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    Vuejs
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    Vuejs
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-
-                            <h3 class="cat-title">Daraja</h3>
+                            <h3 class="cat-title">Kategoriyalar</h3>
 
                             <div class="check-box check-custom">
                                 <label class="cont">
@@ -60,6 +35,30 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
+                            <h3 class="cat-title">Janrlar</h3>
+
+                            <div class="check-box check-custom">
+                                <label class="cont">
+                                    Vuejs
+                                    <input type="checkbox" value="1" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="cont">
+                                    Vuejs
+                                    <input type="checkbox" value="1" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="cont">
+                                    Vuejs
+                                    <input type="checkbox" value="1" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="cont">
+                                    Vuejs
+                                    <input type="checkbox" value="1" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
 
                             <h3 class="cat-title">To'lov</h3>
 
@@ -79,35 +78,35 @@
                         <div class="item-9">
                             <div class="filter-courses">
                                 <div class="card-row">
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <CourseCard />
+                                    <div class="item-3 mb-30">
+                                        <AnimeCard />
                                     </div>
                                 </div>
 
@@ -151,11 +150,12 @@ export default {
 div.filter-page {
     margin-bottom: 50px;
     div.filter-title {
-        background-color: #f9fafd;
+        background-color: #33363f;
         padding: 45px 0px;
         h2 {
             font-size: 34px;
-            color: $tc;
+            color: $gc;
+            font-weight: 500;
         }
     }
 
@@ -165,7 +165,7 @@ div.filter-page {
 
     h3.cat-title {
         font-size: 24px;
-        color: $tc;
+        color: $gc;
         margin-bottom: 15px;
         font-weight: 500;
     }

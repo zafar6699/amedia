@@ -4,36 +4,54 @@
             <div class="container">
                 <div class="footer-top">AMEDIATV</div>
                 <div class="card-row">
-                    <div class="item-4"><h3>Manzil</h3></div>
-                    <div class="item-4"><h3>Ijtimoiy tarmoqlar</h3></div>
-                    <div class="item-4"><h3>Kontaktlar</h3></div>
-                </div>
-                <div class="footer-body">
-                    <h2>Ijtimoiy tarmoqlar</h2>
-                    <div class="social-links">
-                        <ul>
-                            <li>
-                                <a href="#"><fa icon="star" /> </a>
-                            </li>
-                            <li>
-                                <a href="#"><fa icon="star" /> </a>
-                            </li>
-                            <li>
-                                <a href="#"><fa icon="star" /> </a>
-                            </li>
-                        </ul>
+                    <div class="item-3">
+                        <h3>Manzil</h3>
+                        <div class="adres">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Vitae explicabo voluptatum in?
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item-3">
+                        <h3>Kontaktlar</h3>
+                        <div class="tel">
+                            <b>+998 (90) 959 66 08</b>
+                        </div>
+                    </div>
+                    <div class="item-3">
+                        <h3>Janrlar</h3>
+                        <div class="janr">
+                            <ul>
+                                <li><nuxt-link to="/">Ongoing</nuxt-link></li>
+                                <li><nuxt-link to="/">Ongoing</nuxt-link></li>
+                                <li><nuxt-link to="/">Ongoing</nuxt-link></li>
+                                <li><nuxt-link to="/">Ongoing</nuxt-link></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-3">
+                        <h3>Ijtimoiy tarmoqlar</h3>
+                        <div class="social-links">
+                            <ul>
+                                <li>
+                                    <a href="#"><fa icon="star" /> </a>
+                                </li>
+                                <li>
+                                    <a href="#"><fa icon="star" /> </a>
+                                </li>
+                                <li>
+                                    <a href="#"><fa icon="star" /> </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <!-- <div class="category">
-                    <ul>
-                        <li><nuxt-link to="/"> Ongoing </nuxt-link></li>
-                        <li><nuxt-link to="/"> Ongoing </nuxt-link></li>
-                        <li><nuxt-link to="/"> Ongoing </nuxt-link></li>
-                    </ul>
-                </div> -->
-                <!-- <div class="footer-bottom">
 
-                </div> -->
+                <div class="footer-bottom">
+                    <p>Barcha huquqlar himoyalangan</p>
+                    <p>UMD Soft</p>
+                </div>
             </div>
         </footer>
     </div>
@@ -45,114 +63,121 @@ export default {}
 
 <style lang="scss" scoped>
 footer {
-    padding: 100px 0;
+    padding: 50px 0;
     background-color: #1a1919 !important;
     position: relative;
-    h3 {
-        text-align: center;
-    }
+
     div.footer-top {
         top: 0;
         left: 50%;
         transform: translate(-50%, 0);
         position: absolute;
         font-size: 170px;
-        opacity: 0.5;
+        opacity: 0.3;
         z-index: 0;
         color: #222;
         font-weight: 600;
         pointer-events: none;
     }
-    .footer-body {
-        z-index: 12;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0 auto;
-        h2 {
-            z-index: 12;
-            color: #e1e1e1;
-            font-size: 1.75em;
-            font-weight: 500;
-        }
-    }
-    .category {
-        margin: 40px 0;
-        padding: 20px 0;
-        border: 1px solid #161515;
-        border-left: 0px solid #000;
-        border-right: 0px solid #000;
-        display: flex;
-        justify-content: center;
-        ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-
-            align-items: center;
-            li {
-                a {
+    .card-row {
+        .item-3 {
+            h3 {
+                text-align: center;
+                font-weight: 500;
+                z-index: 33;
+                color: $gc;
+                margin-bottom: 20px;
+                z-index: 12;
+            }
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 12;
+            }
+            .adres {
+                p {
                     color: #fff;
-                    padding: 10px 20px;
-                    transition: 0.3s;
-                    &:hover {
-                        color: $gc;
-                    }
+                    text-align: center;
+                    z-index: 12;
                 }
             }
-        }
-    }
-
-    h3.footer-title {
-        font-size: 18px;
-        color: $tc;
-        margin-bottom: 20px;
-    }
-    a.footer-link {
-        z-index: 12;
-        color: #7c7d94;
-        display: inline-block;
-        font-size: 14px;
-        position: relative;
-        margin-bottom: 8px;
-        font-weight: 500;
-        &:hover {
-            color: $gc;
-        }
-    }
-
-    div.social-links {
-        z-index: 12;
-        margin-top: 60px;
-        ul {
-            display: flex;
-            list-style: none;
-        }
-        a {
-            margin-right: 15px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            background-color: $gh;
-            border-radius: 5px;
-            transition: 0.2s;
-            &:hover {
-                background-color: $gc;
-                svg {
-                    path {
-                        fill: #fff;
-                    }
+            .tel {
+                b {
+                    color: #fff;
+                    font-weight: 500;
+                    z-index: 12;
                 }
             }
-            svg {
-                path {
+            div.social-links {
+                z-index: 12;
+                ul {
+                    z-index: 12;
+                    display: flex;
+                    list-style: none;
+                }
+                a {
+                    margin-right: 15px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 38px;
+                    height: 38px;
+                    background-color: $gh;
+                    border-radius: 5px;
                     transition: 0.2s;
+                    &:hover {
+                        background-color: $gc;
+                        svg {
+                            path {
+                                fill: #fff;
+                            }
+                        }
+                    }
+                    svg {
+                        path {
+                            transition: 0.2s;
 
-                    fill: $gc;
+                            fill: $gc;
+                        }
+                    }
                 }
             }
+            .janr {
+                ul {
+                    z-index: 12;
+
+                    list-style: none;
+
+                    li {
+                        margin-bottom: 10px;
+                        z-index: 12;
+
+                        a {
+                            z-index: 12;
+
+                            color: #fff;
+                            padding: 10px 20px;
+                            transition: 0.3s;
+                            &:hover {
+                                color: $gc;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .footer-bottom {
+        padding-top: 20px;
+        margin-top: 20px;
+        border-top: 1px solid rgb(37, 37, 37);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p {
+            font-size: 14px;
+            color: #fff;
         }
     }
 }

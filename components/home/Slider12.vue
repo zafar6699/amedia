@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="slider">
-            <Vue-slick-carousel v-bind="settings">
+            <Vue-slick-carousel v-bind="settings12">
                 <div class="carousel-item">
                     <img class="back" src="@/assets/img/3.jpg" alt />
                     <div class="opacity-banner"></div>
@@ -151,7 +151,7 @@
 export default {
     data() {
         return {
-            settings: {
+            settings12: {
                 accessibility: false,
                 dotsClass: 'slick-dots custom-dot-class',
                 dots: true,
@@ -193,6 +193,7 @@ export default {
 }
 .slider {
     margin-bottom: 50px;
+    box-shadow: inset 0px 0px 200px 150px rgba(0, 0, 0, 0.9);
     .carousel-item {
         // padding: 30px 0;
         width: 100%;

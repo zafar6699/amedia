@@ -56,7 +56,7 @@ export default {}
     background-color: #000;
     padding: 100px 0;
     height: fit-content;
-    z-index: -2;
+    z-index: 1;
     position: relative;
     margin-bottom: 80px;
     &::before {
@@ -68,7 +68,7 @@ export default {}
         width: 100%;
         height: 100%;
         opacity: 0.7;
-        z-index: -1;
+        z-index: -10;
     }
     .trailer-opacity {
         position: absolute;

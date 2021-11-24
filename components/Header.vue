@@ -705,11 +705,11 @@ export default {
     },
     created() {},
     methods: {
-        // changeInput() {
-        //     if (this.search.length > 2) {
-        //         this.searchBox = true
-        //     }
-        // },
+        changeInput() {
+            if (this.search.length > 2) {
+                this.searchBox = true
+            }
+        },
         scrollBody() {
             if (window.scrollY > 1) {
                 this.dheader = true

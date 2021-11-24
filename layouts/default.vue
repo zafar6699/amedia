@@ -23,6 +23,7 @@ export default {
         // }
 
         await this.$store.dispatch('getJanr')
+        await this.$store.dispatch('getCategory')
         this.loading = true
     },
 }

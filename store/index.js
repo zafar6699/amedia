@@ -4,6 +4,7 @@ export const state = () => ({
     isRegister: false,
 
     janr: [],
+    category: [],
 })
 export const mutations = {
     TRUE_LOADING(state, data) {
@@ -23,10 +24,17 @@ export const mutations = {
     JANR_GET(state, data) {
         state.janr = data
     },
+    CATEGORY_GET(state, data) {
+        state.category = data
+    },
 }
 export const actions = {
     async getJanr({ commit }) {
         let janr = await this.$axios.$get('janr')
         commit('JANR_GET', janr.data)
+    },
+    async getCategory({ commit }) {
+        let category = await this.$axios.$get('category')
+        commit('CATEGORY_GET', category.data)
     },
 }

@@ -4,18 +4,22 @@
             <div class="container">
                 <div class="category-box">
                     <div class="anime-cat">
-                        <button class="btn-simple btn-simple-active">
-                            Barcha animelar
+                        <button
+                            :class="
+                                activeTab == index
+                                    ? 'btn-simple btn-simple-active'
+                                    : 'btn-simple'
+                            "
+                            v-for="(item, index) in category"
+                            :key="index"
+                        >
+                            {{ item[`name${$i18n.locale}`] }}
                         </button>
-                        <button class="btn-simple">Anime filmlar</button>
-                        <button class="btn-simple">Ongoing</button>
-                        <button class="btn-simple">Yakunlangan animelar</button>
                     </div>
 
                     <nuxt-link
                         :to="{
-                            name: `filte___${$i18n.locale}`,
-                            query: { id: 1 },
+                            name: `filter___${$i18n.locale}`,
                         }"
                         class="btn-simple"
                         >Barchasi <fa icon="angle-right" />
@@ -68,7 +72,14 @@
 <script>
 export default {
     data() {
-        return {}
+        return {
+            activeTab: 0,
+        }
+    },
+    computed: {
+        category() {
+            return this.$store.state.category
+        },
     },
 }
 </script>

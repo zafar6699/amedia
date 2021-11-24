@@ -5,7 +5,9 @@
                 <div class="home-title">
                     <h4>Yangiliklar</h4>
 
-                    <nuxt-link class="btn-simple" to="/">Barchasi</nuxt-link>
+                    <nuxt-link class="btn-simple" to="/news"
+                        >Barchasi</nuxt-link
+                    >
                 </div>
 
                 <div class="card-row">

@@ -171,110 +171,19 @@
             <div class="modal-body">
                 <div class="min-body">
                     <div class="card-row">
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
-                        </div>
-                        <div class="item-md-3 item-6">
-                            <nuxt-link to="/">Anime filmlar</nuxt-link>
+                        <div
+                            class="item-md-3 item-6"
+                            v-for="(item, index) in janr"
+                            :key="index"
+                        >
+                            <nuxt-link
+                                :to="{
+                                    name: 'filter___' + $i18n.locale,
+                                    query: { text: item._id },
+                                }"
+                            >
+                                {{ item[`name${$i18n.locale}`] }}</nuxt-link
+                            >
                         </div>
                     </div>
                 </div>
@@ -496,7 +405,7 @@
                                             Janrlar
                                         </a>
                                     </li>
-                                    <li>
+                                    <li class="rel">
                                         <a href="#" @click="isYear = true"
                                             >Yillar
                                         </a>
@@ -508,11 +417,128 @@
                             v-click-other="closeSearch"
                             :class="isSearch ? 'open search-box' : 'search-box'"
                         >
-                            <input
-                                v-model="search"
-                                type="text"
-                                placeholder="Izlash..."
-                            />
+                            <div class="search">
+                                <input
+                                    v-model="search"
+                                    type="text"
+                                    @change="changeInput"
+                                    placeholder="Izlash..."
+                                />
+                                <div v-if="searchBox" class="year scroll">
+                                    <div class="search">
+                                        <ul>
+                                            <li>
+                                                <nuxt-link to="/">
+                                                    <div class="search-link">
+                                                        <div class="img">
+                                                            <img
+                                                                src="@/assets/img/1.jpg"
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <div class="text">
+                                                            <p>
+                                                                Omadsizning
+                                                                qayta tugilisgi
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </nuxt-link>
+                                            </li>
+                                            <li>
+                                                <nuxt-link to="/">
+                                                    <div class="search-link">
+                                                        <div class="img">
+                                                            <img
+                                                                src="@/assets/img/1.jpg"
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <div class="text">
+                                                            <p>
+                                                                Omadsizning
+                                                                qayta tugilisgi
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </nuxt-link>
+                                            </li>
+                                            <li>
+                                                <nuxt-link to="/">
+                                                    <div class="search-link">
+                                                        <div class="img">
+                                                            <img
+                                                                src="@/assets/img/1.jpg"
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <div class="text">
+                                                            <p>
+                                                                Omadsizning
+                                                                qayta tugilisgi
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </nuxt-link>
+                                            </li>
+                                            <li>
+                                                <nuxt-link to="/">
+                                                    <div class="search-link">
+                                                        <div class="img">
+                                                            <img
+                                                                src="@/assets/img/1.jpg"
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <div class="text">
+                                                            <p>
+                                                                Omadsizning
+                                                                qayta tugilisgi
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </nuxt-link>
+                                            </li>
+                                            <li>
+                                                <nuxt-link to="/">
+                                                    <div class="search-link">
+                                                        <div class="img">
+                                                            <img
+                                                                src="@/assets/img/1.jpg"
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <div class="text">
+                                                            <p>
+                                                                Omadsizning
+                                                                qayta tugilisgi
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </nuxt-link>
+                                            </li>
+                                            <li>
+                                                <nuxt-link to="/">
+                                                    <div class="search-link">
+                                                        <div class="img">
+                                                            <img
+                                                                src="@/assets/img/1.jpg"
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <div class="text">
+                                                            <p>
+                                                                Omadsizning
+                                                                qayta tugilisgi
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </nuxt-link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                             <button @click="openSearch">
                                 <fa icon="search" />
                             </button>
@@ -607,7 +633,7 @@ export default {
             isSearch: false,
             isJanr: false,
             isYear: false,
-            janr: null,
+            searchBox: false,
             type: 'text',
             search: '',
             visiblePassword: false,
@@ -667,12 +693,12 @@ export default {
         isRegister() {
             return this.$store.state.isRegister
         },
+        janr() {
+            return this.$store.state.janr
+        },
     },
-    async mounted() {
-        let janr = await this.$axios.$get('janr')
-        this.janr = janr.data
-        console.log('as', janr)
 
+    async mounted() {
         window.addEventListener('scroll', this.scrollBody)
         if (window.scrollY < 1) {
             this.dheader = false
@@ -680,6 +706,11 @@ export default {
     },
     created() {},
     methods: {
+        // changeInput() {
+        //     if (this.search.length > 2) {
+        //         this.searchBox = true
+        //     }
+        // },
         scrollBody() {
             if (window.scrollY > 1) {
                 this.dheader = true
@@ -804,6 +835,77 @@ export default {
 </script>
 
 <style lang="scss">
+.scroll::-webkit-scrollbar {
+    width: 5px;
+    height: 39px !important;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+    background: $gc;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+    background: #9f9d9d;
+}
+.search {
+    position: relative;
+    .year {
+        position: absolute;
+        top: 50px;
+        background: #fff;
+        padding: 10px 10px;
+        padding-top: 20px;
+        width: 240px;
+        border-radius: 5px;
+        max-height: 230px;
+        overflow-y: scroll;
+        ul {
+            list-style: none;
+            li {
+                margin-bottom: 10px;
+                a {
+                    .search-link {
+                        display: flex;
+                        align-items: center;
+                        .img {
+                            width: 40px;
+                            height: 40px;
+                            margin-right: 3px;
+                            img {
+                                border-radius: 10px;
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .text {
+                            p {
+                                color: #333;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        .text {
+                            p {
+                                color: $gc;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 div.min-body {
     a {
         font-size: 16px;

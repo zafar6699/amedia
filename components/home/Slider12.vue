@@ -225,6 +225,7 @@ export default {
             width: 100%;
             height: 100%;
             background: #000;
+            // box-shadow: inset 0px 0px 200px 300px;
             // background-image: linear-gradient(
             //     to top,
             //     rgb(0, 0, 0) 0%,

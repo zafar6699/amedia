@@ -6,7 +6,6 @@
                     <h2>Anime filmlar</h2>
                 </div>
             </div>
-
             <div class="filter-content">
                 <div class="container">
                     <div class="card-row">
@@ -38,23 +37,12 @@
                             <h3 class="cat-title">Janrlar</h3>
 
                             <div class="check-box check-custom">
-                                <label class="cont">
-                                    Vuejs
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    Vuejs
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    Vuejs
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    Vuejs
+                                <label
+                                    class="cont"
+                                    v-for="(item, index) in janr"
+                                    :key="index"
+                                >
+                                    {{ item[`name${$i18n.locale}`] }}
                                     <input type="checkbox" value="1" />
                                     <span class="checkmark"></span>
                                 </label>
@@ -102,20 +90,19 @@
                                     <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
-                                       <AnimeCard />
-                                    </div>
+                                    <AnimeCard />
                                 </div>
+                            </div>
 
-                                <div class="pagination">
-                                    <pagination
-                                        :total-items="length"
-                                        :max-visible-pages="8"
-                                        :items-per-page="limit"
-                                        :page="page"
-                                        @page-change="pageChange"
-                                    >
-                                    </pagination>
-                                </div>
+                            <div class="pagination">
+                                <pagination
+                                    :total-items="length"
+                                    :max-visible-pages="8"
+                                    :items-per-page="limit"
+                                    :page="page"
+                                    @page-change="pageChange"
+                                >
+                                </pagination>
                             </div>
                         </div>
                     </div>
@@ -133,6 +120,11 @@ export default {
             limit: 12,
             page: 0,
         }
+    },
+    computed: {
+        janr() {
+            return this.$store.state.janr
+        },
     },
     methods: {
         pageChange(page) {

@@ -2,6 +2,8 @@ export const state = () => ({
     isLoading: false,
     isLogin: false,
     isRegister: false,
+
+    janr: [],
 })
 export const mutations = {
     TRUE_LOADING(state, data) {
@@ -17,5 +19,14 @@ export const mutations = {
     CHANGE_REGISTER(state, data) {
         state.isRegister = data
     },
+
+    JANR_GET(state, data) {
+        state.janr = data
+    },
 }
-export const actions = {}
+export const actions = {
+    async getJanr({ commit }) {
+        let janr = await this.$axios.$get('janr')
+        commit('JANR_GET', janr.data)
+    },
+}

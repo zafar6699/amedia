@@ -105,7 +105,7 @@ export default {
         lazy: true,
         langDir: 'lang/',
         strategy: 'prefix_except_default',
-        defaultLocale: 'ru',
+        defaultLocale: 'uz',
     },
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {

@@ -82,7 +82,6 @@ footer {
     .card-row {
         .item-3 {
             h3 {
-                text-align: center;
                 font-weight: 500;
                 z-index: 33;
                 color: $gc;
@@ -91,14 +90,11 @@ footer {
             }
             div {
                 display: flex;
-                justify-content: center;
-                align-items: center;
                 z-index: 12;
             }
             .adres {
                 p {
                     color: #fff;
-                    text-align: center;
                     z-index: 12;
                 }
             }
@@ -158,6 +154,7 @@ footer {
 
                             color: #fff;
                             padding: 10px 20px;
+                            padding-left: 0;
                             transition: 0.3s;
                             &:hover {
                                 color: $gc;

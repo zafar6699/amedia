@@ -72,7 +72,7 @@ button {
 }
 
 body {
-    background-color: #fff;
+    background-color: #f7f8f9;
 }
 
 .btn-simple-active {
@@ -360,11 +360,11 @@ div.check-custom {
         background-color: #fff;
     }
     /* On mouse-over, add a grey background color */
-    .cont:hover input~.checkmark {
+    .cont:hover input ~ .checkmark {
         background-color: $gh;
     }
     /* When the checkbox is checked, add a blue background */
-    .cont input:checked~.checkmark {
+    .cont input:checked ~ .checkmark {
         background-color: $gc;
     }
     /* Create the checkmark/indicator (hidden when not checked) */
@@ -374,7 +374,7 @@ div.check-custom {
         display: none;
     }
     /* Show the checkmark when checked */
-    .cont input:checked~.checkmark:after {
+    .cont input:checked ~ .checkmark:after {
         display: block;
     }
     /* Style the checkmark/indicator */

@@ -94,13 +94,13 @@ export default {
     },
     i18n: {
         locales: [{
-            code: 'uz',
-            file: 'uz.js',
-        },
-        {
-            code: 'ru',
-            file: 'ru.js',
-        },
+                code: 'uz',
+                file: 'uz.js',
+            },
+            {
+                code: 'ru',
+                file: 'ru.js',
+            },
         ],
         lazy: true,
         langDir: 'lang/',

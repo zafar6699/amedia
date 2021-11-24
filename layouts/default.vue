@@ -2,7 +2,7 @@
     <div>
         <Header />
         <div class="header-back"></div>
-        <div class="layout-content">
+        <div class="layout-home">
             <Nuxt :key="$route.fullPath" />
         </div>
         <Loading />

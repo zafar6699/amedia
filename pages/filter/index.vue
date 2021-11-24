@@ -60,7 +60,7 @@
                                 </label>
                             </div>
 
-                            <h3 class="cat-title">To'lov</h3>
+                            <h3 class="cat-title">Yillar</h3>
 
                             <div class="check-box check-custom">
                                 <label class="cont">

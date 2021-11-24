@@ -168,6 +168,13 @@ export default {
 </script>
 
 <style lang="scss">
+.slider {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
 .slick-dots {
     font-size: 20px;
     bottom: 60px !important;
@@ -193,7 +200,7 @@ export default {
 }
 .slider {
     margin-bottom: 50px;
-    z-index: 10;
+    z-index: 2;
     .carousel-item {
         box-shadow: inset 0px 0px 200px 150px rgba(0, 0, 0, 0.9);
         // padding: 30px 0;
@@ -229,7 +236,7 @@ export default {
             top: 50%;
             transform: translate(0%, -50%);
             position: absolute;
-            z-index: 122121;
+            z-index: 2;
             width: 100%;
             .categories {
                 margin-bottom: 10px;

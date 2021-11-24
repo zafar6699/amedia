@@ -71,6 +71,7 @@ export default {
 <style lang="scss">
 div.trending-courses {
     margin-bottom: 80px;
+    margin-top: 100vh;
     .animes-add {
         display: flex;
         justify-content: center;

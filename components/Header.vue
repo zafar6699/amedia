@@ -607,7 +607,6 @@ export default {
             isSearch: false,
             isJanr: false,
             isYear: false,
-            janr: null,
             type: 'text',
             search: '',
             visiblePassword: false,
@@ -669,10 +668,6 @@ export default {
         },
     },
     async mounted() {
-        let janr = await this.$axios.$get('janr')
-        this.janr = janr.data
-        console.log('as', janr)
-
         window.addEventListener('scroll', this.scrollBody)
         if (window.scrollY < 1) {
             this.dheader = false

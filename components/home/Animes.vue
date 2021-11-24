@@ -12,7 +12,12 @@
                         <button class="btn-simple">Yakunlangan animelar</button>
                     </div>
 
-                    <nuxt-link class="btn-simple" to="/filter"
+                    <nuxt-link
+                        :to="{
+                            name: `filte___${$i18n.locale}`,
+                            query: { id: 1 },
+                        }"
+                        class="btn-simple"
                         >Barchasi <fa icon="angle-right" />
                     </nuxt-link>
                 </div>

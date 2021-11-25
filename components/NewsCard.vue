@@ -1,6 +1,11 @@
 <template>
     <div>
-        <nuxt-link to="/">
+        <nuxt-link
+            :to="{
+                name: 'news-id___' + $i18n.locale,
+                params: { id: news._id },
+            }"
+        >
             <div class="anime-card">
                 <div class="img">
                     <nuxt-img :src="$cdn + news.image" alt="" />

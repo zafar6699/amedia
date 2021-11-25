@@ -1,14 +1,18 @@
 <template>
     <div>
-        <nuxt-link to="/">
+        <nuxt-link
+            :to="{
+                name: 'season-id___' + $i18n.locale,
+                params: { id: anime._id },
+            }"
+        >
             <div class="anime-card">
-                <span class="year"> 2019</span>
-                <button class="like"><fa icon="heart" /></button>
+                <span class="year"> {{ anime.year }}</span>
+                <button @click="likebos" :class="like ? 'like bos' : 'like'">
+                    <fa icon="heart" />
+                </button>
                 <div class="img">
-                    <nuxt-img
-                        src="http://cdn.amediatv.uz/public/uploads/cinema/org/3defbd62c77a7c5265c72741a009a632.jpg"
-                        alt=""
-                    />
+                    <nuxt-img :src="$cdn + anime.image" alt="" />
                 </div>
 
                 <div class="text-bottom">
@@ -17,8 +21,7 @@
                         <div class="text">
                             <div class="title">
                                 <h2>
-                                    300 yil shiliqlarni o'ldirib, eng yuqori
-                                    darajaga yetganimi bilmi qoldim [12] (+16)
+                                    {{ anime.name[$i18n.locale] }}
                                 </h2>
                             </div>
                             <div class="bot">
@@ -30,11 +33,22 @@
 
                                     <span>
                                         <fa icon="eye" />
-                                        <b>456</b>
+                                        <b>{{ anime.view }}</b>
                                     </span>
                                 </div>
 
-                                <div class="price-type free">Tekin</div>
+                                <div
+                                    v-if="anime.price == 'free'"
+                                    class="price-type free"
+                                >
+                                    Tekin
+                                </div>
+                                <div
+                                    v-if="anime.price == 'selling'"
+                                    class="price-type free"
+                                >
+                                    Pullik
+                                </div>
                                 <!-- <div class="price-type lock">Pullik</div> -->
                             </div>
                         </div>
@@ -46,7 +60,23 @@
 </template>
 
 <script>
-export default {}
+export default {
+    props: {
+        anime: {
+            type: Object,
+        },
+    },
+    data() {
+        return {
+            like: false,
+        }
+    },
+    methods: {
+        likebos() {
+            this.like = !this.like
+        },
+    },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -79,11 +109,33 @@ div.anime-card {
         align-items: center;
         border-radius: 100%;
         // background-color: #fff;
+
         svg {
             font-size: 24px;
             path {
                 fill: #fff;
             }
+        }
+        &.bos {
+            animation-name: like;
+            animation-duration: 0.2s;
+            svg {
+                font-size: 24px;
+                path {
+                    fill: $gc;
+                }
+            }
+        }
+    }
+    @keyframes like {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.4);
+        }
+        100% {
+            transform: scale(1);
         }
     }
     &:hover {

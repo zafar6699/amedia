@@ -1,43 +1,24 @@
 <template>
     <div>
-        <div class="id-news">
+        <div class="id-news" v-if="newsid != null">
             <div class="container">
                 <div class="card-row">
                     <div class="item-8 item-md-6">
                         <div class="content">
                             <div class="title">
                                 <h1>
-                                    Tez kunlarda Dota haqida anime o'zbek tilida
+                                    {{ newsid.name[$i18n.locale] }}
                                 </h1>
                                 <div class="date">
-                                    <span>13.11.2021</span>
+                                    <span> {{ newsid.date.slice(0, 10) }}</span>
                                 </div>
                             </div>
                             <div class="img">
-                                <img src="@/assets/img/2.jpg" alt="" />
+                                <img :src="$cdn + newsid.image" alt="" />
                             </div>
                             <div class="text">
                                 <p>
-                                    E'lon bilan bir qatorda ijodkorlar shouning
-                                    sakkiz qismdan iborat debyut treylerini ham
-                                    taqdim etdilar. Anime "Ajdaho qoni"
-                                    subtitrini oldi. Qisqacha tavsifga ko'ra,
-                                    anime o'z hikoyasini aytib beradi va
-                                    syujetda ajdarholarga qarshi kurashadigan
-                                    Davion ismli ritsar tasvirlangan. Janubiy
-                                    Koreyaning MIR (Korra afsonasi) studiyasi
-                                    moslashishga javobgardir. Eshli Miller
-                                    ("Thor" va "X-Men: Birinchi sinf" filmlari)
-                                    ssenariy muallifi, shou muallifi va
-                                    loyihaning ijrochi prodyuseri bo'lib, uni Ki
-                                    Xyon Ryu (Voltron: Legendary Defender)
-                                    birgalikda ishlab chiqqan. DOTA
-                                    moslashuvidan tashqari, League of Legends
-                                    koinotiga asoslangan Arcane animatsion
-                                    seriali ham mavjud. Dastlab uni 2020 yilda
-                                    chiqarish rejalashtirilgan edi, ammo
-                                    Kovid-19 pandemiyasi tufayli ozod qilish
-                                    2021 yilga qoldirildi.
+                                    {{ newsid.description[$i18n.locale] }}
                                 </p>
                             </div>
                         </div>
@@ -47,51 +28,28 @@
                             <div class="title">
                                 <h3>Boshqa yangiliklar</h3>
                             </div>
-                            <nuxt-link to="/" class="card-news">
+                            <nuxt-link
+                                v-for="(item, i) in news"
+                                :key="i"
+                                :to="{
+                                    name: 'news-id___' + $i18n.locale,
+                                    params: { id: item._id },
+                                }"
+                                class="card-news"
+                            >
                                 <div class="left">
-                                    <img src="@/assets/img/avatar.jpg" alt="" />
+                                    <img :src="$cdn + item.image" alt="" />
                                 </div>
                                 <div class="right">
                                     <div class="name">
                                         <p>
-                                            Tez kunlarda Dota haqida anime
-                                            o'zbek tilida
+                                            {{ item.name[$i18n.locale] }}
                                         </p>
                                     </div>
                                     <div class="data">
-                                        <span> 13.12.2021 </span>
-                                    </div>
-                                </div>
-                            </nuxt-link>
-                            <nuxt-link to="/" class="card-news">
-                                <div class="left">
-                                    <img src="@/assets/img/avatar.jpg" alt="" />
-                                </div>
-                                <div class="right">
-                                    <div class="name">
-                                        <p>
-                                            Tez kunlarda Dota haqida anime
-                                            o'zbek tilida
-                                        </p>
-                                    </div>
-                                    <div class="data">
-                                        <span> 13.12.2021 </span>
-                                    </div>
-                                </div>
-                            </nuxt-link>
-                            <nuxt-link to="/" class="card-news">
-                                <div class="left">
-                                    <img src="@/assets/img/avatar.jpg" alt="" />
-                                </div>
-                                <div class="right">
-                                    <div class="name">
-                                        <p>
-                                            Tez kunlarda Dota haqida anime
-                                            o'zbek tilida
-                                        </p>
-                                    </div>
-                                    <div class="data">
-                                        <span> 13.12.2021 </span>
+                                        <span>
+                                            {{ item.date.slice(0, 10) }}</span
+                                        >
                                     </div>
                                 </div>
                             </nuxt-link>
@@ -104,7 +62,34 @@
 </template>
 
 <script>
-export default {}
+export default {
+    data() {
+        return {
+            news: null,
+            newsid: null,
+        }
+    },
+    mounted() {
+        this.getAll()
+        this.getData()
+    },
+    methods: {
+        async getAll() {
+            let news = await this.$axios.$get(
+                `news/home?page=${this.page + 1}&limit=${this.limit}`
+            )
+            this.news = news.data
+            this.length = news.count
+            console.log('asasad', this.news)
+        },
+        async getData() {
+            let newsid = await this.$axios.$get(`news/${this.$route.params.id}`)
+            this.newsid = newsid.data
+            this.length = newsid.count
+            console.log('asasad', this.newsid)
+        },
+    },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -123,10 +108,6 @@ export default {}
         display: flex;
         margin-bottom: 15px;
         &:hover {
-            .left {
-                img {
-                }
-            }
             .right {
                 .name {
                     p {
@@ -152,6 +133,7 @@ export default {}
             }
         }
         .right {
+            width: calc(100% - 10px);
             .name {
                 p {
                     height: 60px;

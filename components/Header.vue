@@ -172,7 +172,7 @@
                 <div class="min-body">
                     <div class="card-row">
                         <div
-                            class="item-md-3 item-6"
+                            class="item-md-3 item-3"
                             v-for="(item, index) in janr"
                             :key="index"
                         >
@@ -202,100 +202,100 @@
             <div class="modal-body">
                 <div class="min-body">
                     <div class="card-row">
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2022</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2021</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2020</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2019</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2018</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2017</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2016</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2015</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2014</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2013</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2012</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2011</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2010</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2009</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2008</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2007</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2006</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2005</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2004</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2003</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2002</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2001</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">2000</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">1999</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">1998</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">1997</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">1996</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">1995</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">1994</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">1993</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">1992</nuxt-link>
                         </div>
-                        <div class="item-md-3 item-6">
+                        <div class="item-md-3 item-3">
                             <nuxt-link to="/">1991</nuxt-link>
                         </div>
                     </div>

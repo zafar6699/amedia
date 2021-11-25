@@ -5,13 +5,14 @@
                 <div class="category-box">
                     <div class="anime-cat">
                         <button
+                            v-for="(item, index) in category"
+                            :key="index"
                             :class="
-                                activeTab == index
+                                categoryId == item._id
                                     ? 'btn-simple btn-simple-active'
                                     : 'btn-simple'
                             "
-                            v-for="(item, index) in category"
-                            :key="index"
+                            @click="clickCat(item._id)"
                         >
                             {{ item[`name${$i18n.locale}`] }}
                         </button>
@@ -27,40 +28,20 @@
                 </div>
 
                 <div class="anime-row">
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
-                    </div>
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
-                    </div>
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
-                    </div>
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
-                    </div>
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
-                    </div>
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
-                    </div>
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
-                    </div>
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
-                    </div>
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
-                    </div>
-                    <div class="anime-item item-md-3">
-                        <AnimeCard />
+                    <div
+                        v-for="(anime, i) in animes"
+                        :key="i"
+                        class="anime-item item-md-3"
+                    >
+                        <AnimeCard :anime="anime" />
                     </div>
                 </div>
 
-                <div class="animes-add">
-                    <button class="btn-simple btn-simple-active">
+                <div class="animes-add" v-if="count >= limit">
+                    <button
+                        @click="clickMore"
+                        class="btn-simple btn-simple-active"
+                    >
                         Ko'proq ko'rsatish
                     </button>
                 </div>
@@ -74,11 +55,40 @@ export default {
     data() {
         return {
             activeTab: 0,
+            animes: null,
+            page: 1,
+            limit: 12,
+            count: 0,
+            categoryId: '5fdf87edd220804c589bef9a',
         }
     },
     computed: {
         category() {
             return this.$store.state.category
+        },
+    },
+    async mounted() {
+        this.getData()
+    },
+    methods: {
+        clickCat(id) {
+            this.categoryId = id
+            this.getData()
+        },
+        clickMore() {
+            this.limit = this.limit + 12
+            this.getData()
+        },
+        async getData() {
+            let animes = await this.$axios.$post(
+                `season/home?page=${this.page}&limit=${this.limit}`,
+                {
+                    category: this.categoryId,
+                }
+            )
+            this.animes = animes.data
+            this.count = animes.count
+            console.log('animes', this.animes)
         },
     },
 }
@@ -103,9 +113,7 @@ div.trending-courses {
             }
         }
     }
-    .courses-carousel {
-        // margin: 0px -15px;
-    }
+
     .slick-dots li.slick-active button:before {
         color: $gc;
         opacity: 1;

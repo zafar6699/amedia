@@ -13,26 +13,12 @@
                         <div class="filter-courses">
                             <div>
                                 <div class="card-row">
-                                    <div class="item-4 item-md-6">
-                                        <NewsCard />
-                                    </div>
-                                    <div class="item-4 item-md-6">
-                                        <NewsCard />
-                                    </div>
-                                    <div class="item-4 item-md-6">
-                                        <NewsCard />
-                                    </div>
-                                    <div class="item-4 item-md-6">
-                                        <NewsCard />
-                                    </div>
-                                    <div class="item-4 item-md-6">
-                                        <NewsCard />
-                                    </div>
-                                    <div class="item-4 item-md-6">
-                                        <NewsCard />
-                                    </div>
-                                    <div class="item-4 item-md-6">
-                                        <NewsCard />
+                                    <div
+                                        v-for="(item, i) in news"
+                                        :key="i"
+                                        class="item-4 item-md-6"
+                                    >
+                                        <NewsCard :news="item" />
                                     </div>
                                 </div>
                             </div>
@@ -60,13 +46,26 @@ export default {
     data() {
         return {
             length: 55,
-            limit: 12,
+            limit: 9,
             page: 0,
+            news: null,
         }
+    },
+    async mounted() {
+        this.getData()
     },
     methods: {
         pageChange(page) {
             this.page = page
+            this.getData()
+        },
+        async getData() {
+            let news = await this.$axios.$get(
+                `news/home?page=${this.page + 1}&limit=${this.limit}`
+            )
+            this.news = news.data
+            this.length = news.count
+            console.log('asasad', this.news)
         },
     },
 }
@@ -87,6 +86,9 @@ div.filter-page {
 
     div.filter-content {
         padding: 40px 0px;
+        .filter-courses {
+            width: 100%;
+        }
     }
 
     h3.cat-title {

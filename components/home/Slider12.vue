@@ -172,6 +172,7 @@ export default {
                 a {
                     color: $gc;
                     margin-right: 20px;
+
                     img {
                         margin-top: 150px;
                         height: 450px;
@@ -222,7 +223,12 @@ export default {
                 a {
                     display: block;
                     font-size: 50px;
-                    line-height: 50px;
+                    line-height: 56px;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     font-weight: 800;
                     color: #fff;
                     margin-bottom: 30px;
@@ -234,6 +240,13 @@ export default {
             p {
                 font-size: 20px;
                 color: #fff;
+                line-height: 25px;
+                height: 100px;
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     }

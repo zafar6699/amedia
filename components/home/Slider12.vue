@@ -128,7 +128,6 @@ export default {
     margin-bottom: 50px;
     z-index: 2;
     .carousel-item {
-        box-shadow: inset 0px 0px 200px 150px rgba(0, 0, 0, 0.9);
         // padding: 30px 0;
         width: 100%;
         height: 100vh;
@@ -145,19 +144,22 @@ export default {
             object-fit: cover;
         }
         .opacity-banner {
+            box-shadow: inset 0px 0px 200px 150px rgba(0, 0, 0, 0.9);
+            background: linear-gradient(130deg, black, black);
+
             top: 0;
             left: 0;
             position: absolute;
             width: 100%;
             height: 100%;
-            background: #000;
+            // background: #000;
             // box-shadow: inset 0px 0px 200px 300px;
             // background-image: linear-gradient(
             //     to top,
             //     rgb(0, 0, 0) 0%,
             //     rgba(0, 0, 0, 0) 100%
             // );
-            opacity: 0.8;
+            opacity: 0.85;
         }
         .text {
             top: 50%;

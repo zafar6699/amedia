@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="footer-top">AMEDIATV</div>
                 <div class="card-row">
-                    <div class="item-3">
+                    <div class="item-3 item-md-3">
                         <h3>Manzil</h3>
                         <div class="adres">
                             <p>
@@ -13,24 +13,35 @@
                             </p>
                         </div>
                     </div>
-                    <div class="item-3">
+                    <div class="item-3 item-md-3">
                         <h3>Kontaktlar</h3>
                         <div class="tel">
                             <b>+998 (90) 959 66 08</b>
                         </div>
                     </div>
-                    <div class="item-3">
-                        <h3>Janrlar</h3>
+                    <div class="item-3 item-md-3">
+                        <h3>Kategoriyalar</h3>
                         <div class="janr">
                             <ul>
-                                <li><nuxt-link to="/">Ongoing</nuxt-link></li>
-                                <li><nuxt-link to="/">Ongoing</nuxt-link></li>
-                                <li><nuxt-link to="/">Ongoing</nuxt-link></li>
-                                <li><nuxt-link to="/">Ongoing</nuxt-link></li>
+                                <li
+                                    v-for="(item, index) in category"
+                                    :key="index"
+                                >
+                                    <nuxt-link
+                                        :to="{
+                                            name: 'filter___' + $i18n.locale,
+                                            query: { text: item._id },
+                                        }"
+                                    >
+                                        {{
+                                            item[`name${$i18n.locale}`]
+                                        }}</nuxt-link
+                                    >
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="item-3">
+                    <div class="item-3 item-md-3">
                         <h3>Ijtimoiy tarmoqlar</h3>
                         <div class="social-links">
                             <ul>
@@ -58,7 +69,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+    computed: {
+        category() {
+            return this.$store.state.category
+        },
+    },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -66,6 +83,7 @@ footer {
     padding: 50px 0;
     background-color: #1a1919 !important;
     position: relative;
+    z-index: 0;
 
     div.footer-top {
         top: 0;
@@ -74,7 +92,7 @@ footer {
         position: absolute;
         font-size: 170px;
         opacity: 0.3;
-        z-index: 0;
+        z-index: -1;
         color: #222;
         font-weight: 600;
         pointer-events: none;
@@ -175,6 +193,16 @@ footer {
         p {
             font-size: 14px;
             color: #fff;
+        }
+    }
+}
+@media (max-width: 576px) {
+    footer {
+        .footer-top {
+            display: none;
+        }
+        .item-md-3 {
+            margin-bottom: 15px;
         }
     }
 }

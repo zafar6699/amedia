@@ -222,4 +222,23 @@ div.anime-card::before {
     background-color: rgba($color: #000000, $alpha: 0.3);
     z-index: 2;
 }
+@media (max-width: 576px) {
+    .anime-card {
+        margin-bottom: 20px !important;
+        .img {
+            height: 230px !important;
+        }
+        .text-bottom {
+            h2 {
+                font-size: 13px !important;
+            }
+            .title {
+                padding: 5px 10px !important;
+            }
+            .bot {
+                padding: 5px 10px !important;
+            }
+        }
+    }
+}
 </style>

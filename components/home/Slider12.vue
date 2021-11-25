@@ -1,142 +1,64 @@
 <template>
     <div>
-        <div class="slider">
+        <div class="slider" v-if="slider != null">
             <Vue-slick-carousel v-bind="settings12">
-                <div class="carousel-item">
-                    <img class="back" src="@/assets/img/3.jpg" alt />
+                <div
+                    class="carousel-item"
+                    v-for="(item, index) in slider"
+                    :key="index"
+                >
+                    <img class="back" :src="$cdn + item.serial.image" alt />
                     <div class="opacity-banner"></div>
                     <div class="text">
                         <div class="container">
                             <div class="">
                                 <div class="categories">
-                                    <nuxt-link to="/">Ongoing</nuxt-link>
+                                    <nuxt-link
+                                        v-for="(cat, i) in item.serial.category"
+                                        :key="i"
+                                        :to="{
+                                            name: `filter___${$i18n.locale}`,
+                                            query: {
+                                                category: cat._id,
+                                            },
+                                        }"
+                                    >
+                                        {{ cat[`name${$i18n.locale}`] }}
+                                    </nuxt-link>
                                 </div>
                                 <div class="link">
-                                    <nuxt-link to="/"
-                                        >Goblinlar qotili. Tez orada yangi
-                                        qismlar yuklanadi</nuxt-link
+                                    <nuxt-link
+                                        :to="{
+                                            name: `season-id___${$i18n.locale}`,
+                                            params: { id: item.serial._id },
+                                        }"
                                     >
+                                        {{
+                                            item.serial.name[`${$i18n.locale}`]
+                                        }}
+                                    </nuxt-link>
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Voluptatum adipisci
-                                        repellat error sapiente ex iusto dolore
-                                        eaque fugiat aspernatur impedit veniam,
-                                        eius illum!
+                                        {{
+                                            item.serial.description[
+                                                `${$i18n.locale}`
+                                            ]
+                                        }}
                                     </p>
                                 </div>
                                 <div class="video-info">
-                                    <b>2020</b>
+                                    <b>
+                                        {{ item.serial.year }}
+                                    </b>
                                     <h3>720P <span>HD</span></h3>
-                                    <button class="play">
-                                        <span><fa icon="play" /></span> Play
-                                        Trailer
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img
-                        class="back"
-                        src="http://cdn.amediatv.uz/public/uploads/cinema/org/9359fbaba3d664a2173f7b640eadab05.jpg"
-                        alt
-                    />
-                    <div class="opacity-banner"></div>
-                    <div class="text">
-                        <div class="container">
-                            <div class="">
-                                <div class="categories">
-                                    <nuxt-link to="/">Ongoing</nuxt-link>
-                                </div>
-                                <div class="link">
-                                    <nuxt-link to="/"
-                                        >Lorem ipsum dolor sit amet consectetur
-                                        adipisicing</nuxt-link
+                                    <nuxt-link
+                                        class="play"
+                                        :to="{
+                                            name: `season-id___${$i18n.locale}`,
+                                            params: { id: item.serial._id },
+                                        }"
                                     >
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Voluptatum adipisci
-                                        repellat error sapiente ex iusto dolore
-                                        eaque fugiat aspernatur impedit veniam,
-                                        eius illum!
-                                    </p>
-                                </div>
-                                <div class="video-info">
-                                    <b>2020</b>
-                                    <h3>720P <span>HD</span></h3>
-                                    <button class="play">
-                                        <span><fa icon="play" /></span> Play
-                                        Trailer
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="back" src="@/assets/img/3.jpg" alt />
-                    <div class="opacity-banner"></div>
-                    <div class="text">
-                        <div class="container">
-                            <div class="">
-                                <div class="categories">
-                                    <nuxt-link to="/">Ongoing</nuxt-link>
-                                </div>
-                                <div class="link">
-                                    <nuxt-link to="/"
-                                        >Goblinlar qotili. Tez orada yangi
-                                        qismlar yuklanadi</nuxt-link
-                                    >
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Voluptatum adipisci
-                                        repellat error sapiente ex iusto dolore
-                                        eaque fugiat aspernatur impedit veniam,
-                                        eius illum!
-                                    </p>
-                                </div>
-                                <div class="video-info">
-                                    <b>2020</b>
-                                    <h3>720P <span>HD</span></h3>
-                                    <button class="play">
-                                        <span><fa icon="play" /></span> Play
-                                        Trailer
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="back" src="@/assets/img/3.jpg" alt />
-                    <div class="opacity-banner"></div>
-                    <div class="text">
-                        <div class="container">
-                            <div class="">
-                                <div class="categories">
-                                    <nuxt-link to="/">Ongoing</nuxt-link>
-                                </div>
-                                <div class="link">
-                                    <nuxt-link to="/"
-                                        >Lorem ipsum dolor sit amet consectetur
-                                        adipisicing</nuxt-link
-                                    >
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Voluptatum adipisci
-                                        repellat error sapiente ex iusto dolore
-                                        eaque fugiat aspernatur impedit veniam,
-                                        eius illum!
-                                    </p>
-                                </div>
-                                <div class="video-info">
-                                    <b>2020</b>
-                                    <h3>720P <span>HD</span></h3>
-                                    <button class="play">
-                                        <span><fa icon="play" /></span> Play
-                                        Trailer
-                                    </button>
+                                        <span><fa icon="play" /></span> Ko'rish
+                                    </nuxt-link>
                                 </div>
                             </div>
                         </div>
@@ -161,9 +83,13 @@ export default {
                 slidesToScroll: 1,
                 adaptiveHeight: true,
             },
+            slider: null,
         }
     },
-    mounted() {},
+    async mounted() {
+        let slider = await this.$axios.$get('slider/client')
+        this.slider = slider.data
+    },
 }
 </script>
 
@@ -277,7 +203,7 @@ export default {
                     }
                 }
             }
-            button.play {
+            .play {
                 font-size: 13px;
                 font-weight: normal;
                 position: relative;

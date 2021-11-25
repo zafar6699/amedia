@@ -11,14 +11,12 @@
                 </div>
 
                 <div class="card-row">
-                    <div class="item-4 item-md-6">
-                        <NewsCard />
-                    </div>
-                    <div class="item-4 item-md-6">
-                        <NewsCard />
-                    </div>
-                    <div class="item-4 item-md-6">
-                        <NewsCard />
+                    <div
+                        v-for="(item, i) in news"
+                        :key="i"
+                        class="item-4 item-md-6"
+                    >
+                        <NewsCard :news="item" />
                     </div>
                 </div>
             </div>
@@ -27,7 +25,18 @@
 </template>
 
 <script>
-export default {}
+export default {
+    data() {
+        return {
+            news: null,
+        }
+    },
+    async mounted() {
+        let news = await this.$axios.$get(`news/home?page=1&limit=3`)
+        this.news = news.data
+        console.log('asad', this.news)
+    },
+}
 </script>
 
 <style></style>

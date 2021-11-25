@@ -3,10 +3,7 @@
         <nuxt-link to="/">
             <div class="anime-card">
                 <div class="img">
-                    <nuxt-img
-                        src="http://cdn.amediatv.uz/public/uploads/cinema/org/3defbd62c77a7c5265c72741a009a632.jpg"
-                        alt=""
-                    />
+                    <nuxt-img :src="$cdn + news.image" alt="" />
                 </div>
 
                 <div class="text-bottom">
@@ -15,8 +12,7 @@
                         <div class="text">
                             <div class="title">
                                 <h2>
-                                    300 yil shiliqlarni o'ldirib, eng yuqori
-                                    darajaga yetganimi bilmi qoldim [12] (+16)
+                                    {{ news.name[$i18n.locale] }}
                                 </h2>
                             </div>
                         </div>
@@ -28,7 +24,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+    props: {
+        news: {
+            type: Object,
+        },
+    },
+}
 </script>
 
 <style lang="scss" scoped>

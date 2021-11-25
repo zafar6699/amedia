@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+Vue.prototype.$cdn = 'http://cdn.amediatv.uz'
 Vue.directive('click-other', {
     bind: function(el, binding, vnode) {
         el.clickOutsideEvent = function(event) {

@@ -3,7 +3,7 @@
         <div class="id-news">
             <div class="container">
                 <div class="card-row">
-                    <div class="item-8">
+                    <div class="item-8 item-md-6">
                         <div class="content">
                             <div class="title">
                                 <h1>
@@ -42,10 +42,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="item-4">
+                    <div class="item-4 item-md-6">
                         <div class="all-news">
                             <div class="title">
-                                <h3>Barcha yangiliklar</h3>
+                                <h3>Boshqa yangiliklar</h3>
                             </div>
                             <nuxt-link to="/" class="card-news">
                                 <div class="left">
@@ -198,6 +198,13 @@ export default {}
                 object-fit: cover;
                 width: 100%;
             }
+        }
+    }
+}
+@media (max-width: 576px) {
+    .id-news {
+        .content {
+            margin-bottom: 30px;
         }
     }
 }

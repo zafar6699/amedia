@@ -276,12 +276,19 @@ div.input-form {
     width: calc((100% / 6) * 5);
 }
 
-@media (min-width: 567px) {
+@media (max-width: 567px) {
+    .anime-row {
+        margin: 0 -10px;
+    }
+    .card-row {
+        margin: 0 -10px;
+    }
     .item-md-2 {
         width: calc(100% / 6);
     }
     .item-md-3 {
-        width: 25%;
+        width: 50%;
+        padding: 0 10px;
     }
     .item-md-4 {
         width: calc(100% / 3);
@@ -296,7 +303,7 @@ div.input-form {
         width: calc((100% / 3) * 2);
     }
     .item-md-6 {
-        width: 50%;
+        width: 100%;
     }
     .item-md-9 {
         width: 75%;
@@ -360,11 +367,11 @@ div.check-custom {
         background-color: #fff;
     }
     /* On mouse-over, add a grey background color */
-    .cont:hover input~.checkmark {
+    .cont:hover input ~ .checkmark {
         background-color: $gh;
     }
     /* When the checkbox is checked, add a blue background */
-    .cont input:checked~.checkmark {
+    .cont input:checked ~ .checkmark {
         background-color: $gc;
     }
     /* Create the checkmark/indicator (hidden when not checked) */
@@ -374,7 +381,7 @@ div.check-custom {
         display: none;
     }
     /* Show the checkmark when checked */
-    .cont input:checked~.checkmark:after {
+    .cont input:checked ~ .checkmark:after {
         display: block;
     }
     /* Style the checkmark/indicator */

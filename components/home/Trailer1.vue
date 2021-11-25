@@ -9,7 +9,7 @@
                     </div>
                     <div class="body-trailer">
                         <div class="card-row">
-                            <div class="item-4">
+                            <div class="item-4 item-md-6">
                                 <div class="info">
                                     <h3>Ongoing</h3>
                                     <nuxt-link to="/"
@@ -27,7 +27,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="item-8">
+                            <div class="item-8 item-md-6">
                                 <div class="video">
                                     <iframe
                                         src="https://www.youtube.com/embed/d8YSLthFpTM "
@@ -133,6 +133,15 @@ export default {}
                 width: 100%;
                 min-height: 400px;
             }
+        }
+    }
+}
+@media (max-width: 576px) {
+    .trailer {
+        padding: 20px 0;
+        margin-bottom: 20px;
+        .video {
+            padding: 0 !important;
         }
     }
 }

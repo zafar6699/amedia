@@ -11,13 +11,13 @@
                 </div>
 
                 <div class="card-row">
-                    <div class="item-4">
+                    <div class="item-4 item-md-6">
                         <NewsCard />
                     </div>
-                    <div class="item-4">
+                    <div class="item-4 item-md-6">
                         <NewsCard />
                     </div>
-                    <div class="item-4">
+                    <div class="item-4 item-md-6">
                         <NewsCard />
                     </div>
                 </div>

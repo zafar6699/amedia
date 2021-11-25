@@ -13,28 +13,25 @@
                         <div class="filter-courses">
                             <div>
                                 <div class="card-row">
-                                    <div class="item-4 mb-30">
+                                    <div class="item-4 item-md-6">
                                         <NewsCard />
                                     </div>
-                                    <div class="item-4 mb-30">
+                                    <div class="item-4 item-md-6">
                                         <NewsCard />
                                     </div>
-                                    <div class="item-4 mb-30">
+                                    <div class="item-4 item-md-6">
                                         <NewsCard />
                                     </div>
-                                    <div class="item-4 mb-30">
+                                    <div class="item-4 item-md-6">
                                         <NewsCard />
                                     </div>
-                                    <div class="item-4 mb-30">
+                                    <div class="item-4 item-md-6">
                                         <NewsCard />
                                     </div>
-                                    <div class="item-4 mb-30">
+                                    <div class="item-4 item-md-6">
                                         <NewsCard />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <NewsCard />
-                                    </div>
-                                    <div class="item-4 mb-30">
+                                    <div class="item-4 item-md-6">
                                         <NewsCard />
                                     </div>
                                 </div>
@@ -100,6 +97,16 @@ div.filter-page {
     }
     div.check-box {
         margin-bottom: 30px;
+    }
+}
+@media (max-width: 576px) {
+    .filter-page {
+        .anime-card {
+            margin-bottom: 0 !important;
+            .item-md-6 {
+                margin-bottom: 0 !important;
+            }
+        }
     }
 }
 </style>

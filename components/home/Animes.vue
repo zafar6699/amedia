@@ -27,34 +27,34 @@
                 </div>
 
                 <div class="anime-row">
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
-                    <div class="anime-item">
+                    <div class="anime-item item-md-3">
                         <AnimeCard />
                     </div>
                 </div>
@@ -109,6 +109,18 @@ div.trending-courses {
     .slick-dots li.slick-active button:before {
         color: $gc;
         opacity: 1;
+    }
+}
+@media (max-width: 576px) {
+    .category-box {
+        margin-bottom: 20px !important;
+        align-items: flex-end !important;
+        .btn-simple {
+            margin-bottom: 10px !important;
+        }
+        .anime-cat {
+            max-width: 77%;
+        }
     }
 }
 </style>

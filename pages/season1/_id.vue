@@ -14,7 +14,7 @@
                                 </h1>
                             </div>
                             <div class="card-row">
-                                <div class="item-3">
+                                <div class="item-3 item-md-6">
                                     <div class="info-film">
                                         <div class="title">
                                             <h2>Ma'lumotlar</h2>
@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item-9">
+                                <div class="item-9 item-md-6">
                                     <div class="video">
                                         <iframe
                                             src="https://www.youtube.com/embed/d8YSLthFpTM "
@@ -104,7 +104,7 @@
                     <div class="content-about">
                         <div class="container">
                             <div class="card-row">
-                                <div class="item-8">
+                                <div class="item-8 item-md-6">
                                     <div v-if="tabIndex == 1" class="comments">
                                         <div class="comment">
                                             <div class="person">
@@ -717,6 +717,23 @@ export default {
                 left: 0;
                 width: 100%;
                 height: 100%;
+            }
+        }
+    }
+}
+@media (max-width: 576px) {
+    .id {
+        .top {
+            .info {
+                .title-top {
+                    h1 {
+                        font-weight: 500;
+                        font-size: 22px;
+                    }
+                }
+                .card-row {
+                    flex-direction: column-reverse;
+                }
             }
         }
     }

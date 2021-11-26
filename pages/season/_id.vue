@@ -1,16 +1,17 @@
 <template>
     <div>
         <div class="id">
-            <div class="season">
+            <div class="season" v-if="anime != null">
+                <!-- <pre>{{ anime }}</pre> -->
+                <!-- <pre>{{ serial }}</pre> -->
                 <div class="top">
-                    <img src="@/assets/img/2.jpg" alt="" class="back" />
+                    <img :src="$cdn + anime.image" alt="" class="back" />
                     <div class="opacity-banner"></div>
                     <div class="info">
                         <div class="container">
                             <div class="title-top">
                                 <h1>
-                                    Soqolimni olib, yuqori maktab qizini uyimga
-                                    olib keldim [9-13] [18+]
+                                    {{ anime.name[$i18n.locale] }}
                                 </h1>
                             </div>
                             <div class="card-row">
@@ -20,56 +21,91 @@
                                             <h2>Ma'lumotlar</h2>
                                             <div class="box-line">
                                                 <h3 class="key">Mamlakat</h3>
-                                                <h3 class="value">AQSH</h3>
+                                                <h3 class="value">
+                                                    {{ anime.country }}
+                                                </h3>
                                             </div>
                                             <div class="box-line">
                                                 <h3 class="key">Rejissor</h3>
-                                                <h3 class="value">Naruto</h3>
+                                                <h3 class="value">
+                                                    {{ anime.rejissor }}
+                                                </h3>
                                             </div>
                                             <div class="box-line">
                                                 <h3 class="key">Studiya</h3>
                                                 <h3 class="value">
-                                                    Lidenfilms
+                                                    {{ anime.studia }}
                                                 </h3>
                                             </div>
                                             <div class="box folder">
                                                 <h3 class="key">Janr</h3>
-                                                <div class="link">
-                                                    <nuxt-link to="/"
-                                                        >Ongoing</nuxt-link
-                                                    >
-                                                    <nuxt-link to="/"
-                                                        >Ongoing</nuxt-link
+                                                <div
+                                                    class="link"
+                                                    v-if="anime.janr != null"
+                                                >
+                                                    <nuxt-link
+                                                        v-for="janr in anime.janr"
+                                                        :key="janr"
+                                                        to="/"
+                                                        >{{
+                                                            janr[
+                                                                `name${$i18n.locale}`
+                                                            ]
+                                                        }}</nuxt-link
                                                     >
                                                 </div>
                                             </div>
                                             <div class="box cat">
                                                 <h3 class="key">Kategoriya</h3>
                                                 <div class="link">
-                                                    <nuxt-link to="/"
-                                                        >Ongoing</nuxt-link
-                                                    >
-                                                    <nuxt-link to="/"
-                                                        >Ongoing</nuxt-link
-                                                    >
-                                                    <nuxt-link to="/"
-                                                        >Ongoing</nuxt-link
+                                                    <nuxt-link
+                                                        v-for="cat in anime.category"
+                                                        :key="cat"
+                                                        to="/"
+                                                        >{{
+                                                            cat[
+                                                                `name${$i18n.locale}`
+                                                            ]
+                                                        }}</nuxt-link
                                                     >
                                                 </div>
                                             </div>
                                             <div class="box-line">
                                                 <h3 class="key">Yil</h3>
-                                                <h3 class="value">2022</h3>
+                                                <h3 class="value">
+                                                    {{ anime.year }}
+                                                </h3>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item-9 item-md-6">
+                                <div
+                                    class="item-9 item-md-6"
+                                    v-if="serial != null"
+                                >
                                     <div class="video">
                                         <iframe
-                                            src="https://www.youtube.com/embed/d8YSLthFpTM "
+                                            :src="viewSeria.video"
                                             frameborder="0"
                                         ></iframe>
+
+                                        <div class="seriyas">
+                                            <button
+                                                :class="
+                                                    indexSeria == index
+                                                        ? 'btn-simple active'
+                                                        : 'btn-simple'
+                                                "
+                                                v-for="(item, index) in serial"
+                                                :key="item"
+                                                @click="clickSeria(item, index)"
+                                            >
+                                                {{ item.name[$i18n.locale] }}
+                                                <span class="">
+                                                    <fa icon="eye" />
+                                                </span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +115,10 @@
                 <div class="body-id">
                     <div class="body-title">
                         <div class="container">
-                            <h1>Discover</h1>
+                            <!-- <h1>Discover</h1> -->
+                            <div class="description">
+                                <p>{{ anime.description[$i18n.locale] }}</p>
+                            </div>
                         </div>
                     </div>
 
@@ -106,35 +145,51 @@
                             <div class="card-row">
                                 <div class="item-8 item-md-6">
                                     <div v-if="tabIndex == 1" class="comments">
-                                        <div class="comment">
+                                        <div
+                                            class="comment"
+                                            v-for="(item, i) in comments"
+                                            :key="i"
+                                        >
                                             <div class="person">
                                                 <div class="img">
                                                     <img
-                                                        src="@/assets/img/avatar.jpg"
+                                                        :src="
+                                                            $cdn +
+                                                            item.user.photo
+                                                        "
                                                         alt=""
                                                     />
                                                 </div>
                                                 <div class="name">
                                                     <h4 class="name">
-                                                        Xushnudbek
+                                                        {{ item.user.name }}
                                                     </h4>
                                                     <p class="date">
-                                                        30.09.2021,18:34
+                                                        {{
+                                                            item.date.slice(
+                                                                0,
+                                                                10
+                                                            )
+                                                        }},
+                                                        {{
+                                                            item.date.slice(
+                                                                11,
+                                                                16
+                                                            )
+                                                        }}
                                                     </p>
                                                 </div>
                                             </div>
                                             <div class="izoh">
                                                 <p>
-                                                    Lorem ipsum dolor sit amet
-                                                    consectetur adipisicing
-                                                    elit. Consequuntur id iusto
-                                                    incidunt aperiam error
-                                                    aspernatur?
+                                                    {{ item.message }}
                                                 </p>
                                                 <div class="answer">
                                                     <div class="btn">
                                                         <button
-                                                            @click="clickReply"
+                                                            @click="
+                                                                clickReply(i)
+                                                            "
                                                             v-click-other="
                                                                 clickOut
                                                             "
@@ -149,7 +204,7 @@
                                                     </div>
 
                                                     <div
-                                                        v-if="isReply"
+                                                        v-if="isReply == i"
                                                         class="write-comment"
                                                     >
                                                         <div class="form">
@@ -157,73 +212,9 @@
                                                                 name=""
                                                                 id=""
                                                                 rows="6"
-                                                                placeholder="Izoh..."
-                                                            ></textarea>
-                                                        </div>
-                                                        <div class="send">
-                                                            <button
-                                                                class="
-                                                                    btn-simple
+                                                                v-model="
+                                                                    commentText
                                                                 "
-                                                            >
-                                                                Jo'natish
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="comment">
-                                            <div class="person">
-                                                <div class="img">
-                                                    <img
-                                                        src="@/assets/img/avatar.jpg"
-                                                        alt=""
-                                                    />
-                                                </div>
-                                                <div class="name">
-                                                    <h4 class="name">
-                                                        Xushnudbek
-                                                    </h4>
-                                                    <p class="date">
-                                                        30.09.2021,18:34
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="izoh">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet
-                                                    consectetur adipisicing
-                                                    elit. Consequuntur id iusto
-                                                    incidunt aperiam error
-                                                    aspernatur?
-                                                </p>
-                                                <div class="answer">
-                                                    <div class="btn">
-                                                        <button
-                                                            @click="clickReply"
-                                                            v-click-other="
-                                                                clickOut
-                                                            "
-                                                        >
-                                                            <span>
-                                                                <fa
-                                                                    icon="reply"
-                                                                />
-                                                            </span>
-                                                            Javob berish
-                                                        </button>
-                                                    </div>
-
-                                                    <div
-                                                        v-if="isReply"
-                                                        class="write-comment"
-                                                    >
-                                                        <div class="form">
-                                                            <textarea
-                                                                name=""
-                                                                id=""
-                                                                rows="6"
                                                                 placeholder="Izoh..."
                                                             ></textarea>
                                                         </div>
@@ -263,42 +254,27 @@
                                     <div v-if="tabIndex == 2" class="creater">
                                         <div class="ijods">
                                             <div class="card-row">
-                                                <div class="item-4">
+                                                <div
+                                                    v-for="(
+                                                        item, i
+                                                    ) in anime.translator"
+                                                    :key="i"
+                                                    class="item-4"
+                                                >
                                                     <div class="person">
                                                         <div class="img">
                                                             <img
-                                                                src="@/assets/img/avatar.jpg"
+                                                                :src="
+                                                                    $cdn +
+                                                                    item.image
+                                                                "
                                                                 alt=""
                                                             />
                                                         </div>
                                                         <div class="name">
-                                                            <p>LemniSkata</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="person">
-                                                        <div class="img">
-                                                            <img
-                                                                src="@/assets/img/avatar.jpg"
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                        <div class="name">
-                                                            <p>LemniSkata</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="person">
-                                                        <div class="img">
-                                                            <img
-                                                                src="@/assets/img/avatar.jpg"
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                        <div class="name">
-                                                            <p>LemniSkata</p>
+                                                            <p>
+                                                                {{ item.name }}
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -308,74 +284,15 @@
                                     <div v-if="tabIndex == 3" class="kadrlar">
                                         <div class="screens">
                                             <div class="card-row">
-                                                <div class="item-4">
+                                                <div
+                                                    v-for="(item, i) in anime
+                                                        .screens.original"
+                                                    :key="i"
+                                                    class="item-4"
+                                                >
                                                     <div class="kadr">
                                                         <img
-                                                            src="@/assets/img/1.jpg"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="kadr">
-                                                        <img
-                                                            src="@/assets/img/1.jpg"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="kadr">
-                                                        <img
-                                                            src="@/assets/img/1.jpg"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="kadr">
-                                                        <img
-                                                            src="@/assets/img/1.jpg"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="kadr">
-                                                        <img
-                                                            src="@/assets/img/1.jpg"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="kadr">
-                                                        <img
-                                                            src="@/assets/img/1.jpg"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="kadr">
-                                                        <img
-                                                            src="@/assets/img/1.jpg"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="kadr">
-                                                        <img
-                                                            src="@/assets/img/1.jpg"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div class="item-4">
-                                                    <div class="kadr">
-                                                        <img
-                                                            src="@/assets/img/1.jpg"
+                                                            :src="$cdn + item"
                                                             alt=""
                                                         />
                                                     </div>
@@ -397,6 +314,8 @@
 export default {
     data() {
         return {
+            indexSeria: -1,
+            viewSeria: null,
             tabMenu: [
                 {
                     uz: 'Izohlar',
@@ -412,32 +331,50 @@ export default {
                 },
             ],
             tabIndex: 1,
-            isReply: false,
+            isReply: -1,
             comment: true,
             anime: null,
+            comments: null,
+            serial: null,
+            commentText: '',
         }
     },
     mounted() {
         this.getData()
     },
     methods: {
+        clickSeria(item, index) {
+            this.viewSeria = item
+            this.indexSeria = index
+        },
         async getData() {
             let anime = await this.$axios.$get(
-                'season/' + $this.route.params.id
+                'season/' + this.$route.params.id
             )
             this.anime = anime.data
+            if ((anime.tip = 'serial')) {
+                let serial = await this.$axios.$get(
+                    'season/seriya/one/' + this.$route.params.id
+                )
+                this.serial = serial.data
+
+                this.viewSeria = this.serial[0]
+            }
+            this.comments = anime.comment
             console.log('anime', this.anime)
         },
         tabClick(i) {
             this.tabIndex = i + 1
         },
-        clickReply() {
-            this.isReply = true
+        clickReply(index) {
+            this.isReply = index
             this.comment = false
         },
         clickOut() {
-            this.isReply = false
-            this.comment = true
+            if (this.commentText == '') {
+                this.isReply = -1
+                this.comment = true
+            }
         },
     },
 }
@@ -613,9 +550,8 @@ export default {
         .top {
             top: 0;
             left: 0;
+            margin-top: 60px;
             width: 100%;
-            height: 100vh;
-            position: relative;
             overflow: hidden;
             .video {
                 iframe {
@@ -717,7 +653,7 @@ export default {
             }
             .info {
                 position: absolute;
-                top: 10%;
+                top: 4%;
                 left: 0;
                 width: 100%;
                 height: 100%;

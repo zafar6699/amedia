@@ -3,7 +3,7 @@
         <div class="id">
             <div class="season" v-if="anime != null">
                 <!-- <pre>{{ anime }}</pre> -->
-                <!-- <pre>{{ serial }}</pre> -->
+                <!-- <pre>{{ viewSeria }}</pre> -->
                 <div class="top">
                     <img :src="$cdn + anime.image" alt="" class="back" />
                     <div class="opacity-banner"></div>
@@ -78,36 +78,44 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div v-if="viewSeria != null">
+                                        <a
+                                            target="_blank"
+                                            :href="viewSeria.url"
+                                            class="btn-simple down"
+                                        >
+                                            Yuklab olish
+                                        </a>
+                                    </div>
                                 </div>
                                 <div
                                     class="item-9 item-md-6"
-                                    v-if="serial != null"
+                                    v-if="viewSeria != null"
                                 >
                                     <div class="video">
                                         <iframe
                                             :src="viewSeria.video"
                                             frameborder="0"
                                         ></iframe>
-
-                                        <div class="seriyas">
-                                            <button
-                                                :class="
-                                                    indexSeria == index
-                                                        ? 'btn-simple active'
-                                                        : 'btn-simple'
-                                                "
-                                                v-for="(item, index) in serial"
-                                                :key="item"
-                                                @click="clickSeria(item, index)"
-                                            >
-                                                {{ item.name[$i18n.locale] }}
-                                                <span class="">
-                                                    <fa icon="eye" />
-                                                </span>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="seriyas">
+                                <button
+                                    :class="
+                                        indexSeria == index
+                                            ? 'btn-simple active'
+                                            : 'btn-simple'
+                                    "
+                                    v-for="(item, index) in serial"
+                                    :key="item"
+                                    @click="clickSeria(item, index)"
+                                >
+                                    {{ item.name[$i18n.locale] }}
+                                    <span class="">
+                                        <fa icon="eye" />
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -314,7 +322,7 @@
 export default {
     data() {
         return {
-            indexSeria: -1,
+            indexSeria: 0,
             viewSeria: null,
             tabMenu: [
                 {
@@ -381,6 +389,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.seriyas {
+    margin-top: 15px;
+    button {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background: transparent;
+        &.active {
+            background: $gc !important;
+            color: #fff;
+        }
+    }
+}
 .content-about {
     margin: 40px 0;
     .creater {
@@ -550,9 +570,10 @@ export default {
         .top {
             top: 0;
             left: 0;
-            margin-top: 60px;
             width: 100%;
-            overflow: hidden;
+            height: fit-content;
+            position: relative;
+
             .video {
                 iframe {
                     width: 100%;
@@ -574,15 +595,16 @@ export default {
                     .link {
                         margin-top: 10px;
                         display: flex;
-                        justify-content: space-between;
                         flex-wrap: wrap;
+                        justify-content: flex-end;
                         max-width: 70%;
                         a {
                             margin-right: 5px;
-                            border-radius: 5px;
+                            border-radius: 4px;
                             color: $gc;
                             transition: 0.2s;
                             margin-bottom: 5px;
+                            padding: 0 1px;
                             &:hover {
                                 color: #fff;
                                 background: $gc;
@@ -650,13 +672,23 @@ export default {
                 height: 100%;
                 background: #000;
                 opacity: 0.94;
+                z-index: -1;
             }
             .info {
-                position: absolute;
-                top: 4%;
-                left: 0;
+                // position: absolute;
                 width: 100%;
                 height: 100%;
+                z-index: 3;
+                padding: 20px 0;
+                a.down {
+                    margin-top: 30px;
+                    width: 100%;
+                    background: transparent;
+                    text-align: center;
+                    &:hover {
+                        background: $gc;
+                    }
+                }
             }
             img.back {
                 position: absolute;
@@ -664,6 +696,7 @@ export default {
                 left: 0;
                 width: 100%;
                 height: 100%;
+                z-index: -2;
             }
         }
     }

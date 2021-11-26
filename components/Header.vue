@@ -175,11 +175,12 @@
                             class="item-md-3 item-3"
                             v-for="(item, index) in janr"
                             :key="index"
+                            @click="isJanr = false"
                         >
                             <nuxt-link
                                 :to="{
                                     name: 'filter___' + $i18n.locale,
-                                    query: { text: item._id },
+                                    query: { janr: item._id },
                                 }"
                             >
                                 {{ item[`name${$i18n.locale}`] }}</nuxt-link

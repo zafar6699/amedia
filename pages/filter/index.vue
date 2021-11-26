@@ -66,12 +66,12 @@
                         <div class="item-9">
                             <div class="filter-courses">
                                 <div class="card-row">
-                                    <div class="item-4 mb-30">
+                                    <!-- <div class="item-4 mb-30">
                                         <AnimeCard />
                                     </div>
                                     <div class="item-4 mb-30">
                                         <AnimeCard />
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 

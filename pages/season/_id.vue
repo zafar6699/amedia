@@ -170,7 +170,6 @@
                                                         <img
                                                             :src="
                                                                 $cdn +
-                                                                '/' +
                                                                 item.user.photo
                                                             "
                                                             alt=""

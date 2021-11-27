@@ -341,7 +341,7 @@
                                 <input
                                     v-model="search"
                                     type="text"
-                                    @change="changeInput"
+                                    @keyup="changeInput"
                                     placeholder="Izlash..."
                                 />
                                 <div v-if="searchBox" class="year scroll">
@@ -351,6 +351,10 @@
                                                 v-for="item in searchData"
                                                 :key="item"
                                                 v-show="searchData.length > 0"
+                                                @click="
+                                                    searchBox = false
+                                                    search = ''
+                                                "
                                             >
                                                 <nuxt-link
                                                     :to="{
@@ -574,6 +578,9 @@ export default {
                 this.searchData = searchData.data
                 console.log('searchdata', this.searchData)
                 this.searchBox = true
+            } else {
+                this.searchBox = false
+                this.searchData = []
             }
         },
         scrollBody() {

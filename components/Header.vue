@@ -1,5 +1,20 @@
 <template>
     <div>
+        <div @click="isMenu = false" v-if="isMenu" class="fixvh menu-fix"></div>
+        <div :class="isMenu ? 'menu-modal show' : 'menu-modal'">
+            <div class="modal-title">
+                <div class="flex top">
+                    <h2>Menu</h2>
+                    <button @click="closeModal">
+                        <fa class="times" icon="times" />
+                    </button>
+                </div>
+                <div class="btns">
+                    <button>Janrlar</button>
+                    <button>Yillar</button>
+                </div>
+            </div>
+        </div>
         <div @click="closeModal" v-if="isRegister" class="fixvh"></div>
         <div v-if="isRegister" class="modal-card" style="width: 400px">
             <div class="modal-title">
@@ -286,7 +301,10 @@
                                 class="login"
                                 @click="openLogin"
                             >
-                                Kirish
+                                <span>
+                                    <fa icon="sign-in-alt" />
+                                </span>
+                                <span class="kirish"> Kirish </span>
                             </button>
 
                             <div
@@ -335,6 +353,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="bar-btn">
+                            <button @click="clickBar">
+                                <fa icon="bars" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -351,6 +374,7 @@ const email = helpers.regex(
 export default {
     data() {
         return {
+            isMenu: false,
             year: [],
             isRegister: false,
             isLogin: false,
@@ -410,6 +434,9 @@ export default {
     },
     created() {},
     methods: {
+        clickBar() {
+            this.isMenu = true
+        },
         clickUz() {
             this.$i18n.setLocale('uz')
         },
@@ -581,6 +608,35 @@ export default {
 </script>
 
 <style lang="scss">
+.show {
+    left: 0 !important;
+}
+.menu-modal {
+    position: fixed;
+    top: 0;
+    left: -330px;
+    background: #fff;
+    width: 70%;
+    height: 100vh;
+    z-index: 20;
+    padding: 20px;
+    transition: 0.3s;
+    .top {
+        button {
+            font-size: 26px;
+        }
+    }
+    .btns {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 30px;
+        button {
+            padding: 10px 20px 10px 0;
+            font-size: 22px;
+        }
+    }
+}
 .send-code {
     margin-bottom: 25px;
     font-size: 14px;
@@ -655,13 +711,6 @@ div.min-body {
     }
 }
 
-@media (max-width: 567px) {
-    div.min-body {
-        max-height: calc(100vh - 150px);
-        overflow-y: scroll;
-        overflow-x: hidden;
-    }
-}
 header {
     padding: 10px 0px;
     // box-shadow: 0px 4px 6px 0px rgb(12 0 46 / 5%);
@@ -967,6 +1016,40 @@ header {
 
     div.header-right {
         border-bottom: 1px solid transparent !important;
+    }
+}
+@media (max-width: 567px) {
+    .header-back {
+        height: 60px;
+    }
+    header {
+        .header-inner {
+            .header-right {
+                border: 0 !important;
+                .header-center {
+                    display: none;
+                }
+                .header-login {
+                    button.login {
+                        span.kirish {
+                            display: none;
+                        }
+                    }
+                }
+                .bar-btn {
+                    display: block;
+                    button {
+                        color: #fff;
+                        font-size: 22px;
+                    }
+                }
+            }
+        }
+    }
+    div.min-body {
+        max-height: calc(100vh - 150px);
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 }
 </style>

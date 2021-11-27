@@ -5,13 +5,13 @@
             <div class="modal-title">
                 <div class="flex top">
                     <h2>Menu</h2>
-                    <button @click="closeModal">
+                    <button @click="isMenu = false">
                         <fa class="times" icon="times" />
                     </button>
                 </div>
                 <div class="btns">
-                    <button>Janrlar</button>
-                    <button>Yillar</button>
+                    <button @click="clickJanr">Janrlar</button>
+                    <button @click="clickYear">Yillar</button>
                 </div>
             </div>
         </div>
@@ -437,6 +437,14 @@ export default {
         clickBar() {
             this.isMenu = true
         },
+        clickJanr() {
+            this.isJanr = true
+            this.isMenu = false
+        },
+        clickYear() {
+            this.isYear = true
+            this.isMenu = false
+        },
         clickUz() {
             this.$i18n.setLocale('uz')
         },
@@ -608,6 +616,9 @@ export default {
 </script>
 
 <style lang="scss">
+.menu-fix {
+    opacity: 0 !important;
+}
 .show {
     left: 0 !important;
 }
@@ -615,14 +626,17 @@ export default {
     position: fixed;
     top: 0;
     left: -330px;
-    background: #fff;
+    background: transparent;
+    backdrop-filter: blur(10px);
     width: 70%;
     height: 100vh;
     z-index: 20;
     padding: 20px;
     transition: 0.3s;
     .top {
+        color: $gc;
         button {
+            color: $gc;
             font-size: 26px;
         }
     }
@@ -632,6 +646,7 @@ export default {
         align-items: flex-start;
         margin-top: 30px;
         button {
+            color: $gc;
             padding: 10px 20px 10px 0;
             font-size: 22px;
         }
@@ -1029,8 +1044,14 @@ header {
                 .header-center {
                     display: none;
                 }
+                .lang {
+                    margin-left: 10px !important;
+                }
                 .header-login {
+                    margin: 0 10px !important;
                     button.login {
+                        padding: 5px !important;
+                        font-size: 18px !important;
                         span.kirish {
                             display: none;
                         }

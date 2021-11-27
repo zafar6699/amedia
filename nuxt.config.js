@@ -74,8 +74,8 @@ export default {
                     autoFetch: true,
                 },
                 endpoints: {
-                    login: { url: '/user/login', method: 'post' },
-                    user: { url: '/user/me', method: 'get' },
+                    login: { url: '/auth/test/login', method: 'post' },
+                    user: { url: '/auth/test/me', method: 'get' },
                     logout: false,
                 },
             },

@@ -13,24 +13,18 @@
                             <h3 class="cat-title">Kategoriyalar</h3>
 
                             <div class="check-box check-custom">
-                                <label class="cont">
-                                    Boshlang'ich
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    O'rta
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    Yuqori
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    Pro
-                                    <input type="checkbox" value="1" />
+                                <label
+                                    class="cont"
+                                    v-for="(item, index) in category"
+                                    :key="index"
+                                >
+                                    {{ item[`name${$i18n.locale}`] }}
+                                    <input
+                                        v-model="filter.category"
+                                        type="checkbox"
+                                        :value="item._id"
+                                        @change="changeCheck"
+                                    />
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -43,7 +37,12 @@
                                     :key="index"
                                 >
                                     {{ item[`name${$i18n.locale}`] }}
-                                    <input type="checkbox" value="1" />
+                                    <input
+                                        v-model="filter.janr"
+                                        type="checkbox"
+                                        :value="item._id"
+                                        @change="changeCheck"
+                                    />
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -51,28 +50,42 @@
                             <h3 class="cat-title">Yillar</h3>
 
                             <div class="check-box check-custom">
-                                <label class="cont">
-                                    Tekin
-                                    <input type="checkbox" value="1" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="cont">
-                                    Pullik
-                                    <input type="checkbox" value="1" />
+                                <label
+                                    class="cont"
+                                    v-for="(item, index) in year"
+                                    :key="index"
+                                >
+                                    {{ item }}
+                                    <input
+                                        v-model="filter.year"
+                                        type="checkbox"
+                                        :value="item"
+                                        @change="changeCheck"
+                                    />
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                         </div>
-                        <div class="item-9">
-                            <div class="filter-courses">
+                        <div class="item-9" v-if="season != null">
+                            <div
+                                class="filter-courses"
+                                v-if="season.length > 0"
+                            >
                                 <div class="card-row">
-                                    <!-- <div class="item-4 mb-30">
-                                        <AnimeCard />
+                                    <div
+                                        class="item-4 mb-30"
+                                        v-for="(item, index) in season"
+                                        :key="index"
+                                    >
+                                        <AnimeCard :anime="item" />
                                     </div>
-                                    <div class="item-4 mb-30">
-                                        <AnimeCard />
-                                    </div> -->
                                 </div>
+                            </div>
+
+                            <div v-else>
+                                <h1 class="not-found">
+                                    Ma'lumot topilmadi !!!
+                                </h1>
                             </div>
 
                             <div class="pagination">
@@ -105,16 +118,53 @@ export default {
                 janr: [],
                 year: [],
             },
+            year: [],
+            season: null,
         }
     },
     computed: {
         janr() {
             return this.$store.state.janr
         },
+        category() {
+            return this.$store.state.category
+        },
+    },
+    async mounted() {
+        for (let i = parseInt(new Date().getFullYear()); i >= 1991; i--) {
+            this.year.push(i)
+        }
+
+        if (this.$route.query.janr) {
+            this.filter.janr.push(this.$route.query.janr)
+        }
+        if (this.$route.query.category) {
+            this.filter.janr.push(this.$route.query.category)
+        }
+        if (this.$route.query.year) {
+            this.filter.janr.push(this.$route.query.year)
+        }
+
+        await this.getData()
     },
     methods: {
         pageChange(page) {
             this.page = page
+            this.getData()
+
+            window.scrollTo(0, 0)
+        },
+        async getData() {
+            let season = await this.$axios.$post(
+                `season/filter?page=${this.page + 1}&limit=${this.limit}`,
+                this.filter
+            )
+            this.season = season.data
+            this.length = season.count
+        },
+        changeCheck() {
+            this.getData()
+            window.scrollTo(0, 0)
         },
     },
 }

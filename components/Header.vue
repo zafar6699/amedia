@@ -3,7 +3,7 @@
         <div @click="closeModal" v-if="isRegister" class="fixvh"></div>
         <div v-if="isRegister" class="modal-card" style="width: 400px">
             <div class="modal-title">
-                <h2>Ro'yxatdan o'tish</h2>
+                <h2>Kirish</h2>
                 <button @click="closeModal">
                     <fa class="times" icon="times" />
                 </button>
@@ -17,142 +17,96 @@
                     <input
                         v-model="$v.register.name.$model"
                         type="text"
-                        placeholder="F.I.O"
+                        placeholder="Ismingizni kiriting"
                     />
                     <h6 v-if="!$v.register.name.required" class="error-text">
                         To'ldirish shart
                     </h6>
                 </div>
 
+                <div>
+                    <button
+                        class="btn-sm mb-15 w-100 btn-sm-active"
+                        @click="sendName"
+                    >
+                        Davom etish
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div @click="closeModal" v-if="isCheck" class="fixvh"></div>
+        <div v-if="isCheck" class="modal-card" style="width: 400px">
+            <div class="modal-title">
+                <h2>Kirish</h2>
+                <button @click="closeModal">
+                    <fa class="times" icon="times" />
+                </button>
+            </div>
+
+            <div class="modal-body">
                 <div
                     class="input-form"
-                    :class="{ 'form-error': $v.register.email.$error }"
+                    :class="{ 'form-error': $v.auth.password.$error }"
                 >
                     <input
-                        v-model="$v.register.email.$model"
+                        v-model="$v.auth.password.$model"
                         type="text"
-                        placeholder="Email"
+                        placeholder="Kodni kiriting"
                     />
-                    <h6 v-if="!$v.register.email.required" class="error-text">
+                    <h6 v-if="!$v.auth.password.required" class="error-text">
                         To'ldirish shart
                     </h6>
-                    <h6 v-if="!$v.register.email.email" class="error-text">
-                        To'g'ri to'ldiring
-                    </h6>
                 </div>
+
+                <p class="send-code">
+                    Kod sms tarzida telefon nomeringizga jo'natildi
+                </p>
+
+                <div>
+                    <button
+                        class="btn-sm mb-15 w-100 btn-sm-active"
+                        @click="sendCode"
+                    >
+                        Davom etish
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div @click="closeModal" v-if="isLogin" class="fixvh"></div>
+        <div v-if="isLogin" class="modal-card" style="width: 400px">
+            <div class="modal-title">
+                <h2>Kirish</h2>
+                <button @click="closeModal">
+                    <fa class="times" icon="times" />
+                </button>
+            </div>
+
+            <div class="modal-body">
                 <div
                     class="input-form"
-                    :class="{ 'form-error': $v.register.phone.$error }"
+                    :class="{ 'form-error': $v.login.phone.$error }"
                 >
                     <input
                         type="text"
-                        v-model.trim="$v.register.phone.$model"
+                        v-model.trim="$v.login.phone.$model"
                         autocomplete="off"
                         placeholder="+998 -- --- -- --"
                         v-mask="'+998 ## ### ## ##'"
                     />
-                    <h6 v-if="!$v.register.phone.required" class="error-text">
+                    <h6 v-if="!$v.login.phone.required" class="error-text">
                         To'ldirish shart
                     </h6>
-                    <h6 v-if="!$v.register.phone.minLength" class="error-text">
+                    <h6 v-if="!$v.login.phone.minLength" class="error-text">
                         To'g'ri to'ldiring
-                    </h6>
-                </div>
-                <div
-                    class="input-form"
-                    :class="{ 'form-error': $v.register.password.$error }"
-                >
-                    <div class="input-rel">
-                        <input
-                            name="password"
-                            autocomplete="off"
-                            :type="type"
-                            @focus="handleType"
-                            @blur="handleType"
-                            v-model="$v.register.password.$model"
-                            placeholder="Parolni kiriting"
-                        />
-                        <button
-                            @click="changePasswordVisible"
-                            v-if="type == 'password'"
-                            class="btn-icon"
-                        >
-                            <fa class="icon" icon="eye" />
-                        </button>
-                        <button
-                            @click="changePasswordVisible"
-                            v-else
-                            class="btn-icon"
-                        >
-                            <fa class="icon" icon="eye-slash" />
-                        </button>
-                    </div>
-
-                    <h6
-                        v-if="!$v.register.password.required"
-                        class="error-text"
-                    >
-                        To'ldirish shart
-                    </h6>
-                    <h6
-                        v-if="!$v.register.password.minLength"
-                        class="error-text"
-                    >
-                        To'g'ri to'ldiring
-                    </h6>
-                </div>
-                <div
-                    class="input-form"
-                    :class="{
-                        'form-error':
-                            $v.register.confirmPassword.$error &&
-                            !$v.register.password.$error,
-                    }"
-                >
-                    <div class="input-rel">
-                        <input
-                            v-model="$v.register.confirmPassword.$model"
-                            :type="type"
-                            @focus="handleType"
-                            @blur="handleType"
-                            placeholder="Parolni takrorlang"
-                        />
-                        <button
-                            @click="changePasswordVisible"
-                            v-if="type == 'password'"
-                            class="btn-icon"
-                        >
-                            <fa class="icon" icon="eye" />
-                        </button>
-                        <button
-                            @click="changePasswordVisible"
-                            v-else
-                            class="btn-icon"
-                        >
-                            <fa class="icon" icon="eye-slash" />
-                        </button>
-                    </div>
-
-                    <h6
-                        v-if="
-                            !$v.register.confirmPassword.sameAsPassword &&
-                            !$v.register.password.$error
-                        "
-                        class="error-text"
-                    >
-                        Parolni tasdiqlang
                     </h6>
                 </div>
                 <div>
                     <button
-                        @click="registerUser"
+                        @click="loginUser"
                         class="btn-sm mb-15 w-100 btn-sm-active"
                     >
-                        Ro'yxatdan o'tish
-                    </button>
-                </div>
-                <div>
-                    <button class="btn-sm w-100" @click="openLogin">
                         Kirish
                     </button>
                 </div>
@@ -219,87 +173,6 @@
                             </nuxt-link>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div @click="closeModal" v-if="isLogin" class="fixvh"></div>
-        <div v-if="isLogin" class="modal-card" style="width: 400px">
-            <div class="modal-title">
-                <h2>Kirish</h2>
-                <button @click="closeModal">
-                    <fa class="times" icon="times" />
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div
-                    class="input-form"
-                    :class="{ 'form-error': $v.login.phone.$error }"
-                >
-                    <input
-                        type="text"
-                        v-model.trim="$v.login.phone.$model"
-                        autocomplete="off"
-                        placeholder="+998 -- --- -- --"
-                        v-mask="'+998 ## ### ## ##'"
-                    />
-                    <h6 v-if="!$v.login.phone.required" class="error-text">
-                        To'ldirish shart
-                    </h6>
-                    <h6 v-if="!$v.login.phone.minLength" class="error-text">
-                        To'g'ri to'ldiring
-                    </h6>
-                </div>
-                <div
-                    class="input-form"
-                    :class="{ 'form-error': $v.login.password.$error }"
-                >
-                    <div class="input-rel">
-                        <input
-                            name="password"
-                            autocomplete="off"
-                            :type="type"
-                            @focus="handleType"
-                            @blur="handleType"
-                            v-model="$v.login.password.$model"
-                            placeholder="Parolni kiriting"
-                        />
-                        <button
-                            @click="changePasswordVisible"
-                            v-if="type == 'password'"
-                            class="btn-icon"
-                        >
-                            <fa class="icon" icon="eye" />
-                        </button>
-                        <button
-                            @click="changePasswordVisible"
-                            v-else
-                            class="btn-icon"
-                        >
-                            <fa class="icon" icon="eye-slash" />
-                        </button>
-                    </div>
-
-                    <h6 v-if="!$v.login.password.required" class="error-text">
-                        To'ldirish shart
-                    </h6>
-                    <h6 v-if="!$v.login.password.minLength" class="error-text">
-                        To'g'ri to'ldiring
-                    </h6>
-                </div>
-                <div>
-                    <button
-                        @click="loginUser"
-                        class="btn-sm mb-15 w-100 btn-sm-active"
-                    >
-                        Kirish
-                    </button>
-                </div>
-                <div>
-                    <button class="btn-sm w-100" @click="openRegister">
-                        Ro'yxatdan o'tish
-                    </button>
                 </div>
             </div>
         </div>
@@ -449,14 +322,6 @@
                                                 Profil</nuxt-link
                                             >
                                         </li>
-                                        <li>
-                                            <nuxt-link to="/">
-                                                <span>
-                                                    <fa icon="play-circle" />
-                                                </span>
-                                                Kurslar</nuxt-link
-                                            >
-                                        </li>
                                     </ul>
                                     <button
                                         @click="
@@ -487,6 +352,9 @@ export default {
     data() {
         return {
             year: [],
+            isRegister: false,
+            isLogin: false,
+            isCheck: false,
             isProfile: false,
             isSearch: false,
             isJanr: false,
@@ -498,13 +366,11 @@ export default {
             dheader: true,
             register: {
                 name: '',
-                email: '',
-                phone: '',
-                password: '',
-                confirmPassword: '',
             },
             login: {
                 phone: '',
+            },
+            auth: {
                 password: '',
             },
         }
@@ -514,43 +380,20 @@ export default {
             name: {
                 required,
             },
-            // check: {
-            //     checked: value => value === true
-            // },
-            email: {
-                required,
-                email,
-            },
-            phone: {
-                required,
-                minLength: minLength(17),
-            },
-            password: {
-                required,
-                minLength: minLength(6),
-            },
-            confirmPassword: {
-                sameAsPassword: sameAs('password'),
-            },
         },
         login: {
             phone: {
                 required,
                 minLength: minLength(17),
             },
+        },
+        auth: {
             password: {
                 required,
-                minLength: minLength(6),
             },
         },
     },
     computed: {
-        isLogin() {
-            return this.$store.state.isLogin
-        },
-        isRegister() {
-            return this.$store.state.isRegister
-        },
         janr() {
             return this.$store.state.janr
         },
@@ -610,30 +453,27 @@ export default {
         },
         formReset() {
             this.register.name = ''
-            this.register.email = ''
-            this.register.phone = ''
-            this.register.password = ''
-            this.register.confirmPassword = ''
-
             this.login.phone = ''
-            this.login.password = ''
+            this.auth.password = ''
 
             this.closeModal()
             this.$v.login.$reset()
             this.$v.register.$reset()
+            this.$v.auth.$reset()
         },
 
         openLogin() {
-            this.$store.commit('CHANGE_LOGIN', true)
-            this.$store.commit('CHANGE_REGISTER', false)
+            this.closeModal()
+            this.isLogin = true
         },
         openRegister() {
-            this.$store.commit('CHANGE_LOGIN', false)
-            this.$store.commit('CHANGE_REGISTER', true)
+            this.closeModal()
+            this.isRegister = true
         },
         closeModal() {
-            this.$store.commit('CHANGE_LOGIN', false)
-            this.$store.commit('CHANGE_REGISTER', false)
+            this.isRegister = false
+            this.isLogin = false
+            this.isCheck = false
 
             this.isJanr = false
             this.isYear = false
@@ -649,36 +489,26 @@ export default {
         },
 
         //register method
-        registerUser() {
+        sendName() {
+            this.closeModal()
+            this.isCheck = true
             this.$v.register.$touch()
             if (!this.$v.register.$invalid) {
-                let phone = this.register.phone.replace(/[^0-9]/g, '')
+                let phone = this.login.phone.replace(/[^0-9]/g, '')
 
                 this.$axios
-                    .$post('user/register', {
+                    .$post('auth/test/register', {
                         name: this.register.name,
-                        email: this.register.email,
-                        phone: phone,
-                        password: this.register.password,
+                        phone,
                     })
-                    .then(async (res) => {
+                    .then((res) => {
                         if (res.success) {
-                            try {
-                                let response = await this.$auth.loginWith(
-                                    'local',
-                                    {
-                                        data: {
-                                            phone: this.register.phone,
-                                            password: this.register.password,
-                                        },
-                                    }
-                                )
-
-                                this.formReset()
-                            } catch (err) {
-                                console.log(err)
-                            }
+                            this.closeModal()
+                            this.isCheck = true
                         }
+                    })
+                    .catch((err) => {
+                        console.log(err)
                     })
             }
         },
@@ -689,11 +519,55 @@ export default {
             this.$v.login.$touch()
             if (!this.$v.login.$invalid) {
                 let phone = this.login.phone.replace(/[^0-9]/g, '')
+
+                this.$axios
+                    .$post('auth/test/check', {
+                        phone,
+                    })
+                    .then((res) => {
+                        console.log('res', res)
+                        this.closeModal()
+                        if (res.data.status == 404) {
+                            this.isRegister = true
+                        }
+                        if (res.data.status == 200) {
+                            this.isCheck = true
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
+
+            // this.closeModal()
+            // this.isRegister = true
+            // this.$v.login.$touch()
+            // if (!this.$v.login.$invalid) {
+            //     let phone = this.login.phone.replace(/[^0-9]/g, '')
+            //     try {
+            //         let response = await this.$auth.loginWith('local', {
+            //             data: {
+            //                 phone: phone,
+            //                 password: this.login.password,
+            //             },
+            //         })
+            //         this.formReset()
+            //     } catch (err) {
+            //         console.log(err)
+            //     }
+            // }
+        },
+
+        async sendCode() {
+            this.$v.auth.$touch()
+            if (!this.$v.auth.$invalid) {
+                let phone = this.login.phone.replace(/[^0-9]/g, '')
+
                 try {
                     let response = await this.$auth.loginWith('local', {
                         data: {
                             phone: phone,
-                            password: this.login.password,
+                            password: this.auth.password,
                         },
                     })
                     this.formReset()
@@ -707,6 +581,11 @@ export default {
 </script>
 
 <style lang="scss">
+.send-code {
+    margin-bottom: 25px;
+    font-size: 14px;
+    font-weight: 500;
+}
 .search {
     position: relative;
     .year {

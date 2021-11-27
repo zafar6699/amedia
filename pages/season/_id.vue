@@ -84,6 +84,9 @@
                                             :href="viewSeria.url"
                                             class="btn-simple down"
                                         >
+                                            <span>
+                                                <fa icon="download" />
+                                            </span>
                                             Yuklab olish
                                         </a>
                                     </div>
@@ -152,88 +155,111 @@
                         <div class="container">
                             <div class="card-row">
                                 <div class="item-8 item-md-6">
-                                    <div v-if="tabIndex == 1" class="comments">
-                                        <div
-                                            class="comment"
-                                            v-for="(item, i) in comments"
-                                            :key="i"
-                                        >
-                                            <div class="person">
-                                                <div class="img">
-                                                    <img
+                                    <div
+                                        v-if="tabIndex == 1 && comments != null"
+                                        class="comments"
+                                    >
+                                        <div class="kamentariyala scroll">
+                                            <div
+                                                class="comment scroll"
+                                                v-for="(item, i) in comments"
+                                                :key="i"
+                                            >
+                                                <div class="person">
+                                                    <div class="img">
+                                                        <img
+                                                            :src="
+                                                                $cdn +
+                                                                '/' +
+                                                                item.user.photo
+                                                            "
+                                                            alt=""
+                                                        />
+                                                        <!-- <img
                                                         :src="
-                                                            $cdn +
+                                                            'http://amediatv.uz:2000/uploads/' +
                                                             item.user.photo
                                                         "
                                                         alt=""
-                                                    />
-                                                </div>
-                                                <div class="name">
-                                                    <h4 class="name">
-                                                        {{ item.user.name }}
-                                                    </h4>
-                                                    <p class="date">
-                                                        {{
-                                                            item.date.slice(
-                                                                0,
-                                                                10
-                                                            )
-                                                        }},
-                                                        {{
-                                                            item.date.slice(
-                                                                11,
-                                                                16
-                                                            )
-                                                        }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="izoh">
-                                                <p>
-                                                    {{ item.message }}
-                                                </p>
-                                                <div class="answer">
-                                                    <div class="btn">
-                                                        <button
-                                                            @click="
-                                                                clickReply(i)
-                                                            "
-                                                            v-click-other="
-                                                                clickOut
-                                                            "
-                                                        >
-                                                            <span>
-                                                                <fa
-                                                                    icon="reply"
-                                                                />
-                                                            </span>
-                                                            Javob berish
-                                                        </button>
+                                                    /> -->
                                                     </div>
+                                                    <div class="name">
+                                                        <h4 class="name">
+                                                            {{ item.user.name }}
+                                                        </h4>
+                                                        <p class="date">
+                                                            {{
+                                                                item.date.slice(
+                                                                    0,
+                                                                    10
+                                                                )
+                                                            }},
+                                                            {{
+                                                                item.date.slice(
+                                                                    11,
+                                                                    16
+                                                                )
+                                                            }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="izoh">
+                                                    <p
+                                                        v-html="item.message"
+                                                    ></p>
 
-                                                    <div
-                                                        v-if="isReply == i"
-                                                        class="write-comment"
-                                                    >
-                                                        <div class="form">
-                                                            <textarea
-                                                                name=""
-                                                                id=""
-                                                                rows="6"
-                                                                v-model="
-                                                                    commentText
-                                                                "
-                                                                placeholder="Izoh..."
-                                                            ></textarea>
-                                                        </div>
-                                                        <div class="send">
+                                                    <div class="answer">
+                                                        <div class="btn">
                                                             <button
-                                                                class="
-                                                                    btn-simple
+                                                                @click="
+                                                                    clickReply(
+                                                                        i
+                                                                    )
+                                                                "
+                                                                v-click-other="
+                                                                    clickOut
                                                                 "
                                                             >
-                                                                Jo'natish
+                                                                <span>
+                                                                    <fa
+                                                                        icon="reply"
+                                                                    />
+                                                                </span>
+                                                                Javob berish
                                                             </button>
+                                                        </div>
+
+                                                        <div
+                                                            v-if="isReply == i"
+                                                            class="
+                                                                write-comment
+                                                            "
+                                                        >
+                                                            <div class="form">
+                                                                <textarea
+                                                                    name=""
+                                                                    id=""
+                                                                    rows="6"
+                                                                    v-model="
+                                                                        commentText
+                                                                    "
+                                                                    placeholder="Izoh..."
+                                                                ></textarea>
+                                                            </div>
+                                                            <div class="send">
+                                                                <button
+                                                                    @click="
+                                                                        sendReplyComment(
+                                                                            item.user
+                                                                        )
+                                                                    "
+                                                                    class="
+                                                                        btn-simple
+                                                                    "
+                                                                >
+                                                                    Jo'natish
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -246,6 +272,7 @@
                                         >
                                             <div class="form">
                                                 <textarea
+                                                    v-model="com.message"
                                                     name=""
                                                     id=""
                                                     rows="6"
@@ -253,7 +280,10 @@
                                                 ></textarea>
                                             </div>
                                             <div class="send">
-                                                <button class="btn-simple">
+                                                <button
+                                                    @click="sendComment"
+                                                    class="btn-simple"
+                                                >
                                                     Jo'natish
                                                 </button>
                                             </div>
@@ -324,6 +354,10 @@ export default {
         return {
             indexSeria: 0,
             viewSeria: null,
+            com: {
+                message: '',
+                season: '',
+            },
             tabMenu: [
                 {
                     uz: 'Izohlar',
@@ -360,16 +394,17 @@ export default {
                 'season/' + this.$route.params.id
             )
             this.anime = anime.data
-            if ((anime.tip = 'serial')) {
-                let serial = await this.$axios.$get(
-                    'season/seriya/one/' + this.$route.params.id
-                )
-                this.serial = serial.data
+            // if ((anime.tip = 'serial')) {
+            //     let serial = await this.$axios.$get(
+            //         'season/seriya/one/' + this.$route.params.id
+            //     )
+            // }
+            this.serial = anime.seria.reverse()
 
-                this.viewSeria = this.serial[0]
-            }
+            this.viewSeria = this.serial[0]
             this.comments = anime.comment
-            console.log('anime', this.anime)
+            console.log('serial', this.serial)
+            console.log('comments', this.comments)
         },
         tabClick(i) {
             this.tabIndex = i + 1
@@ -377,6 +412,27 @@ export default {
         clickReply(index) {
             this.isReply = index
             this.comment = false
+        },
+        async sendReplyComment(item) {
+            console.log(item)
+            this.com.season = this.$route.params.id
+
+            this.commentText = `<b class="bold"> ${item.name} </b>, ${this.commentText}`
+            await this.$axios
+                .$post('comment/add', this.commentText)
+                .then((res) => {
+                    this.commentText = ''
+                    this.isReply = -1
+                    this.comment = true
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log('error')
+                })
+        },
+        async sendComment() {
+            this.com.season = this.$route.params.id
+            await this.$axios.$post('comment/add', this.com)
         },
         clickOut() {
             if (this.commentText == '') {
@@ -390,7 +446,7 @@ export default {
 
 <style lang="scss" scoped>
 .seriyas {
-    margin-top: 15px;
+    margin-top: 35px;
     button {
         margin-right: 10px;
         margin-bottom: 10px;
@@ -467,8 +523,13 @@ export default {
                 }
             }
         }
+        .kamentariyala {
+            max-height: 700px;
+            overflow-y: scroll;
+        }
         .comment {
             margin-bottom: 20px;
+
             .izoh {
                 border-radius: 0 10px 10px 10px;
                 padding: 20px;
@@ -518,6 +579,11 @@ export default {
     margin-bottom: 80px;
     .body-title {
         margin: 30px 0;
+        .description {
+            font-size: 20px;
+            color: #333;
+            line-height: 26px;
+        }
     }
 }
 .tab-menu {
@@ -597,7 +663,7 @@ export default {
                         display: flex;
                         flex-wrap: wrap;
                         justify-content: flex-end;
-                        max-width: 70%;
+                        max-width: 80%;
                         a {
                             margin-right: 5px;
                             border-radius: 4px;
@@ -635,6 +701,8 @@ export default {
                         color: #fff;
                         font-size: 16px;
                         font-weight: 400;
+                        max-width: 78%;
+                        text-align: right;
                     }
                 }
                 .box {
@@ -683,10 +751,25 @@ export default {
                 a.down {
                     margin-top: 30px;
                     width: 100%;
-                    background: transparent;
+                    background: $gc;
+                    color: #fff;
                     text-align: center;
+                    display: block;
+                    position: relative;
+                    span {
+                        position: absolute;
+                        opacity: 0;
+                        left: 25%;
+                        top: 0px;
+                        transition: 0.2s;
+                    }
+
                     &:hover {
-                        background: $gc;
+                        span {
+                            top: 6px;
+                            margin-top: 0px;
+                            opacity: 1;
+                        }
                     }
                 }
             }

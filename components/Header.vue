@@ -426,114 +426,47 @@
                                 />
                                 <div v-if="searchBox" class="year scroll">
                                     <div class="search">
-                                        <ul>
-                                            <li>
-                                                <nuxt-link to="/">
+                                        <ul v-if="searchData != null">
+                                            <li
+                                                v-for="item in searchData"
+                                                :key="item"
+                                                v-show="searchData.length > 0"
+                                            >
+                                                <nuxt-link
+                                                    :to="{
+                                                        name:
+                                                            'season-id___' +
+                                                            $i18n.locale,
+                                                        params: {
+                                                            id: item._id,
+                                                        },
+                                                    }"
+                                                >
                                                     <div class="search-link">
                                                         <div class="img">
                                                             <img
-                                                                src="@/assets/img/1.jpg"
+                                                                :src="
+                                                                    $cdn +
+                                                                    item.image
+                                                                "
                                                                 alt=""
                                                             />
                                                         </div>
                                                         <div class="text">
                                                             <p>
-                                                                Omadsizning
-                                                                qayta tugilisgi
+                                                                {{
+                                                                    item.name[
+                                                                        $i18n
+                                                                            .locale
+                                                                    ]
+                                                                }}
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </nuxt-link>
                                             </li>
-                                            <li>
-                                                <nuxt-link to="/">
-                                                    <div class="search-link">
-                                                        <div class="img">
-                                                            <img
-                                                                src="@/assets/img/1.jpg"
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                        <div class="text">
-                                                            <p>
-                                                                Omadsizning
-                                                                qayta tugilisgi
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </nuxt-link>
-                                            </li>
-                                            <li>
-                                                <nuxt-link to="/">
-                                                    <div class="search-link">
-                                                        <div class="img">
-                                                            <img
-                                                                src="@/assets/img/1.jpg"
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                        <div class="text">
-                                                            <p>
-                                                                Omadsizning
-                                                                qayta tugilisgi
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </nuxt-link>
-                                            </li>
-                                            <li>
-                                                <nuxt-link to="/">
-                                                    <div class="search-link">
-                                                        <div class="img">
-                                                            <img
-                                                                src="@/assets/img/1.jpg"
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                        <div class="text">
-                                                            <p>
-                                                                Omadsizning
-                                                                qayta tugilisgi
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </nuxt-link>
-                                            </li>
-                                            <li>
-                                                <nuxt-link to="/">
-                                                    <div class="search-link">
-                                                        <div class="img">
-                                                            <img
-                                                                src="@/assets/img/1.jpg"
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                        <div class="text">
-                                                            <p>
-                                                                Omadsizning
-                                                                qayta tugilisgi
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </nuxt-link>
-                                            </li>
-                                            <li>
-                                                <nuxt-link to="/">
-                                                    <div class="search-link">
-                                                        <div class="img">
-                                                            <img
-                                                                src="@/assets/img/1.jpg"
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                        <div class="text">
-                                                            <p>
-                                                                Omadsizning
-                                                                qayta tugilisgi
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </nuxt-link>
+                                            <li v-show="searchData.length == 0">
+                                                Ma'lumot topilmadi
                                             </li>
                                         </ul>
                                     </div>
@@ -547,7 +480,7 @@
                         <div class="lang">
                             <a class="active" href="#">UZ</a>
                             <span></span>
-                            <a href="#">RU</a>
+                            <a @click.prevent="clickUz" href="#">RU</a>
                         </div>
 
                         <div class="header-login">
@@ -705,8 +638,16 @@ export default {
     },
     created() {},
     methods: {
-        changeInput() {
-            if (this.search.length > 2) {
+        clickUz() {
+            this.$i18n.setLocale('uz')
+        },
+        async changeInput() {
+            if (this.search.length >= 2) {
+                let searchData = await this.$axios.$get(
+                    `season/search?text=${this.search}`
+                )
+                this.searchData = searchData.data
+                console.log('searchdata', this.searchData)
                 this.searchBox = true
             }
         },
@@ -834,27 +775,6 @@ export default {
 </script>
 
 <style lang="scss">
-.scroll::-webkit-scrollbar {
-    width: 5px;
-    height: 39px !important;
-}
-
-/* Track */
-.scroll::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-}
-
-/* Handle */
-.scroll::-webkit-scrollbar-thumb {
-    background: $gc;
-    border-radius: 10px;
-}
-
-/* Handle on hover */
-.scroll::-webkit-scrollbar-thumb:hover {
-    background: #9f9d9d;
-}
 .search {
     position: relative;
     .year {
@@ -863,7 +783,7 @@ export default {
         background: #fff;
         padding: 10px 10px;
         padding-top: 20px;
-        width: 240px;
+        width: 330px;
         border-radius: 5px;
         max-height: 230px;
         overflow-y: scroll;
@@ -886,6 +806,8 @@ export default {
                             }
                         }
                         .text {
+                            margin-left: 5px;
+                            max-width: 80%;
                             p {
                                 color: #333;
                                 font-size: 14px;

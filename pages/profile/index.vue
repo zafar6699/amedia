@@ -20,7 +20,8 @@
                                 "
                                 @click="clickTab(1)"
                             >
-                                <span><fa icon="user" /></span> Profil
+                                <span class="icon"><fa icon="user" /></span>
+                                <span class="let"> Profil </span>
                             </button>
                             <button
                                 :class="
@@ -28,7 +29,8 @@
                                 "
                                 @click="clickTab(2)"
                             >
-                                <span><fa icon="heart" /></span> Tanlanganlar
+                                <span class="icon"><fa icon="heart" /></span>
+                                <span class="let"> Tanlanganlar </span>
                             </button>
                             <button
                                 :class="
@@ -36,7 +38,8 @@
                                 "
                                 @click="clickTab(3)"
                             >
-                                <span><fa icon="cog" /></span> Sozlamalar
+                                <span class="icon"><fa icon="cog" /></span>
+                                <span class="let"> Sozlamalar </span>
                             </button>
                         </div>
                     </div>
@@ -50,7 +53,7 @@
                     <div class="profil" v-if="tabIndex == 1">
                         <div class="top">
                             <div class="card-row">
-                                <div class="item-3">
+                                <div class="item-3 item-md-3">
                                     <div class="box">
                                         <p>1 Oylik</p>
                                         <div class="price">
@@ -61,7 +64,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item-3">
+                                <div class="item-3 item-md-3">
                                     <div class="box">
                                         <p>3 Oylik</p>
                                         <div class="price">
@@ -72,7 +75,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item-3">
+                                <div class="item-3 item-md-3">
                                     <div class="box">
                                         <p>6 Oylik</p>
                                         <div class="price">
@@ -83,7 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item-3">
+                                <div class="item-3 item-md-3">
                                     <div class="box">
                                         <p>10 Oylik</p>
                                         <div class="price">
@@ -137,7 +140,7 @@
                     <div class="profil" v-if="tabIndex == 3">
                         <div class="settings">
                             <div class="card-row">
-                                <div class="item-6">
+                                <div class="item-6 item-md-6">
                                     <div class="card">
                                         <div class="card-row">
                                             <div class="item-6">
@@ -182,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item-6">
+                                <div class="item-6 item-md-6">
                                     <div class="card">
                                         <div class="card-row">
                                             <div class="item-6">
@@ -416,6 +419,37 @@ export default {
                     padding: 10px 20px;
                     border-radius: 10px;
                     // color: ;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 576px) {
+    .profile-page {
+        .profile-header {
+            .left {
+                .tab-menu {
+                    margin-left: 10px;
+                    button {
+                        span.let {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+        .content {
+            .profil {
+                .top {
+                    .box {
+                        padding: 10px;
+                        margin-bottom: 15px;
+                        .price {
+                            button {
+                                padding: 3px 8px;
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -140,6 +140,7 @@ export default {}
     .trailer {
         padding: 20px 0;
         margin-bottom: 20px;
+
         .video {
             padding: 0 !important;
         }

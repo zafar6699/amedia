@@ -289,4 +289,21 @@ export default {
         }
     }
 }
+@media (max-width: 576px) {
+    .slider {
+        .carousel-item {
+            .text {
+                .link {
+                    a {
+                        font-size: 40px !important;
+                        margin-bottom: 15px;
+                    }
+                    p {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
 </style>

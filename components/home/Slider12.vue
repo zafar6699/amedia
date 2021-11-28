@@ -7,25 +7,70 @@
                     v-for="(item, index) in slider"
                     :key="index"
                 >
-                    <img class="back" :src="$cdn + item.serial.image" alt />
+                    <img
+                        class="back"
+                        :src="$cdn + item.serial.screens.original[0]"
+                        alt
+                    />
                     <div class="opacity-banner"></div>
                     <div class="text">
                         <div class="container">
-                            <div class="">
-                                <div class="categories">
-                                    <nuxt-link
-                                        v-for="(cat, i) in item.serial.category"
-                                        :key="i"
-                                        :to="{
-                                            name: `filter___${$i18n.locale}`,
-                                            query: {
-                                                category: cat._id,
-                                            },
-                                        }"
-                                    >
-                                        {{ cat[`name${$i18n.locale}`] }}
-                                    </nuxt-link>
+                            <div class="card-row align-center">
+                                <div class="item-7">
+                                    <div class="categories">
+                                        <nuxt-link
+                                            v-for="(cat, i) in item.serial
+                                                .category"
+                                            :key="i"
+                                            :to="{
+                                                name: `filter___${$i18n.locale}`,
+                                                query: {
+                                                    category: cat._id,
+                                                },
+                                            }"
+                                        >
+                                            {{ cat[`name${$i18n.locale}`] }}
+                                        </nuxt-link>
+                                    </div>
+                                    <div class="link">
+                                        <nuxt-link
+                                            :to="{
+                                                name: `season-id___${$i18n.locale}`,
+                                                params: { id: item.serial._id },
+                                            }"
+                                        >
+                                            {{
+                                                item.serial.name[
+                                                    `${$i18n.locale}`
+                                                ]
+                                            }}
+                                        </nuxt-link>
+                                        <p>
+                                            {{
+                                                item.serial.description[
+                                                    `${$i18n.locale}`
+                                                ]
+                                            }}
+                                        </p>
+                                    </div>
+                                    <div class="video-info">
+                                        <b>
+                                            {{ item.serial.year }}
+                                        </b>
+                                        <h3>720P <span>HD</span></h3>
+                                        <nuxt-link
+                                            class="play"
+                                            :to="{
+                                                name: `season-id___${$i18n.locale}`,
+                                                params: { id: item.serial._id },
+                                            }"
+                                        >
+                                            <span><fa icon="play" /></span>
+                                            Ko'rish
+                                        </nuxt-link>
+                                    </div>
                                 </div>
+<<<<<<< HEAD
                                 <div class="link">
                                     <nuxt-link
                                         :to="{
@@ -60,6 +105,18 @@
                                         <span><fa icon="play" /></span>
                                         {{ $t('see') }}
                                     </nuxt-link>
+=======
+
+                                <div class="item-5">
+                                    <div class="img-right">
+                                        <div class="img-rel">
+                                            <img
+                                                :src="$cdn + item.serial.image"
+                                                alt=""
+                                            />
+                                        </div>
+                                    </div>
+>>>>>>> b16f4ca0cc6ebd0a771249493a95be062454ff07
                                 </div>
                             </div>
                         </div>
@@ -95,6 +152,10 @@ export default {
 </script>
 
 <style lang="scss">
+.align-center {
+    display: flex;
+    align-items: center;
+}
 .slider {
     position: absolute;
     z-index: 2;
@@ -135,6 +196,20 @@ export default {
         top: 0;
         left: 0;
         position: relative;
+        .img-right {
+            display: flex;
+            justify-content: flex-end;
+            .img-rel {
+                max-width: 350px;
+                height: 450px;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
         img.back {
             top: 0;
             left: 0;
@@ -145,7 +220,7 @@ export default {
             object-fit: cover;
         }
         .opacity-banner {
-            box-shadow: inset 0px 0px 200px 150px rgba(0, 0, 0, 0.9);
+            box-shadow: inset 0px 0px 200px 150px rgba(0, 0, 0, 0.7);
             background: linear-gradient(130deg, black, black);
 
             top: 0;
@@ -160,7 +235,7 @@ export default {
             //     rgb(0, 0, 0) 0%,
             //     rgba(0, 0, 0, 0) 100%
             // );
-            opacity: 0.85;
+            opacity: 0.7;
         }
         .text {
             top: 50%;
@@ -220,7 +295,6 @@ export default {
                 background: $gc;
             }
             .link {
-                max-width: 700px;
                 a {
                     display: block;
                     font-size: 50px;

@@ -3,14 +3,14 @@
         <div class="filter-page">
             <div class="filter-title">
                 <div class="container">
-                    <h2>Anime filmlar</h2>
+                    <h2>{{ $t('anime') }}</h2>
                 </div>
             </div>
             <div class="filter-content">
                 <div class="container">
                     <div class="card-row">
                         <div class="item-3">
-                            <h3 class="cat-title">Kategoriyalar</h3>
+                            <h3 class="cat-title">{{ $t('category') }}</h3>
 
                             <div class="check-box check-custom">
                                 <label
@@ -28,7 +28,7 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <h3 class="cat-title">Janrlar</h3>
+                            <h3 class="cat-title">{{ $t('janr') }}</h3>
 
                             <div class="check-box check-custom">
                                 <label
@@ -47,7 +47,7 @@
                                 </label>
                             </div>
 
-                            <h3 class="cat-title">Yillar</h3>
+                            <h3 class="cat-title">{{ $t('years') }}</h3>
 
                             <div class="check-box check-custom">
                                 <label
@@ -84,7 +84,7 @@
 
                             <div v-else>
                                 <h1 class="not-found">
-                                    Ma'lumot topilmadi !!!
+                                    {{ $t('notfound') }}
                                 </h1>
                             </div>
 

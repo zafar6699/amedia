@@ -41,13 +41,13 @@
                                     v-if="anime.price == 'free'"
                                     class="price-type free"
                                 >
-                                    Tekin
+                                    {{ $t('free') }}
                                 </div>
                                 <div
                                     v-if="anime.price == 'selling'"
                                     class="price-type free"
                                 >
-                                    Pullik
+                                    {{ $t('pul') }}
                                 </div>
                                 <!-- <div class="price-type lock">Pullik</div> -->
                             </div>

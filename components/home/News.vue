@@ -3,11 +3,11 @@
         <div class="home-news">
             <div class="container">
                 <div class="home-title">
-                    <h4>Yangiliklar</h4>
+                    <h4>{{ $t('news') }}</h4>
 
-                    <nuxt-link class="btn-simple" to="/news"
-                        >Barchasi</nuxt-link
-                    >
+                    <nuxt-link class="btn-simple" to="/news">{{
+                        $t('all')
+                    }}</nuxt-link>
                 </div>
 
                 <div class="card-row">

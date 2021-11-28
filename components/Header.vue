@@ -10,15 +10,15 @@
                     </button>
                 </div>
                 <div class="btns">
-                    <button @click="clickJanr">Janrlar</button>
-                    <button @click="clickYear">Yillar</button>
+                    <button @click="clickJanr">{{ $t('janr') }}</button>
+                    <button @click="clickYear">{{ $t('years') }}</button>
                 </div>
             </div>
         </div>
         <div @click="closeModal" v-if="isRegister" class="fixvh"></div>
         <div v-if="isRegister" class="modal-card" style="width: 400px">
             <div class="modal-title">
-                <h2>Kirish</h2>
+                <h2>{{ $t('kirish') }}</h2>
                 <button @click="closeModal">
                     <fa class="times" icon="times" />
                 </button>
@@ -32,10 +32,10 @@
                     <input
                         v-model="$v.register.name.$model"
                         type="text"
-                        placeholder="Ismingizni kiriting"
+                        :placeholder="$t('tolshart')"
                     />
                     <h6 v-if="!$v.register.name.required" class="error-text">
-                        To'ldirish shart
+                        {{ $t('tolshart') }}
                     </h6>
                 </div>
 
@@ -44,7 +44,7 @@
                         class="btn-sm mb-15 w-100 btn-sm-active"
                         @click="sendName"
                     >
-                        Davom etish
+                        {{ $t('davometish') }}
                     </button>
                 </div>
             </div>
@@ -53,7 +53,7 @@
         <div @click="closeModal" v-if="isCheck" class="fixvh"></div>
         <div v-if="isCheck" class="modal-card" style="width: 400px">
             <div class="modal-title">
-                <h2>Kirish</h2>
+                <h2>{{ $t('kirish') }}</h2>
                 <button @click="closeModal">
                     <fa class="times" icon="times" />
                 </button>
@@ -67,15 +67,15 @@
                     <input
                         v-model="$v.auth.password.$model"
                         type="text"
-                        placeholder="Kodni kiriting"
+                        :placeholder="$t('kod')"
                     />
                     <h6 v-if="!$v.auth.password.required" class="error-text">
-                        To'ldirish shart
+                        {{ $t('tolshart') }}
                     </h6>
                 </div>
 
                 <p class="send-code">
-                    Kod sms tarzida telefon nomeringizga jo'natildi
+                    {{ $t('kodsms') }}
                 </p>
 
                 <div>
@@ -83,7 +83,7 @@
                         class="btn-sm mb-15 w-100 btn-sm-active"
                         @click="sendCode"
                     >
-                        Davom etish
+                        {{ $t('davometish') }}
                     </button>
                 </div>
             </div>
@@ -111,10 +111,10 @@
                         v-mask="'+998 ## ### ## ##'"
                     />
                     <h6 v-if="!$v.login.phone.required" class="error-text">
-                        To'ldirish shart
+                        {{ $t('tolshart') }}
                     </h6>
                     <h6 v-if="!$v.login.phone.minLength" class="error-text">
-                        To'g'ri to'ldiring
+                        {{ $t('togtol') }}
                     </h6>
                 </div>
                 <div>
@@ -122,7 +122,7 @@
                         @click="loginUser"
                         class="btn-sm mb-15 w-100 btn-sm-active"
                     >
-                        Kirish
+                        {{ $t('kirish') }}
                     </button>
                 </div>
             </div>
@@ -131,7 +131,7 @@
         <div @click="closeModal" v-if="isJanr" class="fixvh"></div>
         <div v-if="isJanr" class="modal-card" style="width: 900px">
             <div class="modal-title">
-                <h2>Janrlar</h2>
+                <h2>{{ $t('janr') }}</h2>
                 <button @click="closeModal">
                     <fa class="times" icon="times" />
                 </button>
@@ -163,7 +163,7 @@
         <div @click="closeModal" v-if="isYear" class="fixvh"></div>
         <div v-if="isYear" class="modal-card" style="width: 900px">
             <div class="modal-title">
-                <h2>Yillar</h2>
+                <h2>{{ $t('years') }}</h2>
                 <button @click="closeModal">
                     <fa class="times" icon="times" />
                 </button>
@@ -210,12 +210,12 @@
                                 <ul>
                                     <li>
                                         <a href="#" @click="isJanr = true">
-                                            Janrlar
+                                            {{ $t('janr') }}
                                         </a>
                                     </li>
                                     <li class="rel">
                                         <a href="#" @click="isYear = true"
-                                            >Yillar
+                                            >{{ $t('years') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -230,7 +230,7 @@
                                     v-model="search"
                                     type="text"
                                     @keyup="changeInput"
-                                    placeholder="Izlash..."
+                                    :placeholder="$t('search')"
                                 />
                                 <div v-if="searchBox" class="year scroll">
                                     <div class="search">
@@ -278,7 +278,7 @@
                                                 </nuxt-link>
                                             </li>
                                             <li v-show="searchData.length == 0">
-                                                Ma'lumot topilmadi
+                                                {{ $t('notfound') }}
                                             </li>
                                         </ul>
                                     </div>
@@ -290,9 +290,11 @@
                         </div>
 
                         <div class="lang">
-                            <a class="active" href="#">UZ</a>
+                            <a @click.prevent="clickUz" class="active" href="#"
+                                >UZ</a
+                            >
                             <span></span>
-                            <a @click.prevent="clickUz" href="#">RU</a>
+                            <a @click.prevent="clickRu" href="#">RU</a>
                         </div>
 
                         <div class="header-login">
@@ -304,7 +306,7 @@
                                 <span>
                                     <fa icon="sign-in-alt" />
                                 </span>
-                                <span class="kirish"> Kirish </span>
+                                <span class="kirish"> {{ $t('kirish') }} </span>
                             </button>
 
                             <div
@@ -337,7 +339,7 @@
                                                 <span>
                                                     <fa icon="user" />
                                                 </span>
-                                                Profil</nuxt-link
+                                                {{ $t('profil') }}</nuxt-link
                                             >
                                         </li>
                                     </ul>
@@ -348,7 +350,7 @@
                                         "
                                         class="logout"
                                     >
-                                        <fa icon="power-off" /> Chiqish
+                                        <fa icon="power-off" /> {{ $t('exit') }}
                                     </button>
                                 </div>
                             </div>
@@ -447,6 +449,9 @@ export default {
         },
         clickUz() {
             this.$i18n.setLocale('uz')
+        },
+        clickRu() {
+            this.$i18n.setLocale('ru')
         },
         async changeInput() {
             if (this.search.length >= 2) {
@@ -616,6 +621,9 @@ export default {
 </script>
 
 <style lang="scss">
+.bar-btn {
+    display: none;
+}
 .menu-fix {
     opacity: 0 !important;
 }
@@ -625,9 +633,8 @@ export default {
 .menu-modal {
     position: fixed;
     top: 0;
-    left: -330px;
-    background: transparent;
-    backdrop-filter: blur(10px);
+    left: -990px;
+    background: #252831;
     width: 70%;
     height: 100vh;
     z-index: 20;

@@ -26,7 +26,7 @@
                     <div class="item-4 item-md-6">
                         <div class="all-news">
                             <div class="title">
-                                <h3>Boshqa yangiliklar</h3>
+                                <h3>{{ $t('othernews') }}</h3>
                             </div>
                             <nuxt-link
                                 v-for="(item, i) in news"

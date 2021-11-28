@@ -18,27 +18,35 @@
                                 <div class="item-3 item-md-6">
                                     <div class="info-film">
                                         <div class="title">
-                                            <h2>Ma'lumotlar</h2>
+                                            <h2>{{ $t('info') }}</h2>
                                             <div class="box-line">
-                                                <h3 class="key">Mamlakat</h3>
+                                                <h3 class="key">
+                                                    {{ $t('country') }}
+                                                </h3>
                                                 <h3 class="value">
                                                     {{ anime.country }}
                                                 </h3>
                                             </div>
                                             <div class="box-line">
-                                                <h3 class="key">Rejissor</h3>
+                                                <h3 class="key">
+                                                    {{ $t('rejissor') }}
+                                                </h3>
                                                 <h3 class="value">
                                                     {{ anime.rejissor }}
                                                 </h3>
                                             </div>
                                             <div class="box-line">
-                                                <h3 class="key">Studiya</h3>
+                                                <h3 class="key">
+                                                    {{ $t('studiya') }}
+                                                </h3>
                                                 <h3 class="value">
                                                     {{ anime.studia }}
                                                 </h3>
                                             </div>
                                             <div class="box folder">
-                                                <h3 class="key">Janr</h3>
+                                                <h3 class="key">
+                                                    {{ $t('onejanr') }}
+                                                </h3>
                                                 <div
                                                     class="link"
                                                     v-if="anime.janr != null"
@@ -56,7 +64,9 @@
                                                 </div>
                                             </div>
                                             <div class="box cat">
-                                                <h3 class="key">Kategoriya</h3>
+                                                <h3 class="key">
+                                                    {{ $t('onecat') }}
+                                                </h3>
                                                 <div class="link">
                                                     <nuxt-link
                                                         v-for="cat in anime.category"
@@ -87,7 +97,7 @@
                                             <span>
                                                 <fa icon="download" />
                                             </span>
-                                            Yuklab olish
+                                            {{ $t('down') }}
                                         </a>
                                     </div>
                                 </div>
@@ -115,9 +125,6 @@
                                     @click="clickSeria(item, index)"
                                 >
                                     {{ item.name[$i18n.locale] }}
-                                    <span class="">
-                                        <fa icon="eye" />
-                                    </span>
                                 </button>
                             </div>
                         </div>
@@ -145,7 +152,7 @@
                                 :key="i"
                                 @click="tabClick(i)"
                             >
-                                {{ item.uz }}
+                                {{ item[$i18n.locale] }}
                             </button>
                         </div>
                         <div class="line"></div>
@@ -224,7 +231,9 @@
                                                                         icon="reply"
                                                                     />
                                                                 </span>
-                                                                Javob berish
+                                                                {{
+                                                                    $t('reply')
+                                                                }}
                                                             </button>
                                                         </div>
 
@@ -242,7 +251,11 @@
                                                                     v-model="
                                                                         commentText
                                                                     "
-                                                                    placeholder="Izoh..."
+                                                                    :placeholder="
+                                                                        $t(
+                                                                            'izoh'
+                                                                        )
+                                                                    "
                                                                 ></textarea>
                                                             </div>
                                                             <div class="send">
@@ -256,7 +269,11 @@
                                                                         btn-simple
                                                                     "
                                                                 >
-                                                                    Jo'natish
+                                                                    {{
+                                                                        $t(
+                                                                            'send'
+                                                                        )
+                                                                    }}
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -275,7 +292,7 @@
                                                     name=""
                                                     id=""
                                                     rows="6"
-                                                    placeholder="Izoh..."
+                                                    :placeholder="$t('izoh')"
                                                 ></textarea>
                                             </div>
                                             <div class="send">
@@ -283,7 +300,7 @@
                                                     @click="sendComment"
                                                     class="btn-simple"
                                                 >
-                                                    Jo'natish
+                                                    {{ $t('send') }}
                                                 </button>
                                             </div>
                                         </div>
@@ -360,15 +377,15 @@ export default {
             tabMenu: [
                 {
                     uz: 'Izohlar',
-                    ru: 'Izohlar',
+                    ru: 'Комментарии',
                 },
                 {
                     uz: 'Ijodkorlar',
-                    ru: 'Ijodkorlar',
+                    ru: 'Создатели',
                 },
                 {
                     uz: 'Kadrlar',
-                    ru: 'Kadrlar',
+                    ru: 'Скриншоты',
                 },
             ],
             tabIndex: 1,
@@ -450,6 +467,7 @@ export default {
         margin-right: 10px;
         margin-bottom: 10px;
         background: transparent;
+        width: 100px;
         &.active {
             background: $gc !important;
             color: #fff;

@@ -23,7 +23,7 @@
                             name: `filter___${$i18n.locale}`,
                         }"
                         class="btn-simple"
-                        >Barchasi <fa icon="angle-right" />
+                        >{{ $t('all') }} <fa icon="angle-right" />
                     </nuxt-link>
                 </div>
 
@@ -42,7 +42,7 @@
                         @click="clickMore"
                         class="btn-simple btn-simple-active"
                     >
-                        Ko'proq ko'rsatish
+                        {{ $t('more') }}
                     </button>
                 </div>
             </div>

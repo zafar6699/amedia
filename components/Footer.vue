@@ -5,7 +5,7 @@
                 <div class="footer-top">AMEDIATV</div>
                 <div class="card-row">
                     <div class="item-3 item-md-3">
-                        <h3>Manzil</h3>
+                        <h3>{{ $t('adres') }}</h3>
                         <div class="adres">
                             <p>
                                 Lorem ipsum dolor sit amet consectetur
@@ -14,13 +14,13 @@
                         </div>
                     </div>
                     <div class="item-3 item-md-3">
-                        <h3>Kontaktlar</h3>
+                        <h3>{{ $t('contact') }}</h3>
                         <div class="tel">
                             <b>+998 (90) 959 66 08</b>
                         </div>
                     </div>
                     <div class="item-3 item-md-3">
-                        <h3>Kategoriyalar</h3>
+                        <h3>{{ $t('category') }}</h3>
                         <div class="janr">
                             <ul>
                                 <li
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="item-3 item-md-3">
-                        <h3>Ijtimoiy tarmoqlar</h3>
+                        <h3>{{ $t('sotset') }}</h3>
                         <div class="social-links">
                             <ul>
                                 <li>
@@ -115,7 +115,7 @@
                 </div>
 
                 <div class="footer-bottom">
-                    <p>Barcha huquqlar himoyalangan</p>
+                    <p>{{ $t('allzashita') }}</p>
                     <p>UMD Soft</p>
                 </div>
             </div>

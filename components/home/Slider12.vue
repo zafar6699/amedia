@@ -57,7 +57,8 @@
                                             params: { id: item.serial._id },
                                         }"
                                     >
-                                        <span><fa icon="play" /></span> Ko'rish
+                                        <span><fa icon="play" /></span>
+                                        {{ $t('see') }}
                                     </nuxt-link>
                                 </div>
                             </div>

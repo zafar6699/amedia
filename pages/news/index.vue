@@ -3,7 +3,7 @@
         <div class="filter-page">
             <div class="filter-title">
                 <div class="container">
-                    <h2>Yangiliklar</h2>
+                    <h2>{{ $t('news') }}</h2>
                 </div>
             </div>
 

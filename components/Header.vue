@@ -633,7 +633,7 @@ export default {
 .menu-modal {
     position: fixed;
     top: 0;
-    left: -990px;
+    left: -102%;
     background: #252831;
     width: 70%;
     height: 100vh;

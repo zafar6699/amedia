@@ -3,13 +3,29 @@
         <div class="filter-page">
             <div class="filter-title">
                 <div class="container">
-                    <h2>{{ $t('anime') }}</h2>
+                    <div class="flex">
+                        <h2>{{ $t('anime') }}</h2>
+                        <button class="filter" @click="clickFilter">
+                            <span> <fa icon="filter" /> </span>
+                            Filter
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="filter-content">
                 <div class="container">
                     <div class="card-row">
-                        <div class="item-3">
+                        <div
+                            @click="isCategory = false"
+                            :class="isCategory ? 'fix-vh' : ''"
+                        ></div>
+                        <div
+                            :class="
+                                isCategory
+                                    ? 'item-3 fxd-left scroll show'
+                                    : 'item-3 fxd-left'
+                            "
+                        >
                             <h3 class="cat-title">{{ $t('category') }}</h3>
 
                             <div class="check-box check-custom">
@@ -66,14 +82,14 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="item-9" v-if="season != null">
+                        <div class="item-9 item-md-6" v-if="season != null">
                             <div
                                 class="filter-courses"
                                 v-if="season.length > 0"
                             >
                                 <div class="card-row">
                                     <div
-                                        class="item-4 mb-30"
+                                        class="item-4 item-md-3 mb-30"
                                         v-for="(item, index) in season"
                                         :key="index"
                                     >
@@ -113,6 +129,7 @@ export default {
             length: 55,
             limit: 12,
             page: 0,
+            isCategory: false,
             filter: {
                 category: [],
                 janr: [],
@@ -153,6 +170,9 @@ export default {
             this.getData()
 
             window.scrollTo(0, 0)
+        },
+        clickFilter() {
+            this.isCategory = true
         },
         async getData() {
             let season = await this.$axios.$post(
@@ -195,6 +215,60 @@ div.filter-page {
     }
     div.check-box {
         margin-bottom: 30px;
+    }
+}
+@media (max-width: 576px) {
+    .filter-page {
+        .fix-vh {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            z-index: 12;
+            top: 0;
+            left: 0;
+            opacity: 0.6;
+        }
+        .filter-title {
+            padding: 20px 0 !important;
+            h2 {
+                font-size: 22px !important;
+            }
+            button {
+                background: $gc;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 3px;
+            }
+        }
+        .filter-content {
+            padding: 0 !important;
+        }
+        .filter-courses {
+            padding: 20px 0;
+        }
+        .mb-30 {
+            margin-bottom: 0px !important;
+        }
+        .show {
+            left: 50%;
+        }
+        .fxd-left {
+            position: fixed;
+            left: -102%;
+            top: 0;
+            transition: 0.2s;
+
+            width: 60%;
+            background: #252831;
+            z-index: 21;
+            height: 100vh;
+            overflow-y: scroll;
+            .cont {
+                color: #fff !important;
+                font-weight: 400 !important;
+            }
+        }
     }
 }
 </style>

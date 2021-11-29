@@ -120,14 +120,18 @@ div.trending-courses {
     }
 }
 @media (max-width: 576px) {
+    .trending-courses {
+        margin-top: 250px !important;
+    }
     .category-box {
         margin-bottom: 20px !important;
         align-items: flex-end !important;
+        flex-wrap: wrap;
         .btn-simple {
             margin-bottom: 10px !important;
         }
         .anime-cat {
-            max-width: 77%;
+            // max-width: 77%;
         }
     }
 }

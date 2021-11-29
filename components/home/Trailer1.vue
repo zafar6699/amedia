@@ -139,7 +139,7 @@ export default {}
 @media (max-width: 576px) {
     .trailer {
         padding: 20px 0;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
 
         .video {
             padding: 0 !important;

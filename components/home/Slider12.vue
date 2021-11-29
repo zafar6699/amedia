@@ -16,7 +16,7 @@
                     <div class="text">
                         <div class="container">
                             <div class="card-row align-center">
-                                <div class="item-7">
+                                <div class="item-7 item-md-6">
                                     <div class="categories">
                                         <nuxt-link
                                             v-for="(cat, i) in item.serial
@@ -66,7 +66,7 @@
                                             }"
                                         >
                                             <span><fa icon="play" /></span>
-                                            Ko'rish
+                                            {{ $t('see') }}
                                         </nuxt-link>
                                     </div>
                                 </div>
@@ -100,8 +100,8 @@ export default {
                 dots: true,
                 infinite: true,
                 autoplay: true,
-                speed: 2000,
-                autoplaySpeed: 2000,
+                speed: 1000,
+                autoplaySpeed: 4000,
                 fade: true,
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -249,8 +249,6 @@ export default {
             .play {
                 font-size: 13px;
                 font-weight: normal;
-                position: relative;
-                overflow: hidden;
                 width: auto;
                 padding: 12px 24px;
                 letter-spacing: 4px;
@@ -294,15 +292,57 @@ export default {
 }
 @media (max-width: 576px) {
     .slider {
+        .slick-dots {
+            bottom: 35px !important;
+        }
         .carousel-item {
+            height: 250px;
+            .img-right {
+                display: none;
+                .img-rel {
+                    height: 275px;
+                }
+            }
             .text {
+                .categories {
+                    display: none;
+                }
                 .link {
                     a {
-                        font-size: 40px !important;
-                        margin-bottom: 15px;
+                        font-size: 20px !important;
+                        margin-bottom: 0px;
+                        line-height: 25px;
+                        -webkit-line-clamp: 2;
                     }
                     p {
+                        // display: none;
+                        height: 50px;
+                        font-size: 15px;
+                        margin-bottom: 0px !important;
+                        -webkit-line-clamp: 2;
+                    }
+                }
+                .video-info {
+                    margin-top: 5px;
+                    b {
+                        font-size: 12px;
+                    }
+                    h3 {
+                        display: none;
                         font-size: 14px;
+                        margin: 0 10px;
+                    }
+                    .play {
+                        margin: 0 20px;
+                        display: flex;
+                        align-items: center;
+                        padding: 3px 10px;
+                        font-size: 12px;
+                        letter-spacing: 1px;
+                        span {
+                            font-size: 10px;
+                            margin-right: 4px;
+                        }
                     }
                 }
             }

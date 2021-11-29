@@ -223,6 +223,102 @@
                             </div>
                         </div>
                         <div
+                            v-click-other="closeSearchs"
+                            class="media-search-icon"
+                        >
+                            <button @click="mediaSearch">
+                                <fa icon="search" />
+                            </button>
+                            <div>
+                                <div v-if="searchMedia" class="search-media">
+                                    <div class="">
+                                        <div class="search-media-btn">
+                                            <input
+                                                v-model="search"
+                                                type="text"
+                                                @keyup="changeInput"
+                                                :placeholder="$t('search')"
+                                            />
+                                            <button @click="openSearch">
+                                                <fa icon="search" />
+                                            </button>
+                                        </div>
+                                        <div v-if="searchData != null">
+                                            <div
+                                                v-if="searchData.length > 0"
+                                                class="search-box-media scroll"
+                                            >
+                                                <ul>
+                                                    <li
+                                                        v-for="item in searchData"
+                                                        :key="item"
+                                                        v-show="
+                                                            searchData.length >
+                                                            0
+                                                        "
+                                                        @click="
+                                                            searchBox = false
+                                                            search = ''
+                                                        "
+                                                    >
+                                                        <nuxt-link
+                                                            :to="{
+                                                                name:
+                                                                    'season-id___' +
+                                                                    $i18n.locale,
+                                                                params: {
+                                                                    id: item._id,
+                                                                },
+                                                            }"
+                                                        >
+                                                            <div
+                                                                class="
+                                                                    search-link
+                                                                "
+                                                            >
+                                                                <div
+                                                                    class="img"
+                                                                >
+                                                                    <img
+                                                                        :src="
+                                                                            $cdn +
+                                                                            item.image
+                                                                        "
+                                                                        alt=""
+                                                                    />
+                                                                </div>
+                                                                <div
+                                                                    class="text"
+                                                                >
+                                                                    <p>
+                                                                        {{
+                                                                            item
+                                                                                .name[
+                                                                                $i18n
+                                                                                    .locale
+                                                                            ]
+                                                                        }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </nuxt-link>
+                                                    </li>
+                                                    <li
+                                                        v-if="
+                                                            searchData.length ==
+                                                            0
+                                                        "
+                                                    >
+                                                        {{ $t('notfound') }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
                             v-click-other="closeSearch"
                             :class="isSearch ? 'open search-box' : 'search-box'"
                         >
@@ -289,13 +385,22 @@
                                 <fa icon="search" />
                             </button>
                         </div>
+                        <div></div>
 
                         <div class="lang">
-                            <a @click.prevent="clickUz" class="active" href="#"
+                            <a
+                                @click.prevent="clickUz"
+                                :class="isUz ? 'active' : ''"
+                                href="#"
                                 >UZ</a
                             >
                             <span></span>
-                            <a @click.prevent="clickRu" href="#">RU</a>
+                            <a
+                                @click.prevent="clickRu"
+                                :class="isRu ? 'active' : ''"
+                                href="#"
+                                >RU</a
+                            >
                         </div>
 
                         <div class="header-login">
@@ -378,6 +483,9 @@ export default {
     data() {
         return {
             isMenu: false,
+            searchMedia: false,
+            isUz: true,
+            isRu: false,
             year: [],
             isRegister: false,
             isLogin: false,
@@ -450,9 +558,13 @@ export default {
         },
         clickUz() {
             this.$i18n.setLocale('uz')
+            this.isUz = true
+            this.isRu = false
         },
         clickRu() {
             this.$i18n.setLocale('ru')
+            this.isRu = true
+            this.isUz = false
         },
         async changeInput() {
             if (this.search.length >= 2) {
@@ -477,11 +589,20 @@ export default {
         openSearch() {
             this.isSearch = true
         },
+        mediaSearch() {
+            this.searchMedia = true
+        },
         closeSearch() {
             if (this.search == '') {
                 this.isSearch = false
             }
         },
+        closeSearchs() {
+            if (this.search == '') {
+                this.searchMedia = false
+            }
+        },
+
         changePasswordVisible() {
             if (this.type == 'text') {
                 this.type = 'password'
@@ -604,6 +725,101 @@ export default {
 </script>
 
 <style lang="scss">
+.media-search-icon {
+    display: none;
+    button {
+        font-size: 17px;
+        color: #fff;
+        padding: 5px 0;
+    }
+}
+.search-media {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 12;
+    background: #252831;
+    width: 100%;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    max-height: 300px;
+    .search-box-media {
+        top: 50px;
+        background: #fff;
+        padding: 10px 10px;
+        padding-top: 20px;
+        max-height: 230px;
+        overflow-y: scroll;
+        ul {
+            list-style: none;
+            li {
+                margin-bottom: 10px;
+                a {
+                    .search-link {
+                        display: flex;
+                        align-items: center;
+                        .img {
+                            width: 40px;
+                            height: 40px;
+                            margin-right: 3px;
+                            img {
+                                border-radius: 10px;
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .text {
+                            margin-left: 5px;
+                            max-width: 80%;
+                            p {
+                                color: #333;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        .text {
+                            p {
+                                color: $gc;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .search-media-btn {
+        width: 100%;
+        position: relative;
+
+        input {
+            width: 100%;
+            width: 100%;
+            padding: 20px;
+            padding-right: 50px;
+            background: transparent;
+            border: 0;
+            color: #fff;
+            font-size: 20px;
+            &::placeholder {
+                color: #fff;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+        button {
+            top: 50%;
+            transform: translate(0%, -50%);
+            font-size: 20px;
+            color: #fff;
+            position: absolute;
+            right: 15px;
+        }
+    }
+}
 .bar-btn {
     display: none;
 }
@@ -1024,18 +1240,38 @@ header {
     }
 }
 @media (max-width: 567px) {
+    .media-search-icon {
+        display: block;
+    }
+    .search-box {
+        display: none !important;
+    }
     .header-back {
-        height: 60px;
+        height: 60px !important;
     }
     header {
         .header-inner {
+            .header-left {
+                .logo {
+                    img {
+                        width: 110px !important;
+                    }
+                }
+            }
             .header-right {
                 border: 0 !important;
+                .header-login {
+                    .pro-img {
+                        width: 35px !important;
+                        height: 35px !important;
+                    }
+                }
                 .header-center {
                     display: none;
                 }
                 .lang {
-                    margin-left: 10px !important;
+                    margin-left: 15px !important;
+                    margin-right: 10px !important;
                 }
                 .header-login {
                     margin: 0 10px !important;

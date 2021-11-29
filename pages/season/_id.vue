@@ -110,6 +110,35 @@
                                             :src="viewSeria.video"
                                             frameborder="0"
                                         ></iframe>
+                                        <div
+                                            class="down-btn"
+                                            v-if="viewSeria != null"
+                                        >
+                                            <a
+                                                target="_blank"
+                                                :href="viewSeria.url"
+                                                class="btn-simple down"
+                                            >
+                                                <span>
+                                                    <fa icon="download" />
+                                                </span>
+                                                {{ $t('down') }}
+                                            </a>
+                                        </div>
+                                        <div class="seriyas">
+                                            <button
+                                                :class="
+                                                    indexSeria == index
+                                                        ? 'btn-simple active'
+                                                        : 'btn-simple'
+                                                "
+                                                v-for="(item, index) in serial"
+                                                :key="item"
+                                                @click="clickSeria(item, index)"
+                                            >
+                                                {{ item.name[$i18n.locale] }}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +342,7 @@
                                                         item, i
                                                     ) in anime.translator"
                                                     :key="i"
-                                                    class="item-4"
+                                                    class="item-4 item-md-6"
                                                 >
                                                     <div class="person">
                                                         <div class="img">
@@ -342,7 +371,7 @@
                                                     v-for="(item, i) in anime
                                                         .screens.original"
                                                     :key="i"
-                                                    class="item-4"
+                                                    class="item-4 item-md-3"
                                                 >
                                                     <div class="kadr">
                                                         <img
@@ -663,6 +692,12 @@ export default {
                     min-height: 400px;
                     border-radius: 10px;
                 }
+                .down-btn {
+                    display: none;
+                }
+                .seriyas {
+                    display: none;
+                }
             }
             .info-film {
                 // backdrop-filter: blur(10px);
@@ -803,6 +838,39 @@ export default {
 }
 @media (max-width: 576px) {
     .id {
+        .ijods {
+            .person {
+                box-shadow: 0 0 10px -8px #333 !important;
+            }
+        }
+        .kadr {
+            img {
+                height: 180px !important;
+            }
+        }
+        .item-3 {
+            .down {
+                display: none !important;
+            }
+        }
+        .seriyas {
+            display: none !important;
+        }
+        .video {
+            .seriyas {
+                display: block !important;
+                margin-bottom: 10px;
+                button {
+                    width: 86px !important;
+                    font-size: 12px !important;
+                    margin-right: 4px !important;
+                    margin-bottom: 6px !important;
+                }
+            }
+            .down-btn {
+                display: block !important;
+            }
+        }
         .top {
             .info {
                 .title-top {

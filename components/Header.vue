@@ -331,7 +331,7 @@
                                 <div v-if="isProfile" class="pro-dropdown">
                                     <h6>{{ $auth.user.name }}</h6>
                                     <ul>
-                                        <li>
+                                        <li @click="isProfile = false">
                                             <nuxt-link
                                                 :to="{
                                                     name: `profile___${$i18n.locale}`,

@@ -21,6 +21,20 @@ export default {
         Slider,
     },
 
+    head() {
+        return {
+            title: this.$t('tithome'),
+            meta: [
+                // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+                {
+                    hid: this.$t('titmeta'),
+                    name: this.$t('titmeta'),
+                    content: this.$t('titmeta'),
+                },
+            ],
+        }
+    },
+
     mounted() {},
 }
 </script>

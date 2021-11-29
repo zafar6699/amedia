@@ -8,7 +8,10 @@
         >
             <div class="anime-card">
                 <span class="year"> {{ anime.year }}</span>
-                <button @click="likebos" :class="like ? 'like bos' : 'like'">
+                <button
+                    @click.prevent="likebos"
+                    :class="like ? 'like bos' : 'like'"
+                >
                     <fa icon="heart" />
                 </button>
                 <div class="img">
@@ -69,11 +72,42 @@ export default {
     data() {
         return {
             like: false,
+            likedAnime: null,
+        }
+    },
+    mounted() {
+        let likes = this.$store.state.like
+
+        let find = likes.find((item) => item.season._id == this.anime._id)
+
+        if (find) {
+            this.like = true
+            this.likedAnime = find
         }
     },
     methods: {
         likebos() {
-            this.like = !this.like
+            if (!this.like) {
+                this.$axios
+                    .$post('/like/create', {
+                        season: this.anime._id,
+                    })
+                    .then((res) => {
+                        this.like = true
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            } else {
+                this.$axios
+                    .$delete(`/like/${this.likedAnime._id}`)
+                    .then((res) => {
+                        this.like = false
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
         },
     },
 }
@@ -100,7 +134,7 @@ div.anime-card {
 
     button.like {
         position: absolute;
-        z-index: 5;
+        z-index: 3;
         right: 15px;
         top: 15px;
 

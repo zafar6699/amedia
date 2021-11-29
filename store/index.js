@@ -5,6 +5,7 @@ export const state = () => ({
 
     janr: [],
     category: [],
+    like: [],
 })
 export const mutations = {
     TRUE_LOADING(state, data) {
@@ -27,6 +28,9 @@ export const mutations = {
     CATEGORY_GET(state, data) {
         state.category = data
     },
+    LIKE_GET(state, data) {
+        state.like = data
+    },
 }
 export const actions = {
     async getJanr({ commit }) {
@@ -36,5 +40,9 @@ export const actions = {
     async getCategory({ commit }) {
         let category = await this.$axios.$get('category')
         commit('CATEGORY_GET', category.data)
+    },
+    async getLike({ commit }) {
+        let like = await this.$axios.$get('like/me')
+        commit('LIKE_GET', like.data)
     },
 }

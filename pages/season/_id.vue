@@ -366,6 +366,19 @@
 
 <script>
 export default {
+    head() {
+        return {
+            title: this.anime?.name[this.$i18n.locale],
+            meta: [
+                // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+                {
+                    hid: this.$t('titmeta'),
+                    name: this.$t('titmeta'),
+                    content: this.$t('titmeta'),
+                },
+            ],
+        }
+    },
     data() {
         return {
             indexSeria: 0,

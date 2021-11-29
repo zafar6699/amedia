@@ -1,53 +1,160 @@
 <template>
     <div>
         <div class="profile-page">
+            <div @click="closeModal" v-if="isName" class="fixvh"></div>
+            <div v-if="isName" class="modal-card" style="width: 400px">
+                <div class="modal-title">
+                    <h2>Ism o'zgartirish</h2>
+                    <button @click="closeModal">
+                        <fa class="times" icon="times" />
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div
+                        class="input-form"
+                        :class="{ 'form-error': $v.user.name.$error }"
+                    >
+                        <input
+                            v-model="$v.user.name.$model"
+                            type="text"
+                            :placeholder="$t('ism')"
+                        />
+                        <h6 v-if="!$v.user.name.required" class="error-text">
+                            {{ $t('tolshart') }}
+                        </h6>
+                    </div>
+
+                    <div>
+                        <button
+                            class="btn-sm mb-15 w-100 btn-sm-active"
+                            @click="editName"
+                        >
+                            O'zgartirish
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div @click="closeModal" v-if="isBalance" class="fixvh"></div>
+            <div v-if="isBalance" class="modal-card" style="width: 400px">
+                <div class="modal-title">
+                    <h2>Balans to'ldirish</h2>
+                    <button @click="closeModal">
+                        <fa class="times" icon="times" />
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div
+                        class="input-form"
+                        :class="{ 'form-error': $v.balance.$error }"
+                    >
+                        <input
+                            v-model="$v.balance.$model"
+                            type="text"
+                            :placeholder="'Summani kiriting'"
+                            v-mask="'##########'"
+                        />
+                        <h6 v-if="!$v.balance.required" class="error-text">
+                            {{ $t('tolshart') }}
+                        </h6>
+                    </div>
+
+                    <div>
+                        <button
+                            class="btn-sm mb-15 w-100 btn-sm-active"
+                            @click="editName"
+                        >
+                            To'lash
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div class="container">
-                <div class="profile-header flex">
+                <div class="profile-header">
                     <div class="left">
                         <div class="person">
-                            <div class="img">
-                                <img src="@/assets/img/avatar.jpg" alt="" />
+                            <div class="image-div">
+                                <label for="image" class="upload-button">
+                                    <input
+                                        @change="changeImage($event)"
+                                        type="file"
+                                        id="image"
+                                    />
+
+                                    <span>
+                                        <fa icon="pen" />
+                                    </span>
+                                </label>
+                                <div class="img">
+                                    <img
+                                        v-if="$auth.user.photo != undefined"
+                                        :src="$cdn + `/` + $auth.user.photo"
+                                        alt=""
+                                    />
+                                    <img
+                                        src="@/static/default-profile.png"
+                                        alt=""
+                                    />
+                                </div>
                             </div>
+
                             <div class="name">
-                                <h3>Xushnudbek</h3>
-                                <h4>id : <span>11221</span></h4>
+                                <h3>
+                                    {{ $auth.user.name }}
+                                    <button
+                                        class="edit-btn"
+                                        @click="isName = true"
+                                    >
+                                        <fa icon="edit" />
+                                    </button>
+                                </h3>
+                                <h4>
+                                    <span class="key">ID</span> :
+                                    <span>{{ $auth.user.uid }}</span>
+                                </h4>
+                                <h4>
+                                    <span class="key">Balans</span> :
+                                    <span
+                                        >{{ $auth.user.balance }}
+                                        {{ $t('sum') }}
+                                    </span>
+                                </h4>
+                                <h4>
+                                    <span class="key">Tarif tugash sanasi</span>
+                                    :
+                                    <span>12.10.2021 </span>
+                                </h4>
+                                <button
+                                    class="btn-simple mt-10"
+                                    @click="isBalance = true"
+                                >
+                                    Balansni to'ldirish
+                                </button>
                             </div>
-                        </div>
-                        <div class="tab-menu">
-                            <button
-                                :class="
-                                    tabIndex == 1 ? 'active btn-tab' : 'btn-tab'
-                                "
-                                @click="clickTab(1)"
-                            >
-                                <span class="icon"><fa icon="user" /></span>
-                                <span class="let"> Profil </span>
-                            </button>
-                            <button
-                                :class="
-                                    tabIndex == 2 ? 'active btn-tab' : 'btn-tab'
-                                "
-                                @click="clickTab(2)"
-                            >
-                                <span class="icon"><fa icon="heart" /></span>
-                                <span class="let"> Tanlanganlar </span>
-                            </button>
-                            <button
-                                :class="
-                                    tabIndex == 3 ? 'active btn-tab' : 'btn-tab'
-                                "
-                                @click="clickTab(3)"
-                            >
-                                <span class="icon"><fa icon="cog" /></span>
-                                <span class="let"> Sozlamalar </span>
-                            </button>
                         </div>
                     </div>
                     <div class="right">
-                        <button class="">
+                        <button class="" @click="$auth.logout()">
                             Chiqish <span><fa icon="sign-out-alt" /></span>
                         </button>
                     </div>
+                </div>
+
+                <div class="tab-menu">
+                    <button
+                        :class="tabIndex == 1 ? 'active btn-tab' : 'btn-tab'"
+                        @click="clickTab(1)"
+                    >
+                        <span class="let"> Profil </span>
+                    </button>
+                    <button
+                        :class="tabIndex == 2 ? 'active btn-tab' : 'btn-tab'"
+                        @click="clickTab(2)"
+                    >
+                        <span class="let"> Tanlanganlar </span>
+                    </button>
                 </div>
                 <div class="content">
                     <div class="profil" v-if="tabIndex == 1">
@@ -57,7 +164,7 @@
                                     <div class="box">
                                         <p>1 Oylik</p>
                                         <div class="price">
-                                            <h2>10 900</h2>
+                                            <h2>10 900 {{ $t('sum') }}</h2>
                                             <button class="btn-simple">
                                                 Obuna
                                             </button>
@@ -68,7 +175,7 @@
                                     <div class="box">
                                         <p>3 Oylik</p>
                                         <div class="price">
-                                            <h2>29 900</h2>
+                                            <h2>29 900 {{ $t('sum') }}</h2>
                                             <button class="btn-simple">
                                                 Obuna
                                             </button>
@@ -79,7 +186,7 @@
                                     <div class="box">
                                         <p>6 Oylik</p>
                                         <div class="price">
-                                            <h2>56 000</h2>
+                                            <h2>56 000 {{ $t('sum') }}</h2>
                                             <button class="btn-simple">
                                                 Obuna
                                             </button>
@@ -90,32 +197,10 @@
                                     <div class="box">
                                         <p>10 Oylik</p>
                                         <div class="price">
-                                            <h2>102 000</h2>
+                                            <h2>102 000 {{ $t('sum') }}</h2>
                                             <button class="btn-simple">
                                                 Obuna
                                             </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <div class="card-row">
-                                <div class="item-6">
-                                    <div class="card">
-                                        <p>10 Oylik</p>
-                                        <div class="price">
-                                            <h2>102 000</h2>
-                                            <span><fa icon="star" /></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-6">
-                                    <div class="card">
-                                        <p>My balance</p>
-                                        <div class="price">
-                                            <h2>95 000</h2>
-                                            <span><fa icon="star" /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -125,110 +210,12 @@
                     <div class="profil" v-if="tabIndex == 2">
                         <div class="like">
                             <div class="card-row">
-                                <div class="item-3">
-                                    <AnimeCard />
-                                </div>
-                                <div class="item-3">
-                                    <AnimeCard />
-                                </div>
-                                <div class="item-3">
-                                    <AnimeCard />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="profil" v-if="tabIndex == 3">
-                        <div class="settings">
-                            <div class="card-row">
-                                <div class="item-6 item-md-6">
-                                    <div class="card">
-                                        <div class="card-row">
-                                            <div class="item-6">
-                                                <div class="input-form">
-                                                    <p>Ismi</p>
-                                                    <input
-                                                        type="text"
-                                                        value="Xushnudbek"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="item-6">
-                                                <div class="input-form">
-                                                    <p>Email</p>
-                                                    <input
-                                                        type="text"
-                                                        value="Xushnudbek"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="item-6">
-                                                <div class="input-form">
-                                                    <p>Telefon</p>
-                                                    <input
-                                                        type="text"
-                                                        value="Xushnudbek"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="item-6">
-                                                <div class="input-form">
-                                                    <p>Login</p>
-                                                    <input
-                                                        type="text"
-                                                        value="Xushnudbek"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="save">
-                                            <button>Saqlash</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-6 item-md-6">
-                                    <div class="card">
-                                        <div class="card-row">
-                                            <div class="item-6">
-                                                <div class="input-form">
-                                                    <p>Login</p>
-                                                    <input
-                                                        type="text"
-                                                        value="Xushnudbek"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="item-6">
-                                                <div class="input-form">
-                                                    <p>Login</p>
-                                                    <input
-                                                        type="text"
-                                                        value="Xushnudbek"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="item-6">
-                                                <div class="input-form">
-                                                    <p>Login</p>
-                                                    <input
-                                                        type="text"
-                                                        value="Xushnudbek"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="item-6">
-                                                <div class="input-form">
-                                                    <p>Login</p>
-                                                    <input
-                                                        type="text"
-                                                        value="Xushnudbek"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="save">
-                                            <button>Saqlash</button>
-                                        </div>
-                                    </div>
+                                <div
+                                    class="item-3"
+                                    v-for="(item, index) in $store.state.like"
+                                    :key="index"
+                                >
+                                    <AnimeCard :anime="item.season" />
                                 </div>
                             </div>
                         </div>
@@ -240,11 +227,14 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators'
 import AnimeCard from '../../components/AnimeCard.vue'
 export default {
     layout: 'dashboard',
     data() {
         return {
+            isName: false,
+            isBalance: false,
             tabMenu: [
                 {
                     uz: 'Profil',
@@ -254,18 +244,50 @@ export default {
                     uz: 'Tanlanganlar',
                     ru: 'Profil',
                 },
-                {
-                    uz: 'Sozlamalar',
-                    ru: 'Profil',
-                },
             ],
             tabIndex: 1,
+
+            user: {
+                name: '',
+            },
+            balance: '',
         }
+    },
+
+    validations: {
+        user: {
+            name: {
+                required,
+            },
+        },
+        balance: {
+            required,
+        },
+    },
+    async mounted() {
+        this.user.name = this.$auth.user.name
     },
     methods: {
         clickTab(i) {
             this.tabIndex = i
         },
+        closeModal() {
+            this.isName = false
+            this.isBalance = false
+        },
+        changeImage(event) {
+            let fd = new FormData()
+            fd.append('photo', event.target.files[0])
+
+            this.$axios({
+                url: 'profile/upload',
+                method: 'POST',
+                data: fd,
+            }).then((res) => {
+                this.$auth.fetchUser()
+            })
+        },
+        editName() {},
     },
     components: { AnimeCard },
 }
@@ -279,12 +301,35 @@ export default {
 }
 .profile-page {
     margin-bottom: 60px;
+    .tab-menu {
+        display: flex;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        button {
+            // color: ;
+            height: 40px;
+            transition: all 0.3s;
+            margin-right: 30px;
+            font-weight: 500;
+            font-size: 17px;
+            &.active {
+                color: $gc;
+                // border-bottom: 1px solid $gc;
+            }
+            &:hover {
+                color: $gc;
+            }
+        }
+    }
     .profile-header {
         margin: 30px 0;
         background: #fff;
         // box-shadow: 0 0 3px;
         border-radius: 10px;
-        padding: 0 20px;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
         .right {
             // color: ;
             button {
@@ -311,9 +356,21 @@ export default {
             align-items: center;
             .person {
                 display: flex;
-                align-items: center;
+                .edit-btn {
+                    font-size: 16px;
+                    color: #333;
+                    margin-left: 10px;
+
+                    &:hover {
+                        color: $gc;
+                    }
+                }
                 .name {
                     margin-left: 15px;
+                    span.key {
+                        font-weight: 500;
+                        color: #333;
+                    }
                     h3 {
                         font-weight: 600;
                         // color: ;
@@ -322,33 +379,52 @@ export default {
                     h4 {
                         font-weight: 500;
                         // color: ;
-                        font-weight: 500;
+                        font-weight: 400;
+                        color: #666;
                     }
                 }
                 .img {
+                    width: 135px;
+                    height: 135px;
+                    border-radius: 5px;
+                    overflow: hidden;
+
                     img {
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 5px;
+                        width: 100%;
+                        height: 100%;
                         object-fit: cover;
                     }
                 }
-            }
-            .tab-menu {
-                margin-left: 30px;
-                display: flex;
-                button {
-                    // color: ;
-                    height: 80px;
-                    margin-left: 20px;
-                    transition: all 0.3s;
-                    font-weight: 400;
-                    font-size: 17px;
-                    &.active {
-                        color: $gc;
-                    }
+
+                .image-div {
+                    position: relative;
+                }
+                .upload-button {
+                    position: absolute;
+                    bottom: 5px;
+                    right: 5px;
+                    width: 30px;
+                    height: 30px;
+                    background-color: #fff;
+                    color: $gc;
+                    font-size: 16px;
+                    border-radius: 100%;
+                    border: 1px solid $gc;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+
                     &:hover {
-                        color: $gc;
+                        background-color: $gc;
+                        color: #fff;
+                    }
+                    input {
+                        border-radius: 5px;
+                        overflow: hidden;
+                        position: absolute;
+                        opacity: 0;
+                        transform: translate(-1000%);
                     }
                 }
             }
@@ -365,7 +441,7 @@ export default {
                     border-radius: 10px;
                     transition: 0.2s;
                     &:hover {
-                        box-shadow: 0 0 10px 0px $gc;
+                        box-shadow: 0 0 10px 0px #ddd;
                     }
                     p {
                         // color: ;

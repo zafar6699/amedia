@@ -18,9 +18,9 @@ export default {
         }
     },
     async mounted() {
-        // if (this.$auth.loggedIn) {
-        //     this.$auth.fetchUser()
-        // }
+        if (this.$auth.loggedIn) {
+            await this.$store.dispatch('getLike')
+        }
 
         await this.$store.dispatch('getJanr')
         await this.$store.dispatch('getCategory')

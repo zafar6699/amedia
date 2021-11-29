@@ -1,4 +1,8 @@
 export default {
+    //SEO
+    tithome: 'Amediatv.uz - Первый узбекский фандаб, переведенное аниме',
+    titmeta: 'аниме, перевод аниме, забавное аниме, узанимэ, анибла',
+
     janr: 'Жанры',
     years: 'Годы',
     kirish: 'Вход ',
@@ -12,7 +16,7 @@ export default {
     profil: 'Профиль',
     exit: 'Выход',
     search: 'Искать ...',
-
+    sum: 'сум',
 
     /// footer
     adres: 'Адрес',

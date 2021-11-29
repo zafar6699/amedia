@@ -15,6 +15,7 @@
                 </div>
             </div>
         </div>
+
         <div @click="closeModal" v-if="isRegister" class="fixvh"></div>
         <div v-if="isRegister" class="modal-card" style="width: 400px">
             <div class="modal-title">
@@ -32,7 +33,7 @@
                     <input
                         v-model="$v.register.name.$model"
                         type="text"
-                        :placeholder="$t('tolshart')"
+                        :placeholder="$t('ism')"
                     />
                     <h6 v-if="!$v.register.name.required" class="error-text">
                         {{ $t('tolshart') }}
@@ -578,24 +579,6 @@ export default {
                         console.log(err)
                     })
             }
-
-            // this.closeModal()
-            // this.isRegister = true
-            // this.$v.login.$touch()
-            // if (!this.$v.login.$invalid) {
-            //     let phone = this.login.phone.replace(/[^0-9]/g, '')
-            //     try {
-            //         let response = await this.$auth.loginWith('local', {
-            //             data: {
-            //                 phone: phone,
-            //                 password: this.login.password,
-            //             },
-            //         })
-            //         this.formReset()
-            //     } catch (err) {
-            //         console.log(err)
-            //     }
-            // }
         },
 
         async sendCode() {

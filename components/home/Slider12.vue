@@ -70,42 +70,6 @@
                                         </nuxt-link>
                                     </div>
                                 </div>
-<<<<<<< HEAD
-                                <div class="link">
-                                    <nuxt-link
-                                        :to="{
-                                            name: `season-id___${$i18n.locale}`,
-                                            params: { id: item.serial._id },
-                                        }"
-                                    >
-                                        {{
-                                            item.serial.name[`${$i18n.locale}`]
-                                        }}
-                                    </nuxt-link>
-                                    <p>
-                                        {{
-                                            item.serial.description[
-                                                `${$i18n.locale}`
-                                            ]
-                                        }}
-                                    </p>
-                                </div>
-                                <div class="video-info">
-                                    <b>
-                                        {{ item.serial.year }}
-                                    </b>
-                                    <h3>720P <span>HD</span></h3>
-                                    <nuxt-link
-                                        class="play"
-                                        :to="{
-                                            name: `season-id___${$i18n.locale}`,
-                                            params: { id: item.serial._id },
-                                        }"
-                                    >
-                                        <span><fa icon="play" /></span>
-                                        {{ $t('see') }}
-                                    </nuxt-link>
-=======
 
                                 <div class="item-5">
                                     <div class="img-right">
@@ -116,7 +80,6 @@
                                             />
                                         </div>
                                     </div>
->>>>>>> b16f4ca0cc6ebd0a771249493a95be062454ff07
                                 </div>
                             </div>
                         </div>
@@ -136,6 +99,9 @@ export default {
                 dotsClass: 'slick-dots custom-dot-class',
                 dots: true,
                 infinite: true,
+                autoplay: true,
+                speed: 1500,
+                autoplaySpeed: 1500,
                 fade: true,
                 slidesToShow: 1,
                 slidesToScroll: 1,

@@ -243,7 +243,10 @@
                                                         v-html="item.message"
                                                     ></p>
 
-                                                    <div class="answer">
+                                                    <div
+                                                        v-if="$auth.loggedIn"
+                                                        class="answer"
+                                                    >
                                                         <div class="btn">
                                                             <button
                                                                 @click="
@@ -310,27 +313,30 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div
-                                            v-if="comment"
-                                            class="write-comment"
-                                        >
-                                            <div class="form">
-                                                <textarea
-                                                    v-model="com.message"
-                                                    name=""
-                                                    id=""
-                                                    rows="6"
-                                                    :placeholder="$t('izoh')"
-                                                ></textarea>
-                                            </div>
-                                            <div class="send">
-                                                <button
-                                                    @click="sendComment"
-                                                    class="btn-simple"
-                                                >
-                                                    {{ $t('send') }}
-                                                </button>
+                                        <div v-if="$auth.loggedIn">
+                                            <div
+                                                v-if="comment"
+                                                class="write-comment"
+                                            >
+                                                <div class="form">
+                                                    <textarea
+                                                        v-model="com.message"
+                                                        name=""
+                                                        id=""
+                                                        rows="6"
+                                                        :placeholder="
+                                                            $t('izoh')
+                                                        "
+                                                    ></textarea>
+                                                </div>
+                                                <div class="send">
+                                                    <button
+                                                        @click="sendComment"
+                                                        class="btn-simple"
+                                                    >
+                                                        {{ $t('send') }}
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -461,8 +467,8 @@ export default {
 
             this.viewSeria = this.serial[0]
             this.comments = anime.comment
-            console.log('serial', this.serial)
-            console.log('comments', this.comments)
+            // console.log('serial', this.serial)
+            // console.log('comments', this.comments)
         },
         tabClick(i) {
             this.tabIndex = i + 1
@@ -472,8 +478,7 @@ export default {
             this.comment = false
         },
         async sendReplyComment(item) {
-            console.log(item)
-            this.com.season = this.$route.params.id
+            console.log('xxx', item)
 
             this.commentText = `<b class="bold"> ${item.name} </b>, ${this.commentText}`
             await this.$axios
@@ -491,6 +496,7 @@ export default {
         async sendComment() {
             this.com.season = this.$route.params.id
             await this.$axios.$post('comment/add', this.com)
+            this.getData()
         },
         clickOut() {
             if (this.commentText == '') {

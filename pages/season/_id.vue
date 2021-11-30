@@ -195,6 +195,32 @@
                                         v-if="tabIndex == 1 && comments != null"
                                         class="comments"
                                     >
+                                        <div v-if="$auth.loggedIn">
+                                            <div
+                                                v-if="comment"
+                                                class="write-comment"
+                                            >
+                                                <div class="form">
+                                                    <textarea
+                                                        v-model="com.message"
+                                                        name=""
+                                                        id=""
+                                                        rows="6"
+                                                        :placeholder="
+                                                            $t('izoh')
+                                                        "
+                                                    ></textarea>
+                                                </div>
+                                                <div class="send">
+                                                    <button
+                                                        @click="sendComment"
+                                                        class="btn-simple"
+                                                    >
+                                                        {{ $t('send') }}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="kamentariyala scroll">
                                             <div
                                                 class="comment scroll"
@@ -247,15 +273,18 @@
                                                         v-if="$auth.loggedIn"
                                                         class="answer"
                                                     >
-                                                        <div class="btn">
+                                                        <div
+                                                            :class="
+                                                                isReply != i
+                                                                    ? 'btn'
+                                                                    : 'btn-none'
+                                                            "
+                                                        >
                                                             <button
                                                                 @click="
                                                                     clickReply(
                                                                         i
                                                                     )
-                                                                "
-                                                                v-click-other="
-                                                                    clickOut
                                                                 "
                                                             >
                                                                 <span>
@@ -271,6 +300,9 @@
 
                                                         <div
                                                             v-if="isReply == i"
+                                                            v-click-other="
+                                                                clickOut
+                                                            "
                                                             class="
                                                                 write-comment
                                                             "
@@ -310,32 +342,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div v-if="$auth.loggedIn">
-                                            <div
-                                                v-if="comment"
-                                                class="write-comment"
-                                            >
-                                                <div class="form">
-                                                    <textarea
-                                                        v-model="com.message"
-                                                        name=""
-                                                        id=""
-                                                        rows="6"
-                                                        :placeholder="
-                                                            $t('izoh')
-                                                        "
-                                                    ></textarea>
-                                                </div>
-                                                <div class="send">
-                                                    <button
-                                                        @click="sendComment"
-                                                        class="btn-simple"
-                                                    >
-                                                        {{ $t('send') }}
-                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -475,7 +481,6 @@ export default {
         },
         clickReply(index) {
             this.isReply = index
-            this.comment = false
         },
         async sendReplyComment(item) {
             console.log('xxx', item)
@@ -499,9 +504,8 @@ export default {
             this.getData()
         },
         clickOut() {
-            if (this.commentText == '') {
+            if (this.commentText === '') {
                 this.isReply = -1
-                this.comment = true
             }
         },
     },
@@ -570,8 +574,11 @@ export default {
         }
         .write-comment {
             padding: 20px;
+            padding-bottom: 0 !important;
             border-radius: 10px;
             background: #fff;
+            box-shadow: 0 0 12px -10px #000;
+            margin-bottom: 20px;
             .send {
                 margin-top: 10px;
                 display: flex;
@@ -589,8 +596,8 @@ export default {
             }
         }
         .kamentariyala {
-            max-height: 700px;
-            overflow-y: scroll;
+            // max-height: 700px;
+            // overflow-y: scroll;
         }
         .comment {
             margin-bottom: 20px;
@@ -599,14 +606,24 @@ export default {
                 border-radius: 0 10px 10px 10px;
                 padding: 20px;
                 background: #fff;
+                box-shadow: 0 0 12px -10px #000;
                 p {
                     font-size: 16px;
                     line-height: 26px;
                 }
                 .answer {
+                    display: block;
+                    .write-comment {
+                        padding: 20px 0;
+                        box-shadow: none;
+                        margin-bottom: 0px;
+                    }
                     .btn {
                         display: flex;
                         justify-content: flex-end;
+                    }
+                    .btn-none {
+                        display: none;
                     }
                 }
             }

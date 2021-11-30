@@ -196,6 +196,9 @@ div.filter-page {
     div.filter-title {
         background-color: $gh;
         padding: 45px 0px;
+        button {
+            display: none;
+        }
         h2 {
             font-size: 34px;
             color: $gc;

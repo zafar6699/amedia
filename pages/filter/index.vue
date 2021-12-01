@@ -156,10 +156,10 @@ export default {
             this.filter.janr.push(this.$route.query.janr)
         }
         if (this.$route.query.category) {
-            this.filter.janr.push(this.$route.query.category)
+            this.filter.category.push(this.$route.query.category)
         }
         if (this.$route.query.year) {
-            this.filter.janr.push(this.$route.query.year)
+            this.filter.year.push(this.$route.query.year)
         }
 
         await this.getData()

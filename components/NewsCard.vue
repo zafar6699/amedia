@@ -8,7 +8,7 @@
         >
             <div class="anime-card">
                 <div class="img">
-                    <nuxt-img :src="$cdn + news.image" alt="" />
+                    <img :src="$cdn + news.image" alt="" />
                 </div>
 
                 <div class="text-bottom">

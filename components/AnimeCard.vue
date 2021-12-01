@@ -15,7 +15,7 @@
                     <fa icon="heart" />
                 </button>
                 <div class="img">
-                    <nuxt-img :src="$cdn + anime.image" alt="" />
+                    <img :src="$cdn + anime.image" alt="" />
                 </div>
 
                 <div class="text-bottom">

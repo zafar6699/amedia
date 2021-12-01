@@ -200,7 +200,7 @@
                     <div class="header-left">
                         <nuxt-link :to="{ name: `index___${$i18n.locale}` }">
                             <span class="logo">
-                                <nuxt-img src="/logo.png" />
+                                <img src="/logo.png" />
                             </span>
                         </nuxt-link>
                     </div>

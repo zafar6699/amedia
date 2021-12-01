@@ -80,13 +80,13 @@ export default {
             )
             this.news = news.data
             this.length = news.count
-            console.log('asasad', this.news)
+            // console.log('asasad', this.news)
         },
         async getData() {
             let newsid = await this.$axios.$get(`news/${this.$route.params.id}`)
             this.newsid = newsid.data
             this.length = newsid.count
-            console.log('asasad', this.newsid)
+            // console.log('asasad', this.newsid)
         },
     },
 }

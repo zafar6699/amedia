@@ -236,7 +236,7 @@
                                             <input
                                                 v-model="search"
                                                 type="text"
-                                                @keyup="changeInput"
+                                                @keydown="changeInput"
                                                 :placeholder="$t('search')"
                                             />
                                             <button @click="openSearch">
@@ -326,7 +326,7 @@
                                 <input
                                     v-model="search"
                                     type="text"
-                                    @keyup="changeInput"
+                                    @keydown="changeInput"
                                     :placeholder="$t('search')"
                                 />
                                 <div v-if="searchBox" class="year scroll">
@@ -426,9 +426,13 @@
                                 >
                                     <div class="pro-img">
                                         <img
-                                            src="https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture-986x1024.jpg"
+                                            :src="$cdn + $auth.user.photo"
                                             alt=""
                                         />
+                                        <!-- <img
+                                            src="https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture-986x1024.jpg"
+                                            alt=""
+                                        /> -->
                                     </div>
                                     <fa icon="sort-down" />
                                 </button>
@@ -572,7 +576,7 @@ export default {
                     `season/search?text=${this.search}`
                 )
                 this.searchData = searchData.data
-                console.log('searchdata', this.searchData)
+                // console.log('searchdata', this.searchData)
                 this.searchBox = true
             } else {
                 this.searchBox = false
@@ -687,7 +691,7 @@ export default {
                         phone,
                     })
                     .then((res) => {
-                        console.log('res', res)
+                        // console.log('res', res)
                         this.closeModal()
                         if (res.data.status == 404) {
                             this.isRegister = true

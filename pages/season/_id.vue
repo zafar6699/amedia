@@ -498,7 +498,7 @@ export default {
             this.isReply = index
         },
         async sendReplyComment(item) {
-            console.log('xxx', item)
+            // console.log('xxx', item)
             this.com.season = this.$route.params.id
 
             this.commentText = `<b class="bold"> ${item.name} </b>, ${this.commentText}`
@@ -587,7 +587,6 @@ export default {
         }
         .write-comment {
             padding: 20px;
-            padding-bottom: 0 !important;
             border-radius: 10px;
             background: #fff;
             box-shadow: 0 0 12px -10px #000;
@@ -910,9 +909,9 @@ export default {
                 display: block !important;
                 margin-bottom: 10px;
                 button {
-                    width: 86px !important;
+                    width: 24% !important;
                     font-size: 12px !important;
-                    margin-right: 4px !important;
+                    margin-right: 2px !important;
                     margin-bottom: 6px !important;
                 }
             }

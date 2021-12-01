@@ -65,7 +65,7 @@ export default {
             )
             this.news = news.data
             this.length = news.count
-            console.log('asasad', this.news)
+            // console.log('asasad', this.news)
         },
     },
 }

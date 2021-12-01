@@ -90,7 +90,7 @@
                                 <div class="img">
                                     <img
                                         v-if="$auth.user.photo != undefined"
-                                        :src="$cdn + `/` + $auth.user.photo"
+                                        :src="$cdn + $auth.user.photo"
                                         alt=""
                                     />
                                     <img
@@ -283,8 +283,8 @@ export default {
                 url: 'profile/upload',
                 method: 'POST',
                 data: fd,
-            }).then((res) => {
-                this.$auth.fetchUser()
+            }).then(async (res) => {
+                await this.$auth.fetchUser()
             })
         },
         editName() {},

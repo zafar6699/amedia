@@ -3,7 +3,6 @@ export default {
     ssr: true,
     target: 'server',
     head: {
-        title: 'EduLife - Biz bilan onlayn ta`lim oling',
         meta: [
             { charset: 'utf-8' },
             {

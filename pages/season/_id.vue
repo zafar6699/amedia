@@ -54,7 +54,14 @@
                                                     <nuxt-link
                                                         v-for="janr in anime.janr"
                                                         :key="janr"
-                                                        to="/"
+                                                        :to="{
+                                                            name:
+                                                                'filter___' +
+                                                                $i18n.locale,
+                                                            query: {
+                                                                janr: janr._id,
+                                                            },
+                                                        }"
                                                         >{{
                                                             janr[
                                                                 `name${$i18n.locale}`
@@ -71,7 +78,15 @@
                                                     <nuxt-link
                                                         v-for="cat in anime.category"
                                                         :key="cat"
-                                                        to="/"
+                                                        :to="{
+                                                            name:
+                                                                'filter___' +
+                                                                $i18n.locale,
+                                                            query: {
+                                                                category:
+                                                                    cat._id,
+                                                            },
+                                                        }"
                                                         >{{
                                                             cat[
                                                                 `name${$i18n.locale}`
@@ -484,19 +499,17 @@ export default {
         },
         async sendReplyComment(item) {
             console.log('xxx', item)
+            this.com.season = this.$route.params.id
 
             this.commentText = `<b class="bold"> ${item.name} </b>, ${this.commentText}`
-            await this.$axios
-                .$post('comment/add', this.commentText)
-                .then((res) => {
-                    this.commentText = ''
-                    this.isReply = -1
-                    this.comment = true
-                    console.log(res)
-                })
-                .catch((err) => {
-                    console.log('error')
-                })
+            this.com.message = this.commentText
+            await this.$axios.$post('comment/add', this.com).then((res) => {
+                this.commentText = ''
+                this.isReply = -1
+                this.comment = true
+                this.com.message = ''
+                this.getData()
+            })
         },
         async sendComment() {
             this.com.season = this.$route.params.id
@@ -504,7 +517,7 @@ export default {
             this.getData()
         },
         clickOut() {
-            if (this.commentText === '') {
+            if (this.commentText == '') {
                 this.isReply = -1
             }
         },

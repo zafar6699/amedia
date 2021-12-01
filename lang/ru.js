@@ -15,7 +15,7 @@ export default {
     notfound: 'Информации не найдено !!!',
     profil: 'Профиль',
     exit: 'Выход',
-    search: 'Искать ...',
+    search: 'Поиск...',
     sum: 'сум',
 
     /// footer
@@ -49,6 +49,18 @@ export default {
     reply: 'Ответить',
     send: 'Отправить',
     izoh: 'Комментарий ...',
-    anim: '',
-    anim: '',
+
+
+
+    /// profile
+    changename: 'Переименовать',
+    edit: ' Изменить',
+    balanstoldir: 'Пополнить баланс',
+    summaenter: 'Введите сумму',
+    Balans: 'Баланс',
+    tarifend: 'Дата окончания тарифа"',
+    tarifla: 'Тарифы',
+    like: 'Избранное',
+    obuna: ' Подписка',
+    tolash: 'Оплатить',
 }

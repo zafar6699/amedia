@@ -50,6 +50,17 @@ export default {
     reply: 'Javob berish',
     send: "Jo'natish",
     izoh: 'Izoh...',
-    anim: '',
-    anim: '',
+
+
+    /// profile
+    changename: 'Ism o\'zgartirish',
+    edit: ' O\'zgartirish',
+    balanstoldir: 'Balans to\'ldirish',
+    summaenter: 'Summani kiriting',
+    Balans: 'Balans',
+    tarifend: 'Ta\'rif tugash sanasi',
+    tarifla: 'Ta\'riflar',
+    like: 'Tanlanganlar',
+    obuna: ' Obuna',
+    tolash: 'To\'lash',
 }

@@ -5,7 +5,7 @@
                 :animation-duration="1000"
                 :dot-size="18"
                 :dots-num="3"
-                color="#0071dc"
+                color="#f29824"
             />
         </div>
     </div>

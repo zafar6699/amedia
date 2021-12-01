@@ -4,7 +4,7 @@
             <div @click="closeModal" v-if="isName" class="fixvh"></div>
             <div v-if="isName" class="modal-card" style="width: 400px">
                 <div class="modal-title">
-                    <h2>Ism o'zgartirish</h2>
+                    <h2>{{ $t('changename') }}</h2>
                     <button @click="closeModal">
                         <fa class="times" icon="times" />
                     </button>
@@ -30,7 +30,7 @@
                             class="btn-sm mb-15 w-100 btn-sm-active"
                             @click="editName"
                         >
-                            O'zgartirish
+                            {{ $t('edit') }}
                         </button>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
             <div @click="closeModal" v-if="isBalance" class="fixvh"></div>
             <div v-if="isBalance" class="modal-card" style="width: 400px">
                 <div class="modal-title">
-                    <h2>Balans to'ldirish</h2>
+                    <h2>{{ $t('balanstoldir') }}</h2>
                     <button @click="closeModal">
                         <fa class="times" icon="times" />
                     </button>
@@ -53,7 +53,7 @@
                         <input
                             v-model="$v.balance.$model"
                             type="text"
-                            :placeholder="'Summani kiriting'"
+                            :placeholder="$t('summaenter')"
                             v-mask="'##########'"
                         />
                         <h6 v-if="!$v.balance.required" class="error-text">
@@ -66,7 +66,7 @@
                             class="btn-sm mb-15 w-100 btn-sm-active"
                             @click="payme"
                         >
-                            To'lash
+                            {{ $t('tolash') }}
                         </button>
                     </div>
                 </div>
@@ -115,14 +115,17 @@
                                     <span>{{ $auth.user.uid }}</span>
                                 </h4>
                                 <h4>
-                                    <span class="key">Balans</span> :
+                                    <span class="key"> {{ $t('balans') }}</span>
+                                    :
                                     <span
                                         >{{ $auth.user.balance }}
                                         {{ $t('sum') }}
                                     </span>
                                 </h4>
                                 <h4>
-                                    <span class="key">Tarif tugash sanasi</span>
+                                    <span class="key">
+                                        {{ $t('tarifend') }}</span
+                                    >
                                     :
                                     <span>12.10.2021 </span>
                                 </h4>
@@ -130,14 +133,15 @@
                                     class="btn-simple mt-10"
                                     @click="isBalance = true"
                                 >
-                                    Balansni to'ldirish
+                                    {{ $t('balanstoldir') }}
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="right">
                         <button class="" @click="$auth.logout()">
-                            Chiqish <span><fa icon="sign-out-alt" /></span>
+                            {{ $t('exit') }}
+                            <span><fa icon="sign-out-alt" /></span>
                         </button>
                     </div>
                 </div>
@@ -147,59 +151,37 @@
                         :class="tabIndex == 1 ? 'active btn-tab' : 'btn-tab'"
                         @click="clickTab(1)"
                     >
-                        <span class="let"> Ta'riflar </span>
+                        <span class="let"> {{ $t('tarifla') }} </span>
                     </button>
                     <button
                         :class="tabIndex == 2 ? 'active btn-tab' : 'btn-tab'"
                         @click="clickTab(2)"
                     >
-                        <span class="let"> Tanlanganlar </span>
+                        <span class="let"> {{ $t('like') }} </span>
                     </button>
                 </div>
                 <div class="content">
                     <div class="profil" v-if="tabIndex == 1">
                         <div class="top">
                             <div class="card-row">
-                                <div class="item-3 item-md-6">
+                                <div
+                                    v-for="(item, i) in pricelist"
+                                    :key="i"
+                                    class="item-3 item-md-6"
+                                >
                                     <div class="box">
-                                        <p>1 Oylik</p>
+                                        <p v-if="item.type == 1">1 Oylik</p>
+                                        <p v-if="item.type == 3">3 Oylik</p>
+                                        <p v-if="item.type == 6">6 Oylik</p>
+                                        <p v-if="item.type == 10">10 Oylik</p>
+
                                         <div class="price">
-                                            <h2>10 900 {{ $t('sum') }}</h2>
+                                            <h2>
+                                                {{ item.amount }}
+                                                {{ $t('sum') }}
+                                            </h2>
                                             <button class="btn-simple">
-                                                Obuna
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-3 item-md-6">
-                                    <div class="box">
-                                        <p>3 Oylik</p>
-                                        <div class="price">
-                                            <h2>29 900 {{ $t('sum') }}</h2>
-                                            <button class="btn-simple">
-                                                Obuna
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-3 item-md-6">
-                                    <div class="box">
-                                        <p>6 Oylik</p>
-                                        <div class="price">
-                                            <h2>56 000 {{ $t('sum') }}</h2>
-                                            <button class="btn-simple">
-                                                Obuna
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-3 item-md-6">
-                                    <div class="box">
-                                        <p>10 Oylik</p>
-                                        <div class="price">
-                                            <h2>102 000 {{ $t('sum') }}</h2>
-                                            <button class="btn-simple">
-                                                Obuna
+                                                {{ $t('obuna') }}
                                             </button>
                                         </div>
                                     </div>
@@ -235,6 +217,7 @@ export default {
         return {
             isName: false,
             isBalance: false,
+            pricelist: null,
             tabMenu: [
                 {
                     uz: 'Profil',
@@ -266,6 +249,8 @@ export default {
     },
     async mounted() {
         this.user.name = this.$auth.user.name
+        let pricelist = await this.$axios.$get('/pricelist')
+        this.pricelist = pricelist.data
     },
     methods: {
         clickTab(i) {

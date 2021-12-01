@@ -64,7 +64,7 @@
                     <div>
                         <button
                             class="btn-sm mb-15 w-100 btn-sm-active"
-                            @click="editName"
+                            @click="payme"
                         >
                             To'lash
                         </button>
@@ -147,7 +147,7 @@
                         :class="tabIndex == 1 ? 'active btn-tab' : 'btn-tab'"
                         @click="clickTab(1)"
                     >
-                        <span class="let"> Profil </span>
+                        <span class="let"> Ta'riflar </span>
                     </button>
                     <button
                         :class="tabIndex == 2 ? 'active btn-tab' : 'btn-tab'"
@@ -160,7 +160,7 @@
                     <div class="profil" v-if="tabIndex == 1">
                         <div class="top">
                             <div class="card-row">
-                                <div class="item-3 item-md-3">
+                                <div class="item-3 item-md-6">
                                     <div class="box">
                                         <p>1 Oylik</p>
                                         <div class="price">
@@ -171,7 +171,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item-3 item-md-3">
+                                <div class="item-3 item-md-6">
                                     <div class="box">
                                         <p>3 Oylik</p>
                                         <div class="price">
@@ -182,7 +182,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item-3 item-md-3">
+                                <div class="item-3 item-md-6">
                                     <div class="box">
                                         <p>6 Oylik</p>
                                         <div class="price">
@@ -193,7 +193,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item-3 item-md-3">
+                                <div class="item-3 item-md-6">
                                     <div class="box">
                                         <p>10 Oylik</p>
                                         <div class="price">
@@ -211,7 +211,7 @@
                         <div class="like">
                             <div class="card-row">
                                 <div
-                                    class="item-3"
+                                    class="item-3 item-md-3"
                                     v-for="(item, index) in $store.state.like"
                                     :key="index"
                                 >
@@ -287,7 +287,17 @@ export default {
                 await this.$auth.fetchUser()
             })
         },
-        editName() {},
+        async editName() {
+            let id = this.$auth.user._id
+            await this.$axios
+                .$put('profile/update/', {
+                    name: this.user.name,
+                })
+                .then((res) => {
+                    this.isName = false
+                    this.$auth.fetchUser()
+                })
+        },
     },
     components: { AnimeCard },
 }
@@ -451,9 +461,6 @@ export default {
                         display: flex;
                         justify-content: space-between;
 
-                        h2 {
-                            // color: ;
-                        }
                         span {
                             font-size: 24px;
                             color: $gc;
@@ -483,9 +490,6 @@ export default {
                     // color: ;
                     margin-bottom: 5px;
                 }
-                input {
-                    // background: ;
-                }
             }
             .save {
                 display: flex;
@@ -504,22 +508,27 @@ export default {
     .profile-page {
         .profile-header {
             .left {
-                .tab-menu {
-                    margin-left: 10px;
-                    button {
-                        span.let {
-                            display: none;
+                .person {
+                    .image-div {
+                        height: 150px;
+                        .img {
+                            width: 150px;
+                            height: 100%;
                         }
                     }
                 }
+            }
+            .right {
+                display: none;
             }
         }
         .content {
             .profil {
                 .top {
                     .box {
-                        padding: 10px;
+                        padding: 20px;
                         margin-bottom: 15px;
+                        display: block !important;
                         .price {
                             button {
                                 padding: 3px 8px;

@@ -34,7 +34,7 @@ export default {
     async mounted() {
         let news = await this.$axios.$get(`news/home?page=1&limit=3`)
         this.news = news.data
-        console.log('asad', this.news)
+        // console.log('asad', this.news)
     },
 }
 </script>

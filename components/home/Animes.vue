@@ -88,7 +88,7 @@ export default {
             )
             this.animes = animes.data
             this.count = animes.count
-            console.log('animes', this.animes)
+            // console.log('animes', this.animes)
         },
     },
 }
@@ -121,7 +121,7 @@ div.trending-courses {
 }
 @media (max-width: 576px) {
     .trending-courses {
-        margin-top: 250px !important;
+        margin-top: 300px !important;
     }
     .category-box {
         margin-bottom: 20px !important;

@@ -293,10 +293,10 @@ export default {
 @media (max-width: 576px) {
     .slider {
         .slick-dots {
-            bottom: 35px !important;
+            bottom: 40px !important;
         }
         .carousel-item {
-            height: 250px;
+            height: 300px;
             .img-right {
                 display: none;
                 .img-rel {
@@ -304,6 +304,7 @@ export default {
                 }
             }
             .text {
+                top: 55%;
                 .categories {
                     display: none;
                 }

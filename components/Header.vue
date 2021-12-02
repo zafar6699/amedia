@@ -258,6 +258,7 @@
                                                         "
                                                         @click="
                                                             searchBox = false
+                                                            searchMedia = false
                                                             search = ''
                                                         "
                                                     >

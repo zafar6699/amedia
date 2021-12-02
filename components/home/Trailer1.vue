@@ -1,39 +1,27 @@
 <template>
     <div>
-        <div class="trailer">
+        <div class="trailer" v-if="trailer != null">
             <div class="content-trailer">
                 <div class="container">
                     <div class="head-trailer">
-                        <h2>Coming soon</h2>
+                        <h2>Yangilik</h2>
                         <span class="line"></span>
                     </div>
                     <div class="body-trailer">
                         <div class="card-row">
                             <div class="item-4 item-md-6">
                                 <div class="info">
-                                    <h3>Ongoing</h3>
-                                    <nuxt-link to="/"
-                                        >Goblinlar qotili. Tez orada yangi
-                                        qismlar yuklanadi</nuxt-link
-                                    >
+                                    <h3>Hamma animelar</h3>
+                                    <a href="#">{{
+                                        trailer.name[$i18n.locale]
+                                    }}</a>
                                     <p>
-                                        DOTA moslashuvidan tashqari, League of
-                                        Legends koinotiga asoslangan Arcane
-                                        animatsion seriali ham mavjud. Dastlab
-                                        uni 2020 yilda chiqarish
-                                        rejalashtirilgan edi, ammo Kovid-19
-                                        pandemiyasi tufayli ozod qilish 2021
-                                        yilga qoldirildi.
+                                        {{ trailer.description[$i18n.locale] }}
                                     </p>
                                 </div>
                             </div>
                             <div class="item-8 item-md-6">
-                                <div class="video">
-                                    <iframe
-                                        src="https://www.youtube.com/embed/d8YSLthFpTM "
-                                        frameborder="0"
-                                    ></iframe>
-                                </div>
+                                <div class="video" v-html="trailer.video"></div>
                             </div>
                         </div>
                     </div>
@@ -44,10 +32,20 @@
 </template>
 
 <script>
-export default {}
+export default {
+    data() {
+        return {
+            trailer: null,
+        }
+    },
+    async mounted() {
+        let tr = await this.$axios.$get('anotatsiya/home')
+        this.trailer = tr.data
+    },
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .trailer {
     background: url('@/assets/img/trailer.jpg');
     background-position: center;

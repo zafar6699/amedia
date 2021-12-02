@@ -926,7 +926,7 @@ export default {
                 display: block !important;
                 margin-bottom: 10px;
                 button {
-                    width: 86px !important;
+                    width: 82px !important;
                     font-size: 11px !important;
                     margin-right: 8px !important;
                     margin-bottom: 8px !important;

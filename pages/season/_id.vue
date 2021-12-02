@@ -933,7 +933,7 @@ export default {
                 }
             }
             .down-btn {
-                display: block !important;
+                display: none !important;
             }
         }
         .top {

@@ -87,26 +87,30 @@ export default {
     },
     methods: {
         likebos() {
-            if (!this.like) {
-                this.$axios
-                    .$post('/like/create', {
-                        season: this.anime._id,
-                    })
-                    .then((res) => {
-                        this.like = true
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
+            if (this.$auth.loggedIn) {
+                if (!this.like) {
+                    this.$axios
+                        .$post('/like/create', {
+                            season: this.anime._id,
+                        })
+                        .then((res) => {
+                            this.like = true
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
+                } else {
+                    this.$axios
+                        .$delete(`/like/${this.likedAnime._id}`)
+                        .then((res) => {
+                            this.like = false
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
+                }
             } else {
-                this.$axios
-                    .$delete(`/like/${this.likedAnime._id}`)
-                    .then((res) => {
-                        this.like = false
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
+                alert("Ro'yxatdan o'tmagansiz")
             }
         },
     },

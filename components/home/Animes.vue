@@ -77,9 +77,14 @@ export default {
         },
         clickMore() {
             this.limit = this.limit + 12
+            localStorage.setItem('limit', this.limit)
             this.getData()
         },
         async getData() {
+            if (localStorage.getItem('limit')) {
+                this.limit = localStorage.getItem('limit')
+            }
+
             let animes = await this.$axios.$post(
                 `season/home?page=${this.page}&limit=${this.limit}`,
                 {

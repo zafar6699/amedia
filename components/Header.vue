@@ -391,14 +391,14 @@
                         <div class="lang">
                             <a
                                 @click.prevent="clickUz"
-                                :class="isUz ? 'active' : ''"
+                                :class="$i18n.locale == 'uz' ? 'active' : ''"
                                 href="#"
                                 >UZ</a
                             >
                             <span></span>
                             <a
                                 @click.prevent="clickRu"
-                                :class="isRu ? 'active' : ''"
+                                :class="$i18n.locale == 'ru' ? 'active' : ''"
                                 href="#"
                                 >RU</a
                             >
@@ -489,8 +489,6 @@ export default {
         return {
             isMenu: false,
             searchMedia: false,
-            isUz: true,
-            isRu: false,
             year: [],
             isRegister: false,
             isLogin: false,
@@ -563,13 +561,9 @@ export default {
         },
         clickUz() {
             this.$i18n.setLocale('uz')
-            this.isUz = true
-            this.isRu = false
         },
         clickRu() {
             this.$i18n.setLocale('ru')
-            this.isRu = true
-            this.isUz = false
         },
         async changeInput() {
             if (this.search.length >= 2) {

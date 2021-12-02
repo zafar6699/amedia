@@ -1,6 +1,72 @@
 <template>
     <div>
         <div class="profile-page">
+            <div @click="closeModal" v-if="obunasuccess" class="fixvh"></div>
+            <div v-if="obunasuccess" class="modal-card" style="width: 400px">
+                <div class="modal-title">
+                    <h2>Obuna bo'lish muvafaqqiyatli amalga oshirildi</h2>
+                    <button @click="closeModal">
+                        <fa class="times" icon="times" />
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div>
+                        <button
+                            class="btn-sm mb-15 w-100 btn-sm-active"
+                            @click="closeModal"
+                        >
+                            Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div @click="closeModal" v-if="obunayes" class="fixvh"></div>
+            <div v-if="obunayes" class="modal-card" style="width: 400px">
+                <div class="modal-title">
+                    <h2>Sizda obuna yoqilgan</h2>
+                    <button @click="closeModal">
+                        <fa class="times" icon="times" />
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div>
+                        <button
+                            class="btn-sm mb-15 w-100 btn-sm-active"
+                            @click="closeModal"
+                        >
+                            Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div @click="closeModal" v-if="isObuna" class="fixvh"></div>
+            <div v-if="isObuna" class="modal-card" style="width: 400px">
+                <div class="modal-title">
+                    <h2>Obuna bo'lishni tasdiqlang</h2>
+                    <button @click="closeModal">
+                        <fa class="times" icon="times" />
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div>
+                        <button
+                            class="btn-sm mb-15 w-100 otmen"
+                            @click="closeModal"
+                        >
+                            Bekor qilish
+                        </button>
+                        <button
+                            class="btn-sm mb-15 w-100 btn-sm-active"
+                            @click="subscribe"
+                        >
+                            Tasdiqlash
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div @click="closeModal" v-if="isName" class="fixvh"></div>
             <div v-if="isName" class="modal-card" style="width: 400px">
                 <div class="modal-title">
@@ -122,12 +188,14 @@
                                         {{ $t('sum') }}
                                     </span>
                                 </h4>
-                                <h4>
+                                <h4 v-if="$auth.user.status == 'vip'">
                                     <span class="key">
                                         {{ $t('tarifend') }}</span
                                     >
                                     :
-                                    <span>12.10.2021 </span>
+                                    <span>
+                                        {{ $auth.user.endDate.slice(0, 10) }}
+                                    </span>
                                 </h4>
                                 <button
                                     class="btn-simple mt-10"
@@ -180,7 +248,10 @@
                                                 {{ item.amount }}
                                                 {{ $t('sum') }}
                                             </h2>
-                                            <button class="btn-simple">
+                                            <button
+                                                @click="obuna(item._id)"
+                                                class="btn-simple"
+                                            >
                                                 {{ $t('obuna') }}
                                             </button>
                                         </div>
@@ -217,7 +288,10 @@ export default {
         return {
             isName: false,
             isBalance: false,
+            obunayes: false,
+            obunasuccess: false,
             pricelist: null,
+            obunaId: '',
             tabMenu: [
                 {
                     uz: 'Profil',
@@ -229,6 +303,7 @@ export default {
                 },
             ],
             tabIndex: 1,
+            isObuna: false,
 
             user: {
                 name: '',
@@ -256,9 +331,29 @@ export default {
         clickTab(i) {
             this.tabIndex = i
         },
+        obuna(id) {
+            if (this.$auth.user.status == 'user') {
+                this.isObuna = true
+                this.obunaId = id
+            }
+            if (this.$auth.user.status == 'vip') {
+                this.obunayes = true
+            }
+        },
+        async subscribe() {
+            await this.$axios
+                .$post('/profile/follow', { price: this.obunaId })
+                .then((res) => {
+                    this.obunasuccess = true
+                    this.isObuna = false
+                })
+        },
         closeModal() {
             this.isName = false
             this.isBalance = false
+            this.isObuna = false
+            this.obunayes = false
+            this.obunasuccess = false
         },
         changeImage(event) {
             let fd = new FormData()

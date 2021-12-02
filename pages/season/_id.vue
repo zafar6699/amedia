@@ -103,7 +103,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="viewSeria != null">
+                                    <!-- <div v-if="viewSeria != null">
                                         <a
                                             target="_blank"
                                             :href="viewSeria.url"
@@ -114,7 +114,7 @@
                                             </span>
                                             {{ $t('down') }}
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div
                                     class="item-9 item-md-6"
@@ -125,6 +125,18 @@
                                             :src="viewSeria.video"
                                             frameborder="0"
                                         ></iframe>
+                                        <div v-if="viewSeria != null">
+                                            <a
+                                                target="_blank"
+                                                :href="viewSeria.url"
+                                                class="btn-simple down"
+                                            >
+                                                <span>
+                                                    <fa icon="download" />
+                                                </span>
+                                                {{ $t('down') }}
+                                            </a>
+                                        </div>
                                         <div
                                             class="down-btn"
                                             v-if="viewSeria != null"
@@ -245,19 +257,20 @@
                                                 <div class="person">
                                                     <div class="img">
                                                         <img
+                                                            v-if="
+                                                                item.user.photo
+                                                            "
                                                             :src="
                                                                 $cdn +
                                                                 item.user.photo
                                                             "
                                                             alt=""
                                                         />
-                                                        <!-- <img
-                                                        :src="
-                                                            'http://amediatv.uz:2000/uploads/' +
-                                                            item.user.photo
-                                                        "
-                                                        alt=""
-                                                    /> -->
+                                                        <img
+                                                            v-else
+                                                            src="@/static/default-profile.png"
+                                                            alt=""
+                                                        />
                                                     </div>
                                                     <div class="name">
                                                         <h4 class="name">
@@ -402,7 +415,11 @@
                                                 >
                                                     <div class="kadr">
                                                         <img
-                                                            :src="$cdn + item"
+                                                            :src="
+                                                                $cdn +
+                                                                '/' +
+                                                                item
+                                                            "
                                                             alt=""
                                                         />
                                                     </div>
@@ -909,10 +926,10 @@ export default {
                 display: block !important;
                 margin-bottom: 10px;
                 button {
-                    width: 24% !important;
-                    font-size: 12px !important;
-                    margin-right: 2px !important;
-                    margin-bottom: 6px !important;
+                    width: 86px !important;
+                    font-size: 11px !important;
+                    margin-right: 8px !important;
+                    margin-bottom: 8px !important;
                 }
             }
             .down-btn {

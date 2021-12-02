@@ -8,8 +8,8 @@
                         <h3>{{ $t('adres') }}</h3>
                         <div class="adres">
                             <p>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Vitae explicabo voluptatum in?
+                                O'zbekiston, Toshkent, Mirzo Ulug'bek tumani,
+                                Mahalla TTz-4, 40 dom 26 honadon
                             </p>
                         </div>
                     </div>

@@ -238,6 +238,7 @@ div.filter-page {
                 font-size: 22px !important;
             }
             button {
+                display: block !important;
                 background: $gc;
                 color: #fff;
                 padding: 5px 10px;

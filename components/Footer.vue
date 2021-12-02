@@ -30,7 +30,7 @@
                                     <nuxt-link
                                         :to="{
                                             name: 'filter___' + $i18n.locale,
-                                            query: { text: item._id },
+                                            query: { category: item._id },
                                         }"
                                     >
                                         {{

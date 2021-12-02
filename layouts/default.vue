@@ -22,6 +22,8 @@ export default {
             await this.$store.dispatch('getLike')
         }
 
+        localStorage.removeItem('limit')
+
         await this.$store.dispatch('getJanr')
         await this.$store.dispatch('getCategory')
         this.loading = true

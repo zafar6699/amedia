@@ -149,8 +149,9 @@ export default {
     },
     async mounted() {
         for (let i = parseInt(new Date().getFullYear()); i >= 1991; i--) {
-            this.year.push(i)
+            this.year.push(i.toString())
         }
+        window.scrollTo(0, 0)
 
         if (this.$route.query.janr) {
             this.filter.janr.push(this.$route.query.janr)

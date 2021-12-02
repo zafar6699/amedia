@@ -485,6 +485,7 @@ export default {
     },
     mounted() {
         this.getData()
+        window.scrollTo(0, 0)
     },
     methods: {
         clickSeria(item, index) {
@@ -496,17 +497,10 @@ export default {
                 'season/' + this.$route.params.id
             )
             this.anime = anime.data
-            // if ((anime.tip = 'serial')) {
-            //     let serial = await this.$axios.$get(
-            //         'season/seriya/one/' + this.$route.params.id
-            //     )
-            // }
             this.serial = anime.seria.reverse()
 
             this.viewSeria = this.serial[0]
             this.comments = anime.comment
-            // console.log('serial', this.serial)
-            // console.log('comments', this.comments)
         },
         tabClick(i) {
             this.tabIndex = i + 1

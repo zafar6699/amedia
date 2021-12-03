@@ -25,9 +25,9 @@
             <div v-if="obunayes" class="modal-card" style="width: 400px">
                 <div class="modal-title">
                     <h2>Sizda obuna yoqilgan</h2>
-                    <button @click="closeModal">
+                    <!-- <button @click="closeModal">
                         <fa class="times" icon="times" />
-                    </button>
+                    </button> -->
                 </div>
 
                 <div class="modal-body">
@@ -125,6 +125,17 @@
                         <h6 v-if="!$v.balance.required" class="error-text">
                             {{ $t('tolshart') }}
                         </h6>
+                    </div>
+                    <div class="paytype">
+                        <h2>To'lov turi</h2>
+                        <div>
+                            <button class="active">
+                                <img src="@/assets/img/payme.jpg" alt="" />
+                            </button>
+                            <button>
+                                <img src="@/assets/img/oson.jpg" alt="" />
+                            </button>
+                        </div>
                     </div>
 
                     <div>
@@ -287,7 +298,7 @@ export default {
     data() {
         return {
             isName: false,
-            isBalance: false,
+            isBalance: true,
             obunayes: false,
             obunasuccess: false,
             pricelist: null,
@@ -384,6 +395,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.paytype {
+    margin: 10px 0;
+    h2 {
+        font-size: 20px;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+    button {
+        box-shadow: 0 0 7px 0px #c5c5c5;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 10px;
+        width: 80px;
+        height: 75px;
+        margin-right: 10px;
+        &.active {
+            box-shadow: 0 0 7px 0px $gc;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
 .flex {
     display: flex;
     justify-content: space-between;

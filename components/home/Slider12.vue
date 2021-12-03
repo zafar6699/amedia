@@ -95,6 +95,7 @@ export default {
     data() {
         return {
             settings12: {
+                arrows: true,
                 accessibility: false,
                 dotsClass: 'slick-dots custom-dot-class',
                 dots: true,
@@ -118,6 +119,39 @@ export default {
 </script>
 
 <style lang="scss">
+.slick-prev {
+    left: 20px !important;
+}
+.slick-next {
+    right: 20px !important;
+}
+.slick-prev,
+.slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 100px !important;
+    padding: 0;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: #e10d0d00 !important;
+    border: none;
+    outline: none;
+    background: transparent !important;
+    z-index: 12;
+    &:hover {
+        background: #000;
+    }
+}
+.slick-next:before {
+    content: '\276F' !important;
+}
+.slick-prev:before {
+    content: '\276E' !important;
+}
 .align-center {
     display: flex;
     align-items: center;

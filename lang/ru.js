@@ -42,7 +42,7 @@ export default {
     country: 'Страна',
     rejissor: 'Режиссер',
     studiya: 'Студия',
-    onejanr: 'Джанр',
+    onejanr: 'Жанр',
     onecat: 'Категория',
     year: 'Год',
     down: 'Скачать',

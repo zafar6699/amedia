@@ -96,7 +96,9 @@
                                                 </div>
                                             </div>
                                             <div class="box-line">
-                                                <h3 class="key">Yil</h3>
+                                                <h3 class="key">
+                                                    {{ $t('year') }}
+                                                </h3>
                                                 <h3 class="value">
                                                     {{ anime.year }}
                                                 </h3>
@@ -192,6 +194,28 @@
                             <!-- <h1>Discover</h1> -->
                             <div class="description">
                                 <p>{{ anime.description[$i18n.locale] }}</p>
+                            </div>
+                            <div class="kadrlar">
+                                <h1>Filmdan kadrlar</h1>
+                                <div class="screens">
+                                    <div class="card-row">
+                                        <Vue-slick-carousel v-bind="settings">
+                                            <div
+                                                v-for="(item, i) in anime
+                                                    .screens.original"
+                                                :key="i"
+                                                class=""
+                                            >
+                                                <div class="kadr">
+                                                    <img
+                                                        :src="$cdn + '/' + item"
+                                                        alt=""
+                                                    />
+                                                </div>
+                                            </div>
+                                        </Vue-slick-carousel>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -404,7 +428,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="tabIndex == 3" class="kadrlar">
+                                    <!-- <div v-if="tabIndex == 3" class="kadrlar">
                                         <div class="screens">
                                             <div class="card-row">
                                                 <div
@@ -426,7 +450,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -460,6 +484,14 @@ export default {
                 message: '',
                 season: '',
             },
+            settings: {
+                arrows: true,
+                dots: false,
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                swipeToSlide: true,
+            },
             tabMenu: [
                 {
                     uz: 'Izohlar',
@@ -469,10 +501,10 @@ export default {
                     uz: 'Ijodkorlar',
                     ru: 'Создатели',
                 },
-                {
-                    uz: 'Kadrlar',
-                    ru: 'Скриншоты',
-                },
+                // {
+                //     uz: 'Kadrlar',
+                //     ru: 'Скриншоты',
+                // },
             ],
             tabIndex: 1,
             isReply: -1,
@@ -537,6 +569,64 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.slick-slider .slick-slide {
+    padding: 0 15px !important;
+}
+.slick-prev {
+    left: -20px !important;
+}
+.slick-next {
+    right: -20px !important;
+}
+.slick-prev,
+.slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 100px !important;
+    padding: 0;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: #e10d0d00 !important;
+    border: none;
+    outline: none;
+    background: transparent !important;
+    z-index: 12;
+    &:hover {
+        background: #000;
+    }
+}
+.slick-next:before {
+    content: '\276F' !important;
+    color: #000 !important;
+}
+.slick-prev:before {
+    content: '\276E' !important;
+}
+.kadrlar {
+    margin: 30px 0 0 0;
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+        line-height: 26px;
+    }
+    .screens {
+        .kadr {
+            // margin-bottom: 20px;
+            img {
+                pointer-events: none;
+                border-radius: 10px;
+                height: 350px;
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+    }
+}
 .seriyas {
     margin-top: 35px;
     button {

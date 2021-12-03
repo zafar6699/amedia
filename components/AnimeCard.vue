@@ -7,13 +7,17 @@
             }"
         >
             <div class="anime-card">
-                <span class="year"> {{ anime.year }}</span>
-                <button
-                    @click.prevent="likebos"
-                    :class="like ? 'like bos' : 'like'"
-                >
-                    <fa icon="heart" />
-                </button>
+                <div class="top">
+                    <span class="year"> {{ anime.year }}</span>
+                    <span class="seriya"> [12]</span>
+                    <button
+                        @click.prevent="likebos"
+                        :class="like ? 'like bos' : 'like'"
+                    >
+                        <fa icon="heart" />
+                    </button>
+                </div>
+
                 <div class="img">
                     <img :src="$cdn + anime.image" alt="" />
                 </div>
@@ -123,21 +127,46 @@ div.anime-card {
     overflow: hidden;
     position: relative;
     margin-bottom: 30px;
+    .top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 6;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
 
+    span.seriya {
+        padding: 3px 10px;
+        font-size: 13px;
+        color: #fff;
+        background: $gc;
+        // position: absolute;
+        background-color: rgba($color: #000000, $alpha: 0.5);
+        -webkit-backdrop-filter: blur(3px);
+        backdrop-filter: blur(3px);
+        // top: 15px;
+        // left: 50%;
+        // transform: translate(-50%, 0);
+        z-index: 5;
+        border-radius: 3px;
+    }
     span.year {
         padding: 3px 10px;
         font-size: 13px;
         color: #fff;
         background: $gc;
-        position: absolute;
-        top: 15px;
-        left: 15px;
+        // position: absolute;
+        // top: 15px;
+        // left: 15px;
         z-index: 5;
         border-radius: 3px;
     }
 
     button.like {
-        position: absolute;
+        // position: absolute;
         z-index: 3;
         right: 15px;
         top: 15px;

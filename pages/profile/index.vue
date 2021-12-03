@@ -129,10 +129,16 @@
                     <div class="paytype">
                         <h2>To'lov turi</h2>
                         <div>
-                            <button class="active">
+                            <button
+                                @click="clickPayme"
+                                :class="isPayme ? '' : 'active'"
+                            >
                                 <img src="@/assets/img/payme.jpg" alt="" />
                             </button>
-                            <button>
+                            <button
+                                @click="clickOson"
+                                :class="isOson ? 'active' : ''"
+                            >
                                 <img src="@/assets/img/oson.jpg" alt="" />
                             </button>
                         </div>
@@ -298,6 +304,8 @@ export default {
     data() {
         return {
             isName: false,
+            isPayme: false,
+            isOson: false,
             isBalance: true,
             obunayes: false,
             obunasuccess: false,
@@ -341,6 +349,12 @@ export default {
     methods: {
         clickTab(i) {
             this.tabIndex = i
+        },
+        clickPayme() {
+            this.isPayme = true
+        },
+        clickOson() {
+            this.isOson = true
         },
         obuna(id) {
             if (this.$auth.user.status == 'user') {
@@ -396,25 +410,29 @@ export default {
 
 <style lang="scss" scoped>
 .paytype {
-    margin: 10px 0;
+    margin: 15px 0;
     h2 {
-        font-size: 20px;
+        font-size: 18px;
+        font-weight: 400;
         color: #333333;
         margin-bottom: 10px;
     }
     button {
-        box-shadow: 0 0 7px 0px #c5c5c5;
+        // box-shadow: 0 0 7px 0px #c5c5c5;
         border-radius: 10px;
         overflow: hidden;
         padding: 10px;
         width: 80px;
         height: 75px;
         margin-right: 10px;
+        border: 1px solid #4e4e4e4a;
         &.active {
             box-shadow: 0 0 7px 0px $gc;
+            border: 1px solid transparent;
         }
         img {
             width: 100%;
+            object-fit: cover;
             height: 100%;
         }
     }

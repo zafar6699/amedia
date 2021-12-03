@@ -4,6 +4,7 @@ export default {
     target: 'server',
     head: {
         meta: [
+            { title: 'Amediatv' },
             { charset: 'utf-8' },
             {
                 name: 'viewport',
@@ -53,7 +54,7 @@ export default {
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
         // https://go.nuxtjs.dev/pwa
-        '@nuxtjs/pwa',
+        // '@nuxtjs/pwa',
         '@nuxtjs/i18n',
         '@nuxt/image',
         '@nuxtjs/style-resources',
@@ -112,12 +113,18 @@ export default {
     },
 
     // PWA module configuration: https://go.nuxtjs.dev/pwa
-    pwa: {
-        manifest: {
-            lang: 'en',
-        },
-    },
+    // pwa: {
+    //     manifest: {
+    //         lang: 'en',
+    //     },
+    // },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
+    build: {
+        analyze: true,
+        // or
+        analyze: {
+            analyzerMode: 'static',
+        },
+    },
 }

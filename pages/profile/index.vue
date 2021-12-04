@@ -130,14 +130,14 @@
                         <h2>To'lov turi</h2>
                         <div>
                             <button
-                                @click="clickPayme"
-                                :class="isPayme ? '' : 'active'"
+                                @click="clickType(1)"
+                                :class="payType == 1 ? 'active' : ''"
                             >
                                 <img src="@/assets/img/payme.jpg" alt="" />
                             </button>
                             <button
-                                @click="clickOson"
-                                :class="isOson ? 'active' : ''"
+                                @click="clickType(2)"
+                                :class="payType == 2 ? 'active' : ''"
                             >
                                 <img src="@/assets/img/oson.jpg" alt="" />
                             </button>
@@ -147,7 +147,7 @@
                     <div>
                         <button
                             class="btn-sm mb-15 w-100 btn-sm-active"
-                            @click="payme"
+                            @click="payBalance"
                         >
                             {{ $t('tolash') }}
                         </button>
@@ -301,16 +301,28 @@ import { required } from 'vuelidate/lib/validators'
 import AnimeCard from '../../components/AnimeCard.vue'
 export default {
     layout: 'dashboard',
+    middleware: 'auth',
+    head() {
+        return {
+            title: `${this.$auth.user.name} - Amediatv`,
+            meta: [
+                {
+                    hid: this.$t('titmeta'),
+                    name: this.$t('titmeta'),
+                    content: this.$t('titmeta'),
+                },
+            ],
+        }
+    },
     data() {
         return {
             isName: false,
-            isPayme: false,
-            isOson: false,
-            isBalance: true,
+            isBalance: false,
             obunayes: false,
             obunasuccess: false,
             pricelist: null,
             obunaId: '',
+            payType: 1,
             tabMenu: [
                 {
                     uz: 'Profil',
@@ -345,16 +357,31 @@ export default {
         this.user.name = this.$auth.user.name
         let pricelist = await this.$axios.$get('/pricelist')
         this.pricelist = pricelist.data
+
+        window.scrollTo(0, 0)
     },
     methods: {
+        payBalance() {
+            const amount = parseInt(this.balance) * 100
+
+            if (this.payType == 1) {
+                const str =
+                    'm=5fd067551c849a7578ddf061;ac.user=' +
+                    this.$auth.user.uid +
+                    ';a=' +
+                    +amount +
+                    ';c=https://new.amediatv.uz/profile'
+                const base64 = btoa(str)
+
+                const link = 'https://checkout.paycom.uz/' + base64
+                window.location = link
+            }
+        },
         clickTab(i) {
             this.tabIndex = i
         },
-        clickPayme() {
-            this.isPayme = true
-        },
-        clickOson() {
-            this.isOson = true
+        clickType(index) {
+            this.payType = index
         },
         obuna(id) {
             if (this.$auth.user.status == 'user') {

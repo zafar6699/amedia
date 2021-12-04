@@ -50,15 +50,13 @@ export default {
     send: 'Отправить',
     izoh: 'Комментарий ...',
 
-
-
     /// profile
     changename: 'Переименовать',
     edit: ' Изменить',
     balanstoldir: 'Пополнить баланс',
     summaenter: 'Введите сумму',
     Balans: 'Баланс',
-    tarifend: 'Дата окончания тарифа"',
+    tarifend: 'Дата окончания тарифа',
     tarifla: 'Тарифы',
     like: 'Избранное',
     obuna: ' Подписка',

@@ -523,6 +523,7 @@ export default {
         clickSeria(item, index) {
             this.viewSeria = item
             this.indexSeria = index
+            window.scrollTo(0, 0)
         },
         async getData() {
             let anime = await this.$axios.$get(

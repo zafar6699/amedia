@@ -1,111 +1,151 @@
 <template>
     <div>
-        <div class="id">
-            <div class="season" v-if="anime != null">
-                <!-- <pre>{{ anime }}</pre> -->
-                <!-- <pre>{{ viewSeria }}</pre> -->
-                <div class="top">
-                    <img :src="$cdn + anime.image" alt="" class="back" />
-                    <div class="opacity-banner"></div>
-                    <div class="info">
-                        <div class="container">
-                            <div class="title-top">
-                                <h1>
-                                    {{ anime.name[$i18n.locale] }}
-                                </h1>
-                            </div>
-                            <div class="card-row">
-                                <div class="item-3 item-md-6">
-                                    <div class="info-film">
-                                        <div class="title">
-                                            <h2>{{ $t('info') }}</h2>
-                                            <div class="box-line">
-                                                <h3 class="key">
-                                                    {{ $t('country') }}
-                                                </h3>
-                                                <h3 class="value">
-                                                    {{ anime.country }}
-                                                </h3>
-                                            </div>
-                                            <div class="box-line">
-                                                <h3 class="key">
-                                                    {{ $t('rejissor') }}
-                                                </h3>
-                                                <h3 class="value">
-                                                    {{ anime.rejissor }}
-                                                </h3>
-                                            </div>
-                                            <div class="box-line">
-                                                <h3 class="key">
-                                                    {{ $t('studiya') }}
-                                                </h3>
-                                                <h3 class="value">
-                                                    {{ anime.studia }}
-                                                </h3>
-                                            </div>
-                                            <div class="box folder">
-                                                <h3 class="key">
-                                                    {{ $t('onejanr') }}
-                                                </h3>
-                                                <div
-                                                    class="link"
-                                                    v-if="anime.janr != null"
-                                                >
-                                                    <nuxt-link
-                                                        v-for="janr in anime.janr"
-                                                        :key="janr"
-                                                        :to="{
-                                                            name:
-                                                                'filter___' +
-                                                                $i18n.locale,
-                                                            query: {
-                                                                janr: janr._id,
-                                                            },
-                                                        }"
-                                                        >{{
-                                                            janr[
-                                                                `name${$i18n.locale}`
-                                                            ]
-                                                        }}</nuxt-link
-                                                    >
+        <div v-if="status == 401">
+            <div class="container">
+                <div class="notvideo">
+                    <img src="@/assets/img/notvideo.jpg" alt="" />
+                    <div v-if="$auth.loggedIn">
+                        <nuxt-link :to="{ name: 'profile___' + $i18n.locale }"
+                            >Vip status yoqish</nuxt-link
+                        >
+                    </div>
+                    <div v-if="!$auth.loggedIn">
+                        <h3>
+                            Vidoeni ko'rish uchun ro'yhatdan o'ting va obunani
+                            yoqing
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <div @click="closeModal" v-if="isKadr" class="fixvh"></div>
+            <div
+                v-if="isKadr"
+                class="modal-card"
+                style="width: 900px; max-height: 90vh; overflow: hidden"
+            >
+                <div class="modal-title">
+                    <h2></h2>
+                    <button @click="closeModal">
+                        <fa class="times" icon="times" />
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mod-img">
+                        <img :src="$cdn + image" alt="" />
+                    </div>
+                </div>
+            </div>
+            <div class="id">
+                <div class="season" v-if="anime != null">
+                    <!-- <pre>{{ anime }}</pre> -->
+                    <!-- <pre>{{ viewSeria }}</pre> -->
+                    <div class="top">
+                        <img :src="$cdn + anime.image" alt="" class="back" />
+                        <div class="opacity-banner"></div>
+                        <div class="info">
+                            <div class="container">
+                                <div class="title-top">
+                                    <h1>
+                                        {{ anime.name[$i18n.locale] }}
+                                    </h1>
+                                </div>
+                                <div class="card-row">
+                                    <div class="item-3 item-md-6">
+                                        <div class="info-film">
+                                            <div class="title">
+                                                <h2>{{ $t('info') }}</h2>
+                                                <div class="box-line">
+                                                    <h3 class="key">
+                                                        {{ $t('country') }}
+                                                    </h3>
+                                                    <h3 class="value">
+                                                        {{ anime.country }}
+                                                    </h3>
                                                 </div>
-                                            </div>
-                                            <div class="box cat">
-                                                <h3 class="key">
-                                                    {{ $t('onecat') }}
-                                                </h3>
-                                                <div class="link">
-                                                    <nuxt-link
-                                                        v-for="cat in anime.category"
-                                                        :key="cat"
-                                                        :to="{
-                                                            name:
-                                                                'filter___' +
-                                                                $i18n.locale,
-                                                            query: {
-                                                                category:
-                                                                    cat._id,
-                                                            },
-                                                        }"
-                                                        >{{
-                                                            cat[
-                                                                `name${$i18n.locale}`
-                                                            ]
-                                                        }}</nuxt-link
-                                                    >
+                                                <div class="box-line">
+                                                    <h3 class="key">
+                                                        {{ $t('rejissor') }}
+                                                    </h3>
+                                                    <h3 class="value">
+                                                        {{ anime.rejissor }}
+                                                    </h3>
                                                 </div>
-                                            </div>
-                                            <div class="box-line">
-                                                <h3 class="key">
-                                                    {{ $t('year') }}
-                                                </h3>
-                                                <h3 class="value">
-                                                    {{ anime.year }}
-                                                </h3>
+                                                <div class="box-line">
+                                                    <h3 class="key">
+                                                        {{ $t('studiya') }}
+                                                    </h3>
+                                                    <h3 class="value">
+                                                        {{ anime.studia }}
+                                                    </h3>
+                                                </div>
+                                                <div class="box folder">
+                                                    <h3 class="key">
+                                                        {{ $t('onejanr') }}
+                                                    </h3>
+                                                    <div
+                                                        class="link"
+                                                        v-if="
+                                                            anime.janr != null
+                                                        "
+                                                    >
+                                                        <nuxt-link
+                                                            v-for="janr in anime.janr"
+                                                            :key="janr"
+                                                            :to="{
+                                                                name:
+                                                                    'filter___' +
+                                                                    $i18n.locale,
+                                                                query: {
+                                                                    janr: janr._id,
+                                                                },
+                                                            }"
+                                                            >{{
+                                                                janr[
+                                                                    `name${$i18n.locale}`
+                                                                ]
+                                                            }}</nuxt-link
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="box cat">
+                                                    <h3 class="key">
+                                                        {{ $t('onecat') }}
+                                                    </h3>
+                                                    <div class="link">
+                                                        <nuxt-link
+                                                            v-for="cat in anime.category"
+                                                            :key="cat"
+                                                            :to="{
+                                                                name:
+                                                                    'filter___' +
+                                                                    $i18n.locale,
+                                                                query: {
+                                                                    category:
+                                                                        cat._id,
+                                                                },
+                                                            }"
+                                                            >{{
+                                                                cat[
+                                                                    `name${$i18n.locale}`
+                                                                ]
+                                                            }}</nuxt-link
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="box-line">
+                                                    <h3 class="key">
+                                                        {{ $t('year') }}
+                                                    </h3>
+                                                    <h3 class="value">
+                                                        {{ anime.year }}
+                                                    </h3>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- <div v-if="viewSeria != null">
+                                        <!-- <div v-if="viewSeria != null">
                                         <a
                                             target="_blank"
                                             :href="viewSeria.url"
@@ -117,340 +157,365 @@
                                             {{ $t('down') }}
                                         </a>
                                     </div> -->
-                                </div>
-                                <div
-                                    class="item-9 item-md-6"
-                                    v-if="viewSeria != null"
-                                >
-                                    <div class="video">
-                                        <iframe
-                                            :src="viewSeria.video"
-                                            frameborder="0"
-                                        ></iframe>
-                                        <div v-if="viewSeria != null">
-                                            <a
-                                                target="_blank"
-                                                :href="viewSeria.url"
-                                                class="btn-simple down"
+                                    </div>
+                                    <div
+                                        class="item-9 item-md-6"
+                                        v-if="viewSeria != null"
+                                    >
+                                        <div class="video">
+                                            <iframe
+                                                :src="viewSeria.video"
+                                                frameborder="0"
+                                            ></iframe>
+                                            <div v-if="viewSeria != null">
+                                                <a
+                                                    target="_blank"
+                                                    :href="viewSeria.url"
+                                                    class="btn-simple down"
+                                                >
+                                                    <span>
+                                                        <fa icon="download" />
+                                                    </span>
+                                                    {{ $t('down') }}
+                                                </a>
+                                            </div>
+                                            <div
+                                                class="down-btn"
+                                                v-if="viewSeria != null"
                                             >
-                                                <span>
-                                                    <fa icon="download" />
-                                                </span>
-                                                {{ $t('down') }}
-                                            </a>
-                                        </div>
-                                        <div
-                                            class="down-btn"
-                                            v-if="viewSeria != null"
-                                        >
-                                            <a
-                                                target="_blank"
-                                                :href="viewSeria.url"
-                                                class="btn-simple down"
-                                            >
-                                                <span>
-                                                    <fa icon="download" />
-                                                </span>
-                                                {{ $t('down') }}
-                                            </a>
-                                        </div>
-                                        <div class="seriyas">
-                                            <button
-                                                :class="
-                                                    indexSeria == index
-                                                        ? 'btn-simple active'
-                                                        : 'btn-simple'
-                                                "
-                                                v-for="(item, index) in serial"
-                                                :key="item"
-                                                @click="clickSeria(item, index)"
-                                            >
-                                                {{ item.name[$i18n.locale] }}
-                                            </button>
+                                                <a
+                                                    target="_blank"
+                                                    :href="viewSeria.url"
+                                                    class="btn-simple down"
+                                                >
+                                                    <span>
+                                                        <fa icon="download" />
+                                                    </span>
+                                                    {{ $t('down') }}
+                                                </a>
+                                            </div>
+                                            <div class="seriyas">
+                                                <button
+                                                    :class="
+                                                        indexSeria == index
+                                                            ? 'btn-simple active'
+                                                            : 'btn-simple'
+                                                    "
+                                                    v-for="(
+                                                        item, index
+                                                    ) in serial"
+                                                    :key="item"
+                                                    @click="
+                                                        clickSeria(item, index)
+                                                    "
+                                                >
+                                                    {{
+                                                        item.name[$i18n.locale]
+                                                    }}
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="seriyas">
+                                    <button
+                                        :class="
+                                            indexSeria == index
+                                                ? 'btn-simple active'
+                                                : 'btn-simple'
+                                        "
+                                        v-for="(item, index) in serial"
+                                        :key="item"
+                                        @click="clickSeria(item, index)"
+                                    >
+                                        {{ item.name[$i18n.locale] }}
+                                    </button>
+                                </div>
                             </div>
-                            <div class="seriyas">
+                        </div>
+                    </div>
+                    <div class="body-id">
+                        <div class="body-title">
+                            <div class="container">
+                                <!-- <h1>Discover</h1> -->
+                                <div class="description">
+                                    <p>{{ anime.description[$i18n.locale] }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-menu">
+                            <div class="container">
                                 <button
                                     :class="
-                                        indexSeria == index
-                                            ? 'btn-simple active'
-                                            : 'btn-simple'
+                                        tabIndex == i + 1
+                                            ? 'active btn-tab'
+                                            : 'btn-tab'
                                     "
-                                    v-for="(item, index) in serial"
-                                    :key="item"
-                                    @click="clickSeria(item, index)"
+                                    v-for="(item, i) in tabMenu"
+                                    :key="i"
+                                    @click="tabClick(i)"
                                 >
-                                    {{ item.name[$i18n.locale] }}
+                                    {{ item[$i18n.locale] }}
                                 </button>
                             </div>
+                            <div class="line"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="body-id">
-                    <div class="body-title">
-                        <div class="container">
-                            <!-- <h1>Discover</h1> -->
-                            <div class="description">
-                                <p>{{ anime.description[$i18n.locale] }}</p>
-                            </div>
-                            <div class="kadrlar">
-                                <h1>Filmdan kadrlar</h1>
-                                <div class="screens">
-                                    <div class="card-row">
-                                        <Vue-slick-carousel v-bind="settings">
-                                            <div
-                                                v-for="(item, i) in anime
-                                                    .screens.original"
-                                                :key="i"
-                                                class=""
-                                            >
-                                                <div class="kadr">
-                                                    <img
-                                                        :src="$cdn + '/' + item"
-                                                        alt=""
-                                                    />
-                                                </div>
-                                            </div>
-                                        </Vue-slick-carousel>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="tab-menu">
-                        <div class="container">
-                            <button
-                                :class="
-                                    tabIndex == i + 1
-                                        ? 'active btn-tab'
-                                        : 'btn-tab'
-                                "
-                                v-for="(item, i) in tabMenu"
-                                :key="i"
-                                @click="tabClick(i)"
-                            >
-                                {{ item[$i18n.locale] }}
-                            </button>
-                        </div>
-                        <div class="line"></div>
-                    </div>
-
-                    <div class="content-about">
-                        <div class="container">
-                            <div class="card-row">
-                                <div class="item-8 item-md-6">
-                                    <div
-                                        v-if="tabIndex == 1 && comments != null"
-                                        class="comments"
-                                    >
-                                        <div v-if="$auth.loggedIn">
-                                            <div
-                                                v-if="comment"
-                                                class="write-comment"
-                                            >
-                                                <div class="form">
-                                                    <textarea
-                                                        v-model="com.message"
-                                                        name=""
-                                                        id=""
-                                                        rows="6"
-                                                        :placeholder="
-                                                            $t('izoh')
-                                                        "
-                                                    ></textarea>
-                                                </div>
-                                                <div class="send">
-                                                    <button
-                                                        @click="sendComment"
-                                                        class="btn-simple"
-                                                    >
-                                                        {{ $t('send') }}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="kamentariyala scroll">
-                                            <div
-                                                class="comment scroll"
-                                                v-for="(item, i) in comments"
-                                                :key="i"
-                                            >
-                                                <div class="person">
-                                                    <div class="img">
-                                                        <img
-                                                            v-if="
-                                                                item.user.photo
-                                                            "
-                                                            :src="
-                                                                $cdn +
-                                                                item.user.photo
-                                                            "
-                                                            alt=""
-                                                        />
-                                                        <img
-                                                            v-else
-                                                            src="@/static/default-profile.png"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                    <div class="name">
-                                                        <h4 class="name">
-                                                            {{ item.user.name }}
-                                                        </h4>
-                                                        <p class="date">
-                                                            {{
-                                                                item.date.slice(
-                                                                    0,
-                                                                    10
-                                                                )
-                                                            }},
-                                                            {{
-                                                                item.date.slice(
-                                                                    11,
-                                                                    16
-                                                                )
-                                                            }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="izoh">
-                                                    <p
-                                                        v-html="item.message"
-                                                    ></p>
-
-                                                    <div
-                                                        v-if="$auth.loggedIn"
-                                                        class="answer"
-                                                    >
-                                                        <div
-                                                            :class="
-                                                                isReply != i
-                                                                    ? 'btn'
-                                                                    : 'btn-none'
-                                                            "
-                                                        >
-                                                            <button
-                                                                @click="
-                                                                    clickReply(
-                                                                        i
-                                                                    )
-                                                                "
-                                                            >
-                                                                <span>
-                                                                    <fa
-                                                                        icon="reply"
-                                                                    />
-                                                                </span>
-                                                                {{
-                                                                    $t('reply')
-                                                                }}
-                                                            </button>
-                                                        </div>
-
-                                                        <div
-                                                            v-if="isReply == i"
-                                                            v-click-other="
-                                                                clickOut
-                                                            "
-                                                            class="
-                                                                write-comment
-                                                            "
-                                                        >
-                                                            <div class="form">
-                                                                <textarea
-                                                                    name=""
-                                                                    id=""
-                                                                    rows="6"
-                                                                    v-model="
-                                                                        commentText
-                                                                    "
-                                                                    :placeholder="
-                                                                        $t(
-                                                                            'izoh'
-                                                                        )
-                                                                    "
-                                                                ></textarea>
-                                                            </div>
-                                                            <div class="send">
-                                                                <button
-                                                                    @click="
-                                                                        sendReplyComment(
-                                                                            item.user
-                                                                        )
-                                                                    "
-                                                                    class="
-                                                                        btn-simple
-                                                                    "
-                                                                >
-                                                                    {{
-                                                                        $t(
-                                                                            'send'
-                                                                        )
-                                                                    }}
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div v-if="tabIndex == 2" class="creater">
-                                        <div class="ijods">
-                                            <div class="card-row">
+                        <div class="content-about">
+                            <div class="container">
+                                <div class="card-row">
+                                    <div class="item-12 item-md-6">
+                                        <div
+                                            v-if="
+                                                tabIndex == 1 &&
+                                                comments != null
+                                            "
+                                            class="comments"
+                                        >
+                                            <div v-if="$auth.loggedIn">
                                                 <div
+                                                    v-if="comment"
+                                                    class="write-comment"
+                                                >
+                                                    <div class="form">
+                                                        <textarea
+                                                            v-model="
+                                                                com.message
+                                                            "
+                                                            name=""
+                                                            id=""
+                                                            rows="6"
+                                                            :placeholder="
+                                                                $t('izoh')
+                                                            "
+                                                        ></textarea>
+                                                    </div>
+                                                    <div class="send">
+                                                        <button
+                                                            @click="sendComment"
+                                                            class="btn-simple"
+                                                        >
+                                                            {{ $t('send') }}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="kamentariyala scroll">
+                                                <div
+                                                    class="comment scroll"
                                                     v-for="(
                                                         item, i
-                                                    ) in anime.translator"
+                                                    ) in comments"
                                                     :key="i"
-                                                    class="item-4 item-md-6"
                                                 >
                                                     <div class="person">
                                                         <div class="img">
                                                             <img
+                                                                v-if="
+                                                                    item.user
+                                                                        .photo
+                                                                "
                                                                 :src="
                                                                     $cdn +
-                                                                    item.image
+                                                                    item.user
+                                                                        .photo
                                                                 "
+                                                                alt=""
+                                                            />
+                                                            <img
+                                                                v-else
+                                                                src="@/static/default-profile.png"
                                                                 alt=""
                                                             />
                                                         </div>
                                                         <div class="name">
-                                                            <p>
-                                                                {{ item.name }}
+                                                            <h4 class="name">
+                                                                {{
+                                                                    item.user
+                                                                        .name
+                                                                }}
+                                                            </h4>
+                                                            <p class="date">
+                                                                {{
+                                                                    item.date.slice(
+                                                                        0,
+                                                                        10
+                                                                    )
+                                                                }},
+                                                                {{
+                                                                    item.date.slice(
+                                                                        11,
+                                                                        16
+                                                                    )
+                                                                }}
                                                             </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="izoh">
+                                                        <p
+                                                            v-html="
+                                                                item.message
+                                                            "
+                                                        ></p>
+
+                                                        <div
+                                                            v-if="
+                                                                $auth.loggedIn
+                                                            "
+                                                            class="answer"
+                                                        >
+                                                            <div
+                                                                :class="
+                                                                    isReply != i
+                                                                        ? 'btn'
+                                                                        : 'btn-none'
+                                                                "
+                                                            >
+                                                                <button
+                                                                    @click="
+                                                                        clickReply(
+                                                                            i
+                                                                        )
+                                                                    "
+                                                                >
+                                                                    <span>
+                                                                        <fa
+                                                                            icon="reply"
+                                                                        />
+                                                                    </span>
+                                                                    {{
+                                                                        $t(
+                                                                            'reply'
+                                                                        )
+                                                                    }}
+                                                                </button>
+                                                            </div>
+
+                                                            <div
+                                                                v-if="
+                                                                    isReply == i
+                                                                "
+                                                                v-click-other="
+                                                                    clickOut
+                                                                "
+                                                                class="
+                                                                    write-comment
+                                                                "
+                                                            >
+                                                                <div
+                                                                    class="form"
+                                                                >
+                                                                    <textarea
+                                                                        name=""
+                                                                        id=""
+                                                                        rows="6"
+                                                                        v-model="
+                                                                            commentText
+                                                                        "
+                                                                        :placeholder="
+                                                                            $t(
+                                                                                'izoh'
+                                                                            )
+                                                                        "
+                                                                    ></textarea>
+                                                                </div>
+                                                                <div
+                                                                    class="send"
+                                                                >
+                                                                    <button
+                                                                        @click="
+                                                                            sendReplyComment(
+                                                                                item.user
+                                                                            )
+                                                                        "
+                                                                        class="
+                                                                            btn-simple
+                                                                        "
+                                                                    >
+                                                                        {{
+                                                                            $t(
+                                                                                'send'
+                                                                            )
+                                                                        }}
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            v-if="tabIndex == 2"
+                                            class="creater"
+                                        >
+                                            <div class="ijods">
+                                                <div class="card-row">
+                                                    <div
+                                                        v-for="(item, i) in [
+                                                            ...anime.translator,
+                                                            ...anime.tarjimon,
+                                                        ]"
+                                                        :key="i"
+                                                        class="item-3 item-md-6"
+                                                    >
+                                                        <div class="person">
+                                                            <div class="img">
+                                                                <img
+                                                                    :src="
+                                                                        $cdn +
+                                                                        item.image
+                                                                    "
+                                                                    alt=""
+                                                                />
+                                                            </div>
+                                                            <div class="name">
+                                                                <p>
+                                                                    {{
+                                                                        item.name
+                                                                    }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            v-if="tabIndex == 3"
+                                            class="kadrlar"
+                                        >
+                                            <div class="screens">
+                                                <div class="card-row">
+                                                    <div
+                                                        v-for="(
+                                                            item, i
+                                                        ) in anime.screens
+                                                            .original"
+                                                        :key="i"
+                                                        class="item-3 item-md-3"
+                                                    >
+                                                        <div
+                                                            @click="
+                                                                clickImg(item)
+                                                            "
+                                                            class="kadr"
+                                                        >
+                                                            <img
+                                                                :src="
+                                                                    $cdn +
+                                                                    '/' +
+                                                                    item
+                                                                "
+                                                                alt=""
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div v-if="tabIndex == 3" class="kadrlar">
-                                        <div class="screens">
-                                            <div class="card-row">
-                                                <div
-                                                    v-for="(item, i) in anime
-                                                        .screens.original"
-                                                    :key="i"
-                                                    class="item-4 item-md-3"
-                                                >
-                                                    <div class="kadr">
-                                                        <img
-                                                            :src="
-                                                                $cdn +
-                                                                '/' +
-                                                                item
-                                                            "
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -478,8 +543,11 @@ export default {
     },
     data() {
         return {
+            isKadr: false,
             indexSeria: 0,
             viewSeria: null,
+            image: null,
+            status: null,
             com: {
                 message: '',
                 season: '',
@@ -501,10 +569,10 @@ export default {
                     uz: 'Ijodkorlar',
                     ru: 'Создатели',
                 },
-                // {
-                //     uz: 'Kadrlar',
-                //     ru: 'Скриншоты',
-                // },
+                {
+                    uz: 'Kadrlar',
+                    ru: 'Скриншоты',
+                },
             ],
             tabIndex: 1,
             isReply: -1,
@@ -520,20 +588,30 @@ export default {
         window.scrollTo(0, 0)
     },
     methods: {
+        clickImg(item) {
+            this.isKadr = true
+            this.image = item
+        },
+        closeModal() {
+            this.isKadr = false
+        },
         clickSeria(item, index) {
             this.viewSeria = item
             this.indexSeria = index
             window.scrollTo(0, 0)
         },
         async getData() {
-            let anime = await this.$axios.$get(
-                'season/' + this.$route.params.id
-            )
-            this.anime = anime.data
-            this.serial = anime.seria.reverse()
+            let anime = await this.$axios
+                .$get('season/' + this.$route.params.id)
+                .then((res) => {
+                    this.status = res.status
+                    this.anime = res.data
 
-            this.viewSeria = this.serial[0]
-            this.comments = anime.comment
+                    this.serial = res.seria.reverse()
+
+                    this.viewSeria = this.serial[0]
+                    this.comments = res.comment
+                })
         },
         tabClick(i) {
             this.tabIndex = i + 1
@@ -557,7 +635,9 @@ export default {
         },
         async sendComment() {
             this.com.season = this.$route.params.id
-            await this.$axios.$post('comment/add', this.com)
+            await this.$axios.$post('comment/add', this.com).then((res) => {
+                this.com = ''
+            })
             this.getData()
         },
         clickOut() {
@@ -570,6 +650,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.notvideo {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    div {
+        margin: 30px 0;
+    }
+    a {
+        background: $gc;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 10px;
+    }
+    img {
+        border-radius: 10px;
+        object-fit: cover;
+        width: 350px;
+    }
+}
+.modal-body {
+    height: 100%;
+
+    .mod-img {
+        width: 100%;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100% !important;
+            object-fit: cover;
+        }
+    }
+}
 .slick-slider .slick-slide {
     padding: 0 15px !important;
 }
@@ -607,27 +721,7 @@ export default {
 .slick-prev:before {
     content: '\276E' !important;
 }
-.kadrlar {
-    margin: 30px 0 0 0;
-    h1 {
-        font-size: 24px;
-        margin-bottom: 10px;
-        color: #333;
-        line-height: 26px;
-    }
-    .screens {
-        .kadr {
-            // margin-bottom: 20px;
-            img {
-                pointer-events: none;
-                border-radius: 10px;
-                height: 350px;
-                object-fit: cover;
-                width: 100%;
-            }
-        }
-    }
-}
+
 .seriyas {
     margin-top: 35px;
     button {
@@ -643,6 +737,9 @@ export default {
 }
 .content-about {
     margin: 40px 0;
+    .item-12 {
+        width: 100%;
+    }
     .creater {
         .ijods {
             .person {
@@ -677,13 +774,14 @@ export default {
             margin-bottom: 20px;
             img {
                 border-radius: 10px;
-                height: 300px;
+                height: 400px;
                 object-fit: cover;
                 width: 100%;
             }
         }
     }
     .comments {
+        width: 70%;
         .reply {
             margin-bottom: 10px;
         }
@@ -987,6 +1085,9 @@ export default {
     }
 }
 @media (max-width: 576px) {
+    .comments {
+        width: 100% !important;
+    }
     .id {
         .ijods {
             .person {

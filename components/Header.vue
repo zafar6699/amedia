@@ -427,13 +427,15 @@
                                 >
                                     <div class="pro-img">
                                         <img
+                                            v-if="$auth.user.photo"
                                             :src="$cdn + $auth.user.photo"
                                             alt=""
                                         />
-                                        <!-- <img
-                                            src="https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture-986x1024.jpg"
+                                        <img
+                                            v-else
+                                            src="@/static/default-profile.png"
                                             alt=""
-                                        /> -->
+                                        />
                                     </div>
                                     <fa icon="sort-down" />
                                 </button>

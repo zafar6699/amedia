@@ -124,6 +124,18 @@
 
 <script>
 export default {
+    head() {
+        return {
+            title: `Anime filmlar - Amediatv`,
+            meta: [
+                {
+                    hid: this.$t('titmeta'),
+                    name: 'description',
+                    content: this.$t('titmeta'),
+                },
+            ],
+        }
+    },
     data() {
         return {
             length: 55,

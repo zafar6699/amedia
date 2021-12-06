@@ -200,7 +200,12 @@
                     <div class="header-left">
                         <nuxt-link :to="{ name: `index___${$i18n.locale}` }">
                             <span class="logo">
-                                <img src="/logo.png" />
+                                <img
+                                    width="140px"
+                                    height="23px"
+                                    src="/logo.png"
+                                    alt="amediatv"
+                                />
                             </span>
                         </nuxt-link>
                     </div>

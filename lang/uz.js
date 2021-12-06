@@ -51,16 +51,15 @@ export default {
     send: "Jo'natish",
     izoh: 'Izoh...',
 
-
     /// profile
-    changename: 'Ism o\'zgartirish',
-    edit: ' O\'zgartirish',
-    balanstoldir: 'Balans to\'ldirish',
+    changename: "Ism o'zgartirish",
+    edit: " O'zgartirish",
+    balanstoldir: "Balans to'ldirish",
     summaenter: 'Summani kiriting',
     Balans: 'Balans',
-    tarifend: 'Ta\'rif tugash sanasi',
-    tarifla: 'Ta\'riflar',
+    tarifend: "Ta'rif tugash sanasi",
+    tarifla: "Ta'riflar",
     like: 'Tanlanganlar',
     obuna: ' Obuna',
-    tolash: 'To\'lash',
+    tolash: "To'lash",
 }

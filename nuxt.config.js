@@ -1,7 +1,7 @@
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     ssr: true,
-    target: 'server',
+    target: 'static',
     head: {
         meta: [
             { title: 'Amediatv' },
@@ -78,6 +78,9 @@ export default {
                     user: { url: '/auth/test/me', method: 'get' },
                     logout: false,
                 },
+            },
+            google: {
+                clientId: '791392363374-mo5hvso5asmqkmp7qqqdn2duanktc5aq.apps.googleusercontent.com',
             },
         },
     },

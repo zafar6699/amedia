@@ -63,6 +63,19 @@
 
 <script>
 export default {
+    head() {
+        return {
+            title: this.newsid?.name[this.$i18n.locale],
+            meta: [
+                // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+                {
+                    hid: this.$t('titmeta'),
+                    name: 'description',
+                    content: this.$t('titmeta'),
+                },
+            ],
+        }
+    },
     data() {
         return {
             news: null,

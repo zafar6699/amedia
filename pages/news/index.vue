@@ -43,6 +43,18 @@
 
 <script>
 export default {
+    head() {
+        return {
+            title: this.$t('news'),
+            meta: [
+                {
+                    hid: this.$t('titmeta'),
+                    name: 'description',
+                    content: this.$t('titmeta'),
+                },
+            ],
+        }
+    },
     data() {
         return {
             length: 55,

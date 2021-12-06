@@ -49,7 +49,7 @@ export default {
             meta: [
                 {
                     hid: this.$t('titmeta'),
-                    name: this.$t('titmeta'),
+                    name: 'description',
                     content: this.$t('titmeta'),
                 },
             ],

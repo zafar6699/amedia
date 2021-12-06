@@ -202,6 +202,7 @@
                             <span class="logo">
                                 <img
                                     width="140px"
+                                    height="23px"
                                     src="/logo.png"
                                     alt="amediatv"
                                 />

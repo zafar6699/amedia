@@ -70,7 +70,7 @@ export default {
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 {
                     hid: this.$t('titmeta'),
-                    name: this.$t('titmeta'),
+                    name: 'description',
                     content: this.$t('titmeta'),
                 },
             ],

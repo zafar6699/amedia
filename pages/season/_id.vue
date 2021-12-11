@@ -241,6 +241,15 @@
                                 <div class="description">
                                     <p>{{ anime.description[$i18n.locale] }}</p>
                                 </div>
+                                <div class="tag">
+                                    <span
+                                        class="tag-span"
+                                        v-for="(item, i) in anime.tags"
+                                        :key="i"
+                                        v-if="item != '' && item.length > 1"
+                                        >{{ item }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
@@ -534,9 +543,9 @@ export default {
             meta: [
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 {
-                    hid: this.$t('titmeta'),
+                    hid: this.anime?.tags.join(' '),
                     name: 'description',
-                    content: this.$t('titmeta'),
+                    content: this.anime?.tags.join(' '),
                 },
             ],
         }
@@ -607,7 +616,7 @@ export default {
                     this.status = res.status
                     this.anime = res.data
 
-                    this.serial = res.seria.reverse()
+                    this.serial = res.seria
 
                     this.viewSeria = this.serial[0]
                     this.comments = res.comment
@@ -650,6 +659,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.tag {
+    margin: 30px 0;
+    display: subgrid;
+    display: flex;
+    flex-wrap: wrap;
+    .tag-span {
+        margin-right: 5px;
+        margin-bottom: 5px;
+        background: $gc;
+        padding: 3px;
+        border-radius: 4px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 14px;
+    }
+}
 div.header-login {
     margin-left: 30px;
     display: flex;
@@ -1158,7 +1183,7 @@ div.header-login {
                     span {
                         position: absolute;
                         opacity: 0;
-                        left: 25%;
+                        left: 43%;
                         top: 0px;
                         transition: 0.2s;
                     }

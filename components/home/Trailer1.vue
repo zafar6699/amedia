@@ -21,7 +21,16 @@
                                 </div>
                             </div>
                             <div class="item-8 item-md-6">
-                                <div class="video" v-html="trailer.video"></div>
+                                <div class="video">
+                                    <iframe
+                                        :src="trailer.video"
+                                        frameborder="0"
+                                        marginheight="0"
+                                        marginwidth="0"
+                                        width="100%"
+                                        height="100%"
+                                    ></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>

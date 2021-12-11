@@ -22,6 +22,7 @@ $bc: #252831;
     height: 39px !important;
 }
 
+
 /* Track */
 
 .scroll::-webkit-scrollbar-track {
@@ -29,12 +30,14 @@ $bc: #252831;
     border-radius: 10px;
 }
 
+
 /* Handle */
 
 .scroll::-webkit-scrollbar-thumb {
     background: $gc;
     border-radius: 10px;
 }
+
 
 /* Handle on hover */
 
@@ -201,7 +204,6 @@ button.btn-sm-active {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
-
         h2 {
             font-size: 20px;
             color: $tc;
@@ -400,11 +402,11 @@ div.check-custom {
         background-color: #fff;
     }
     /* On mouse-over, add a grey background color */
-    .cont:hover input ~ .checkmark {
+    .cont:hover input~.checkmark {
         background-color: $gh;
     }
     /* When the checkbox is checked, add a blue background */
-    .cont input:checked ~ .checkmark {
+    .cont input:checked~.checkmark {
         background-color: $gc;
     }
     /* Create the checkmark/indicator (hidden when not checked) */
@@ -414,7 +416,7 @@ div.check-custom {
         display: none;
     }
     /* Show the checkmark when checked */
-    .cont input:checked ~ .checkmark:after {
+    .cont input:checked~.checkmark:after {
         display: block;
     }
     /* Style the checkmark/indicator */

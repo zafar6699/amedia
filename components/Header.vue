@@ -730,7 +730,7 @@ export default {
                 name: '',
             },
             login: {
-                phone: '',
+                phone: '+998',
             },
             auth: {
                 password: '',
@@ -976,7 +976,6 @@ export default {
                         phone,
                     })
                     .then((res) => {
-                        // console.log('res', res)
                         this.closeModal()
                         if (res.data.status == 404) {
                             this.isRegister = true
@@ -1003,7 +1002,7 @@ export default {
                             password: this.auth.password,
                         },
                     })
-                    this.formReset()
+                    this.$router.go()
                 } catch (err) {
                     console.log(err)
                 }

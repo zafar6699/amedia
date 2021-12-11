@@ -650,6 +650,104 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+div.header-login {
+    margin-left: 30px;
+    display: flex;
+    button.login {
+        font-size: 16px;
+        color: #fff;
+        border-radius: 8px;
+        padding: 10px 20px;
+        background-color: transparent;
+        font-weight: 500;
+        border: 1px solid transparent;
+        transition: 0.2s;
+
+        &:hover {
+            background-color: $gc;
+            color: #fff;
+        }
+    }
+
+    div.profile {
+        display: flex;
+        position: relative;
+        button.profile {
+            display: flex;
+            align-items: center;
+            div.pro-img {
+                position: relative;
+                width: 45px;
+                height: 45px;
+                border-radius: 100%;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            svg {
+                font-size: 20px;
+                margin-left: 5px;
+                color: $gc;
+            }
+        }
+
+        div.pro-dropdown {
+            position: absolute;
+            box-shadow: 0px 0px 30px 0px rgb(0 0 0 / 8%);
+            right: 0;
+            top: 60px;
+            background-color: $bc;
+            border-radius: 5px;
+            min-width: 180px;
+            padding: 5px;
+            h6 {
+                font-size: 13px;
+                margin: 5px 10px;
+                font-weight: 500;
+                color: $gc;
+                border-bottom: 1px solid $gh;
+                padding-bottom: 5px;
+            }
+            ul {
+                // border-bottom: 1px solid $gh;
+                // margin-bottom: 5px;
+
+                li {
+                    display: block;
+                    a {
+                        font-size: 14px;
+                        color: #fff;
+                        padding: 8px 10px;
+                        display: block;
+                        font-weight: 500;
+                        border-radius: 5px;
+                        svg {
+                            margin-right: 10px;
+                        }
+
+                        &:hover {
+                            background-color: $gh;
+                            color: $gc;
+                        }
+                    }
+                }
+            }
+
+            button.logout {
+                font-size: 14px;
+                font-weight: 500;
+                color: rgb(255, 87, 87);
+                padding: 5px 10px;
+                display: block;
+                width: 100%;
+                text-align: left;
+            }
+        }
+    }
+}
 .notvideo {
     padding: 40px 0;
     display: flex;
@@ -772,9 +870,10 @@ export default {
     .screens {
         .kadr {
             margin-bottom: 20px;
+            cursor: pointer;
             img {
                 border-radius: 10px;
-                height: 400px;
+                height: 200px;
                 object-fit: cover;
                 width: 100%;
             }

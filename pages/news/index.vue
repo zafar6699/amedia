@@ -65,6 +65,7 @@ export default {
     },
     async mounted() {
         this.getData()
+        window.scrollTo(0, 0)
     },
     methods: {
         pageChange(page) {

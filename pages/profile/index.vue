@@ -365,6 +365,7 @@ export default {
             const amount = parseInt(this.balance) * 100
 
             if (this.payType == 1) {
+
                 const str =
                     'm=5fd067551c849a7578ddf061;ac.user=' +
                     this.$auth.user.uid +
@@ -375,7 +376,11 @@ export default {
 
                 const link = 'https://checkout.paycom.uz/' + base64
                 window.location = link
+
+                
             }
+
+            this.isBalance = false
         },
         clickTab(i) {
             this.tabIndex = i

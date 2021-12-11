@@ -61,9 +61,6 @@ export default {
     like: 'Избранное',
     obuna: ' Подписка',
     tolash: 'Оплатить',
-<<<<<<< HEAD
-}
-=======
     mablagkam: 'На балансе недостаточно денег для подписки',
     obunasuccess: 'Подписка успешна',
     obunayoqilgan: 'У вас включена подписка',
@@ -74,4 +71,3 @@ export default {
     tolovtype: 'Тип платежа',
     oylik: 'месяц',
 }
->>>>>>> 094438c30aad419be9d20e188cd087e667cf0b83

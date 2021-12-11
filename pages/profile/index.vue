@@ -387,22 +387,6 @@ export default {
             if (!this.$v.balance.$invalid) {
                 const amount = parseInt(this.balance) * 100
 
-<<<<<<< HEAD
-            if (this.payType == 1) {
-
-                const str =
-                    'm=5fd067551c849a7578ddf061;ac.user=' +
-                    this.$auth.user.uid +
-                    ';a=' +
-                    +amount +
-                    ';c=https://new.amediatv.uz/profile'
-                const base64 = btoa(str)
-
-                const link = 'https://checkout.paycom.uz/' + base64
-                window.location = link
-
-                
-=======
                 if (this.payType == 1) {
                     const str =
                         'm=5fd067551c849a7578ddf061;ac.user=' +
@@ -415,7 +399,6 @@ export default {
                     const link = 'https://checkout.paycom.uz/' + base64
                     window.location = link
                 }
->>>>>>> 094438c30aad419be9d20e188cd087e667cf0b83
             }
 
             this.isBalance = false

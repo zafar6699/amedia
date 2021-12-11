@@ -61,4 +61,13 @@ export default {
     like: 'Избранное',
     obuna: ' Подписка',
     tolash: 'Оплатить',
+    mablagkam: 'На балансе недостаточно денег для подписки',
+    obunasuccess: 'Подписка успешна',
+    obunayoqilgan: 'У вас включена подписка',
+    obunatasdiqlang: 'Подтвердить подписку',
+    bekor: 'Отмена',
+    tasdiq: 'Подтвердить',
+    minikki: 'минимум 2000 сумов',
+    tolovtype: 'Тип платежа',
+    oylik: 'месяц',
 }

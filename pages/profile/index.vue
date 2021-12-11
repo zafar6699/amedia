@@ -1,13 +1,32 @@
 <template>
     <div>
         <div class="profile-page">
+            <div @click="closeModal" v-if="balanceno" class="fixvh"></div>
+            <div v-if="balanceno" class="modal-card" style="width: 400px">
+                <div class="modal-title">
+                    <h2 class="red">
+                        {{ $t('mablagkam') }}
+                    </h2>
+                </div>
+
+                <div class="modal-body">
+                    <div>
+                        <button
+                            class="btn-sm mb-15 w-100 btn-sm-active"
+                            @click="closeModal"
+                        >
+                            Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div @click="closeModal" v-if="obunasuccess" class="fixvh"></div>
             <div v-if="obunasuccess" class="modal-card" style="width: 400px">
                 <div class="modal-title">
-                    <h2>Obuna bo'lish muvafaqqiyatli amalga oshirildi</h2>
-                    <button @click="closeModal">
+                    <h2>{{ $t('obunasuccess') }}</h2>
+                    <!-- <button @click="closeModal">
                         <fa class="times" icon="times" />
-                    </button>
+                    </button> -->
                 </div>
 
                 <div class="modal-body">
@@ -24,7 +43,7 @@
             <div @click="closeModal" v-if="obunayes" class="fixvh"></div>
             <div v-if="obunayes" class="modal-card" style="width: 400px">
                 <div class="modal-title">
-                    <h2>Sizda obuna yoqilgan</h2>
+                    <h2>{{ $t('obunayoqilgan') }}</h2>
                     <!-- <button @click="closeModal">
                         <fa class="times" icon="times" />
                     </button> -->
@@ -44,7 +63,7 @@
             <div @click="closeModal" v-if="isObuna" class="fixvh"></div>
             <div v-if="isObuna" class="modal-card" style="width: 400px">
                 <div class="modal-title">
-                    <h2>Obuna bo'lishni tasdiqlang</h2>
+                    <h2>{{ $t('obunatasdiqlang') }}</h2>
                     <button @click="closeModal">
                         <fa class="times" icon="times" />
                     </button>
@@ -56,13 +75,13 @@
                             class="btn-sm mb-15 w-100 otmen"
                             @click="closeModal"
                         >
-                            Bekor qilish
+                            {{ $t('bekor') }}
                         </button>
                         <button
                             class="btn-sm mb-15 w-100 btn-sm-active"
                             @click="subscribe"
                         >
-                            Tasdiqlash
+                            {{ $t('tasdiq') }}
                         </button>
                     </div>
                 </div>
@@ -120,14 +139,17 @@
                             v-model="$v.balance.$model"
                             type="text"
                             :placeholder="$t('summaenter')"
-                            v-mask="'##########'"
+                            v-mask="'#######'"
                         />
                         <h6 v-if="!$v.balance.required" class="error-text">
                             {{ $t('tolshart') }}
                         </h6>
+                        <h6 v-if="!$v.balance.between" class="error-text">
+                            {{ $t('minikki') }}
+                        </h6>
                     </div>
                     <div class="paytype">
-                        <h2>To'lov turi</h2>
+                        <h2>{{ $t('tolovtype') }}</h2>
                         <div>
                             <button
                                 @click="clickType(1)"
@@ -198,7 +220,7 @@
                                     <span>{{ $auth.user.uid }}</span>
                                 </h4>
                                 <h4>
-                                    <span class="key"> {{ $t('balans') }}</span>
+                                    <span class="key"> {{ $t('Balans') }}</span>
                                     :
                                     <span
                                         >{{ $auth.user.balance }}
@@ -255,10 +277,7 @@
                                     class="item-3 item-md-6"
                                 >
                                     <div class="box">
-                                        <p v-if="item.type == 1">1 Oylik</p>
-                                        <p v-if="item.type == 3">3 Oylik</p>
-                                        <p v-if="item.type == 6">6 Oylik</p>
-                                        <p v-if="item.type == 10">10 Oylik</p>
+                                        <p>{{ item.type }} {{ $t('oylik') }}</p>
 
                                         <div class="price">
                                             <h2>
@@ -297,7 +316,7 @@
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators'
+import { required, between } from 'vuelidate/lib/validators'
 import AnimeCard from '../../components/AnimeCard.vue'
 export default {
     layout: 'dashboard',
@@ -321,6 +340,7 @@ export default {
             obunayes: false,
             obunasuccess: false,
             pricelist: null,
+            balanceno: null,
             obunaId: '',
             payType: 1,
             tabMenu: [
@@ -351,6 +371,7 @@ export default {
         },
         balance: {
             required,
+            between: between(2000, 10000000),
         },
     },
     async mounted() {
@@ -362,19 +383,22 @@ export default {
     },
     methods: {
         payBalance() {
-            const amount = parseInt(this.balance) * 100
+            this.$v.balance.$touch
+            if (!this.$v.balance.$invalid) {
+                const amount = parseInt(this.balance) * 100
 
-            if (this.payType == 1) {
-                const str =
-                    'm=5fd067551c849a7578ddf061;ac.user=' +
-                    this.$auth.user.uid +
-                    ';a=' +
-                    +amount +
-                    ';c=https://new.amediatv.uz/profile'
-                const base64 = btoa(str)
+                if (this.payType == 1) {
+                    const str =
+                        'm=5fd067551c849a7578ddf061;ac.user=' +
+                        this.$auth.user.uid +
+                        ';a=' +
+                        +amount +
+                        ';c=https://new.amediatv.uz/profile'
+                    const base64 = btoa(str)
 
-                const link = 'https://checkout.paycom.uz/' + base64
-                window.location = link
+                    const link = 'https://checkout.paycom.uz/' + base64
+                    window.location = link
+                }
             }
         },
         clickTab(i) {
@@ -396,8 +420,13 @@ export default {
             await this.$axios
                 .$post('/profile/follow', { price: this.obunaId })
                 .then((res) => {
-                    this.obunasuccess = true
-                    this.isObuna = false
+                    if (res.data.status == 401) {
+                        this.balanceno = true
+                        this.isObuna = false
+                    } else {
+                        this.obunasuccess = true
+                        this.isObuna = false
+                    }
                 })
         },
         closeModal() {
@@ -406,6 +435,7 @@ export default {
             this.isObuna = false
             this.obunayes = false
             this.obunasuccess = false
+            this.balanceno = false
         },
         changeImage(event) {
             let fd = new FormData()
@@ -436,6 +466,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h2.red {
+    color: red !important;
+}
 .paytype {
     margin: 15px 0;
     h2 {

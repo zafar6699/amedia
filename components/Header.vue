@@ -89,6 +89,203 @@
                 </div>
             </div>
         </div>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <div @click="closeModal" v-if="isEmailRegister" class="fixvh"></div>
+        <div v-if="isEmailRegister" class="modal-card" style="width: 400px">
+            <div class="modal-title">
+                <h2>{{ $t('register') }}</h2>
+                <button @click="closeModal">
+                    <fa class="times" icon="times" />
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div
+                    class="input-form"
+                    :class="{ 'form-error': $v.email.password.$error }"
+                >
+                    <input
+                        v-model="$v.email.name.$model"
+                        type="text"
+                        :placeholder="$t('ism')"
+                    />
+                    <h6 v-if="!$v.email.password.required" class="error-text">
+                        {{ $t('tolshart') }}
+                    </h6>
+                </div>
+                <div
+                    class="input-form"
+                    :class="{ 'form-error': $v.email.password.$error }"
+                >
+                    <input
+                        v-model="$v.email.email.$model"
+                        type="email"
+                        :placeholder="$t('email')"
+                    />
+                    <h6 v-if="!$v.email.password.required" class="error-text">
+                        {{ $t('tolshart') }}
+                    </h6>
+                </div>
+                <div
+                    class="input-form"
+                    :class="{ 'form-error': $v.email.password.$error }"
+                >
+                    <div class="input-rel">
+                        <input
+                            v-model="$v.email.password.$model"
+                            :type="type"
+                            :placeholder="$t('parol')"
+                        />
+                        <button
+                            @click="changePasswordVisible"
+                            v-if="type == 'password'"
+                            class="btn-icon"
+                        >
+                            <fa class="icon" icon="eye" />
+                        </button>
+                        <button
+                            @click="changePasswordVisible"
+                            v-else
+                            class="btn-icon"
+                        >
+                            <fa class="icon" icon="eye-slash" />
+                        </button>
+                    </div>
+                    <h6 v-if="!$v.email.password.required" class="error-text">
+                        {{ $t('tolshart') }}
+                    </h6>
+                </div>
+                <div
+                    class="input-form"
+                    :class="{
+                        'form-error':
+                            $v.email.repeatPassword.$error &&
+                            !$v.email.password.$error,
+                    }"
+                >
+                    <div class="input-rel">
+                        <input
+                            v-model="$v.email.repeatPassword.$model"
+                            :type="type"
+                            :placeholder="$t('parol2')"
+                        />
+                        <button
+                            @click="changePasswordVisible"
+                            v-if="type == 'password'"
+                            class="btn-icon"
+                        >
+                            <fa class="icon" icon="eye" />
+                        </button>
+                        <button
+                            @click="changePasswordVisible"
+                            v-else
+                            class="btn-icon"
+                        >
+                            <fa class="icon" icon="eye-slash" />
+                        </button>
+                    </div>
+                    <!-- <h6
+                        v-if="!$v.auth.repeatPassword.required"
+                        class="error-text"
+                    >
+                        {{ $t('tolshart') }}
+                    </h6> -->
+                    <h6
+                        v-if="
+                            !$v.email.repeatPassword.sameAsPassword &&
+                            !$v.email.password.$error
+                        "
+                        class="error-text"
+                    >
+                        {{ $t('parolerror') }}
+                    </h6>
+                </div>
+
+                <div>
+                    <button
+                        class="btn-sm mb-15 w-100 btn-sm-active"
+                        @click="EmailRegister"
+                    >
+                        {{ $t('register') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div @click="closeModal" v-if="isEmail" class="fixvh"></div>
+        <div v-if="isEmail" class="modal-card" style="width: 400px">
+            <div class="modal-title">
+                <h2>{{ $t('kirish') }}</h2>
+                <button @click="closeModal">
+                    <fa class="times" icon="times" />
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div
+                    class="input-form"
+                    :class="{ 'form-error': $v.logemail.email.$error }"
+                >
+                    <input
+                        v-model="$v.logemail.email.$model"
+                        type="text"
+                        placeholder="Emailni kiriting..."
+                    />
+                    <h6 v-if="!$v.logemail.email.required" class="error-text">
+                        {{ $t('tolshart') }}
+                    </h6>
+                </div>
+                <div
+                    class="input-form"
+                    :class="{ 'form-error': $v.logemail.password.$error }"
+                >
+                    <div class="input-rel">
+                        <input
+                            v-model="$v.logemail.password.$model"
+                            :type="type"
+                            placeholder="Parolni kiriting..."
+                        />
+                        <button
+                            @click="changePasswordVisible"
+                            v-if="type == 'password'"
+                            class="btn-icon"
+                        >
+                            <fa class="icon" icon="eye" />
+                        </button>
+                        <button
+                            @click="changePasswordVisible"
+                            v-else
+                            class="btn-icon"
+                        >
+                            <fa class="icon" icon="eye-slash" />
+                        </button>
+                    </div>
+
+                    <h6
+                        v-if="!$v.logemail.password.required"
+                        class="error-text"
+                    >
+                        {{ $t('tolshart') }}
+                    </h6>
+                </div>
+
+                <div>
+                    <button
+                        class="btn-sm mb-15 w-100 btn-sm-active"
+                        @click="sendEmail"
+                    >
+                        aa
+                        {{ $t('kirish') }}
+                    </button>
+                </div>
+                <div>
+                    <button @click="clickemailregister" class="">
+                        {{ $t('emailregister') }}
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <div @click="closeModal" v-if="isLogin" class="fixvh"></div>
         <div v-if="isLogin" class="modal-card" style="width: 400px">
@@ -126,8 +323,16 @@
                         {{ $t('kirish') }}
                     </button>
                 </div>
+                <div>
+                    <button @click="clickemail" class="">
+                        {{ $t('emaillogin') }}
+                    </button>
+                </div>
             </div>
         </div>
+        <!--  -->
+        <!--  -->
+        <!--  -->
 
         <div @click="closeModal" v-if="isJanr" class="fixvh"></div>
         <div v-if="isJanr" class="modal-card" style="width: 900px">
@@ -495,9 +700,11 @@ export default {
     data() {
         return {
             isMenu: false,
+            isEmail: false,
             searchMedia: false,
             year: [],
             isRegister: false,
+            isEmailRegister: false,
             isLogin: false,
             isCheck: false,
             isProfile: false,
@@ -505,10 +712,20 @@ export default {
             isJanr: false,
             isYear: false,
             searchBox: false,
-            type: 'text',
+            type: 'password',
             search: '',
             visiblePassword: false,
             dheader: true,
+            email: {
+                name: '',
+                email: '',
+                password: '',
+                repeatPassword: '',
+            },
+            logemail: {
+                email: '',
+                password: '',
+            },
             register: {
                 name: '',
             },
@@ -521,6 +738,28 @@ export default {
         }
     },
     validations: {
+        email: {
+            name: {
+                required,
+            },
+            email: {
+                required,
+            },
+            password: {
+                required,
+            },
+            repeatPassword: {
+                sameAsPassword: sameAs('password'),
+            },
+        },
+        logemail: {
+            email: {
+                required,
+            },
+            password: {
+                required,
+            },
+        },
         register: {
             name: {
                 required,
@@ -555,6 +794,13 @@ export default {
     },
     created() {},
     methods: {
+        changePasswordVisible() {
+            if (this.type == 'text') {
+                this.type = 'password'
+            } else {
+                this.type = 'text'
+            }
+        },
         clickBar() {
             this.isMenu = true
         },
@@ -565,6 +811,14 @@ export default {
         clickYear() {
             this.isYear = true
             this.isMenu = false
+        },
+        clickemail() {
+            this.isEmail = true
+            this.isLogin = false
+        },
+        clickemailregister() {
+            this.isEmailRegister = true
+            this.isEmail = false
         },
         clickUz() {
             this.$i18n.setLocale('uz')
@@ -642,9 +896,10 @@ export default {
             this.isRegister = false
             this.isLogin = false
             this.isCheck = false
-
+            this.isEmailRegister = false
             this.isJanr = false
             this.isYear = false
+            this.isEmail = false
         },
         handleType(event) {
             const { srcElement, type } = event
@@ -673,6 +928,34 @@ export default {
                         if (res.success) {
                             this.closeModal()
                             this.isCheck = true
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
+        },
+        //register method (email)
+        EmailRegister() {
+            this.closeModal()
+            this.$v.email
+
+            if (!this.$v.email.$invalid) {
+                this.$axios
+                    .$post('auth/register/email', {
+                        name: this.email.name,
+                        phone: this.email.email,
+                        password: this.email.password,
+                    })
+                    .then(async (res) => {
+                        if (res.success) {
+                            let response = await this.$auth.loginWith('local', {
+                                data: {
+                                    phone: this.email.email,
+                                    password: this.email.password,
+                                },
+                            })
+                            this.closeModal()
                         }
                     })
                     .catch((err) => {
@@ -720,6 +1003,22 @@ export default {
                         },
                     })
                     this.$router.go()
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        },
+        async sendEmail() {
+            this.$v.logemail.$touch()
+            if (!this.$v.logemail.$invalid) {
+                try {
+                    let response = await this.$auth.loginWith('local', {
+                        data: {
+                            phone: this.logemail.email,
+                            password: this.logemail.password,
+                        },
+                    })
+                    this.formReset()
                 } catch (err) {
                     console.log(err)
                 }

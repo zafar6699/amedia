@@ -7,9 +7,22 @@ export default {
     years: 'Yillar',
     years2: 'Yillar',
     kirish: 'Kirish',
+<<<<<<< HEAD
     tolshart: "To'ldirish shart",
     davometish: 'Davom etish',
+=======
+    tolshart: "  To'ldirish shart",
+    davometish: ' Davom etish',
+    register: ' Ro\'yhatdan o\'tish',
+>>>>>>> 094438c30aad419be9d20e188cd087e667cf0b83
     ism: 'Ismingizni kiriting',
+    email: 'Emailni kiriting',
+    emailregister: ' Email orqali ro\'yhatdan o\'tish',
+    emaillogin: ' Email orqali kirish',
+    email: 'Emailni kiriting',
+    parol: 'Parolni kiriting',
+    parol2: 'Parolni tasdiqlang',
+    parolerror: 'Parol tasdiqlashda xato',
     kod: 'Kodni kiriting',
     kodsms: "Kod sms tarzida telefon nomeringizga jo'natildi",
     togtol: "To'g'ri to'ldiring",
@@ -62,4 +75,18 @@ export default {
     like: 'Tanlanganlar',
     obuna: ' Obuna',
     tolash: "To'lash",
+<<<<<<< HEAD
 }
+=======
+    mablagkam: 'Obuna bo\'lish uchun balansda mablag\' yetarli emas',
+    obunasuccess: 'Obuna bo\'lish muvafaqqiyatli amalga oshirildi',
+    obunayoqilgan: 'Sizda obuna yoqilgan',
+    obunatasdiqlang: 'Obuna bo\'lishni tasdiqlang',
+    bekor: 'Bekor qilish',
+    tasdiq: 'Tasdiqlash',
+    minikki: 'Minimal summa 2000 so\'m',
+    tolovtype: 'To\'lov turi',
+    oylik: 'oylik',
+
+}
+>>>>>>> 094438c30aad419be9d20e188cd087e667cf0b83

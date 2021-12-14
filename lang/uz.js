@@ -9,7 +9,11 @@ export default {
     kirish: 'Kirish',
     tolshart: "  To'ldirish shart",
     davometish: ' Davom etish',
+
     register: " Ro'yhatdan o'tish",
+
+    register: " Ro'yhatdan o'tish",
+
     ism: 'Ismingizni kiriting',
     email: 'Emailni kiriting',
     emailregister: " Email orqali ro'yhatdan o'tish",

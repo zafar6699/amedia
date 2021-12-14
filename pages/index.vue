@@ -3,9 +3,7 @@
         <Slider />
 
         <Animes />
-        <div>
-            <button @click="singGoogle">OK</button>
-        </div>
+
         <Trailer />
         <News />
     </div>
@@ -31,7 +29,6 @@ export default {
             meta: [
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 {
-                    hid: this.$t('titmeta'),
                     name: 'description',
                     content: this.$t('titmeta'),
                 },

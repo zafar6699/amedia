@@ -326,7 +326,6 @@ export default {
             title: `${this.$auth.user.name} - Amediatv`,
             meta: [
                 {
-                    hid: this.$t('titmeta'),
                     name: 'description',
                     content: this.$t('titmeta'),
                 },

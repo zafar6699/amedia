@@ -290,7 +290,7 @@
         <div @click="closeModal" v-if="isLogin" class="fixvh"></div>
         <div v-if="isLogin" class="modal-card" style="width: 400px">
             <div class="modal-title">
-                <h2>Kirish</h2>
+                <h2>{{ $t('kirish') }}</h2>
                 <button @click="closeModal">
                     <fa class="times" icon="times" />
                 </button>

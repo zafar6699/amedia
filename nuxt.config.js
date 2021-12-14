@@ -84,7 +84,7 @@ export default {
             },
         },
     },
-    buildModules: ['@nuxtjs/fontawesome'],
+    buildModules: ['@nuxtjs/fontawesome', '@nuxtjs/google-analytics'],
     fontawesome: {
         component: 'fa',
         icons: {

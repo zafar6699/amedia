@@ -101,7 +101,7 @@ export default {
                 dots: true,
                 infinite: true,
                 autoplay: true,
-                speed: 1000,
+                speed: 600,
                 autoplaySpeed: 4000,
                 fade: true,
                 slidesToShow: 1,
@@ -120,20 +120,19 @@ export default {
 
 <style lang="scss">
 .slick-prev {
-    left: 20px !important;
+    left: 0px !important;
 }
 .slick-next {
-    right: 20px !important;
+    right: 0px !important;
 }
 .slick-prev,
 .slick-next {
-    font-size: 0;
     line-height: 0;
     position: absolute;
     top: 50%;
     display: block;
-    width: 20px;
-    height: 100px !important;
+    width: 57px !important;
+    height: 100% !important;
     padding: 0;
     transform: translate(0, -50%);
     cursor: pointer;
@@ -141,9 +140,10 @@ export default {
     border: none;
     outline: none;
     background: transparent !important;
-    z-index: 12;
+    z-index: 1777 !important;
+    transition: 0.2s;
     &:hover {
-        background: #000;
+        background: rgba(0, 0, 0, 0.7) !important;
     }
 }
 .slick-next:before {

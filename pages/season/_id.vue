@@ -23,7 +23,7 @@
             <div
                 v-if="isKadr"
                 class="modal-card"
-                style="width: 900px; max-height: 90vh; overflow: hidden"
+                style="width: 900px; height: 90vh; overflow: hidden"
             >
                 <div class="modal-title">
                     <h2></h2>
@@ -32,9 +32,21 @@
                     </button>
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body" v-if="anime.screens.original != null">
                     <div class="mod-img">
-                        <img :src="$cdn + image" alt="" />
+                        <img
+                            :src="$cdn + anime.screens.original[number]"
+                            alt=""
+                        />
+                    </div>
+
+                    <div class="btn">
+                        <button @click="prev" class="prev">prev</button>
+                        <span
+                            >{{ number + 1 }} -
+                            {{ anime.screens.original.length }}</span
+                        >
+                        <button @click="next" class="next">next</button>
                     </div>
                 </div>
             </div>
@@ -507,7 +519,10 @@
                                                     >
                                                         <div
                                                             @click="
-                                                                clickImg(item)
+                                                                clickImg(
+                                                                    item,
+                                                                    i
+                                                                )
                                                             "
                                                             class="kadr"
                                                         >
@@ -557,6 +572,7 @@ export default {
             viewSeria: null,
             image: null,
             status: null,
+            number: 0,
             com: {
                 message: '',
                 season: '',
@@ -597,9 +613,10 @@ export default {
         window.scrollTo(0, 0)
     },
     methods: {
-        clickImg(item) {
+        clickImg(item, i) {
             this.isKadr = true
             this.image = item
+            this.number = i
         },
         closeModal() {
             this.isKadr = false
@@ -621,6 +638,20 @@ export default {
                     this.viewSeria = this.serial[0]
                     this.comments = res.comment
                 })
+        },
+        prev() {
+            if (this.number > 0) {
+                this.number--
+            } else {
+                this.number = this.anime.screens.original.length - 1
+            }
+        },
+        next() {
+            if (this.number < this.anime.screens.original.length - 1) {
+                this.number++
+            } else {
+                this.number = 0
+            }
         },
         tabClick(i) {
             this.tabIndex = i + 1
@@ -796,7 +827,28 @@ div.header-login {
 }
 .modal-body {
     height: 100%;
+    .btn {
+        position: absolute;
 
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 12;
+        margin-right: 20px;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        span {
+            font-weight: 600;
+            width: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            background: $gc;
+            color: #fff;
+            font-weight: 500;
+        }
+    }
     .mod-img {
         width: 100%;
         height: 100%;

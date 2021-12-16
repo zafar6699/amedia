@@ -41,12 +41,12 @@
                     </div>
 
                     <div class="btn">
-                        <button @click="prev" class="prev">prev</button>
+                        <button @click="prev" class="prev">Orqaga</button>
                         <span
                             >{{ number + 1 }} -
                             {{ anime.screens.original.length }}</span
                         >
-                        <button @click="next" class="next">next</button>
+                        <button @click="next" class="next">Keyingi</button>
                     </div>
                 </div>
             </div>
@@ -664,22 +664,30 @@ export default {
             // console.log('xxx', item)
             this.com.season = this.$route.params.id
 
-            this.commentText = `<b class="bold"> ${item.name} </b>, ${this.commentText}`
-            this.com.message = this.commentText
-            await this.$axios.$post('comment/add', this.com).then((res) => {
-                this.commentText = ''
-                this.isReply = -1
-                this.comment = true
-                this.com.message = ''
-                this.getData()
-            })
+            if (this.com.message != '') {
+                this.commentText = `<b class="bold"> ${item.name} </b>, ${this.commentText}`
+                this.com.message = this.commentText
+                await this.$axios.$post('comment/add', this.com).then((res) => {
+                    this.commentText = ''
+                    this.isReply = -1
+                    this.comment = true
+                    this.com.message = ''
+                    this.getData()
+                })
+            } else {
+                alert("Matn bo'sh")
+            }
         },
         async sendComment() {
-            this.com.season = this.$route.params.id
-            await this.$axios.$post('comment/add', this.com).then((res) => {
-                this.com = ''
-            })
-            this.getData()
+            if (this.com.message != '') {
+                this.com.season = this.$route.params.id
+                await this.$axios.$post('comment/add', this.com).then((res) => {
+                    this.com.message = ''
+                })
+                this.getData()
+            } else {
+                alert("Matn bo'sh")
+            }
         },
         clickOut() {
             if (this.commentText == '') {

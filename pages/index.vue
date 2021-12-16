@@ -3,9 +3,7 @@
         <Slider />
 
         <Animes />
-        <div>
-            <button @click="singGoogle">OK</button>
-        </div>
+
         <Trailer />
         <News />
     </div>

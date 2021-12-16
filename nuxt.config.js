@@ -84,7 +84,7 @@ export default {
             },
         },
     },
-    buildModules: ['@nuxtjs/fontawesome'],
+    buildModules: ['@nuxtjs/fontawesome', '@nuxtjs/google-analytics'],
     fontawesome: {
         component: 'fa',
         icons: {
@@ -97,13 +97,13 @@ export default {
     },
     i18n: {
         locales: [{
-            code: 'uz',
-            file: 'uz.js',
-        },
-        {
-            code: 'ru',
-            file: 'ru.js',
-        },
+                code: 'uz',
+                file: 'uz.js',
+            },
+            {
+                code: 'ru',
+                file: 'ru.js',
+            },
         ],
         lazy: true,
         langDir: 'lang/',

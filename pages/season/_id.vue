@@ -178,6 +178,7 @@
                                             <iframe
                                                 :src="viewSeria.video"
                                                 frameborder="0"
+                                                allowfullscreen="allowfullscreen"
                                             ></iframe>
                                             <div v-if="viewSeria != null">
                                                 <a

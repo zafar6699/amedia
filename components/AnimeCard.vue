@@ -9,7 +9,7 @@
             <div class="anime-card">
                 <div class="top">
                     <span class="year"> {{ anime.year }}</span>
-                    <span class="seriya"> [12]</span>
+                    <span class="seriya"> {{ anime.num }} </span>
                     <button
                         @click.prevent="likebos"
                         :class="like ? 'like bos' : 'like'"

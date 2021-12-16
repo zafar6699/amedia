@@ -9,10 +9,14 @@ export default {
     kirish: 'Kirish',
     tolshart: "  To'ldirish shart",
     davometish: ' Davom etish',
-    register: ' Ro\'yhatdan o\'tish',
+
+    register: " Ro'yhatdan o'tish",
+
+    register: " Ro'yhatdan o'tish",
+
     ism: 'Ismingizni kiriting',
     email: 'Emailni kiriting',
-    emailregister: ' Email orqali ro\'yhatdan o\'tish',
+    emailregister: " Email orqali ro'yhatdan o'tish",
     emaillogin: ' Email orqali kirish',
     email: 'Emailni kiriting',
     parol: 'Parolni kiriting',
@@ -70,14 +74,13 @@ export default {
     like: 'Tanlanganlar',
     obuna: ' Obuna',
     tolash: "To'lash",
-    mablagkam: 'Obuna bo\'lish uchun balansda mablag\' yetarli emas',
-    obunasuccess: 'Obuna bo\'lish muvafaqqiyatli amalga oshirildi',
+    mablagkam: "Obuna bo'lish uchun balansda mablag' yetarli emas",
+    obunasuccess: "Obuna bo'lish muvafaqqiyatli amalga oshirildi",
     obunayoqilgan: 'Sizda obuna yoqilgan',
-    obunatasdiqlang: 'Obuna bo\'lishni tasdiqlang',
+    obunatasdiqlang: "Obuna bo'lishni tasdiqlang",
     bekor: 'Bekor qilish',
     tasdiq: 'Tasdiqlash',
-    minikki: 'Minimal summa 2000 so\'m',
-    tolovtype: 'To\'lov turi',
+    minikki: "Minimal summa 2000 so'm",
+    tolovtype: "To'lov turi",
     oylik: 'oylik',
-
 }

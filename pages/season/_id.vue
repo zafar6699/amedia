@@ -664,7 +664,7 @@ export default {
             // console.log('xxx', item)
             this.com.season = this.$route.params.id
 
-            if (this.com.message != '') {
+            if (this.commentText != '') {
                 this.commentText = `<b class="bold"> ${item.name} </b>, ${this.commentText}`
                 this.com.message = this.commentText
                 await this.$axios.$post('comment/add', this.com).then((res) => {

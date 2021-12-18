@@ -24,7 +24,8 @@ export default {
             {
                 rel: 'stylesheet',
                 href: 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css',
-                integrity: 'sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p',
+                integrity:
+                    'sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p',
                 crossorigin: 'anonymous',
             },
         ],
@@ -59,7 +60,14 @@ export default {
         '@nuxt/image',
         '@nuxtjs/style-resources',
         '@nuxtjs/auth-next',
+        '@nuxtjs/yandex-metrika',
     ],
+
+    yandexMetrika: {
+        id: '86920155',
+        webvisor: true,
+    },
+
     auth: {
         redirect: {
             login: '/',
@@ -80,11 +88,16 @@ export default {
                 },
             },
             google: {
-                clientId: '791392363374-mo5hvso5asmqkmp7qqqdn2duanktc5aq.apps.googleusercontent.com',
+                clientId:
+                    '791392363374-mo5hvso5asmqkmp7qqqdn2duanktc5aq.apps.googleusercontent.com',
             },
         },
     },
-    buildModules: ['@nuxtjs/fontawesome', '@nuxtjs/google-analytics'],
+    buildModules: [
+        '@nuxtjs/fontawesome',
+        '@nuxtjs/google-analytics',
+        '@nuxt/image',
+    ],
     fontawesome: {
         component: 'fa',
         icons: {
@@ -96,7 +109,8 @@ export default {
         scss: ['@/assets/styles/style.scss'],
     },
     i18n: {
-        locales: [{
+        locales: [
+            {
                 code: 'uz',
                 file: 'uz.js',
             },

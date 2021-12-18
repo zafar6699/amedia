@@ -4,14 +4,14 @@
             <div class="content-trailer">
                 <div class="container">
                     <div class="head-trailer">
-                        <h2>Yangilik</h2>
+                        <h2>{{ $t('new') }}</h2>
                         <span class="line"></span>
                     </div>
                     <div class="body-trailer">
                         <div class="card-row">
                             <div class="item-4 item-md-6">
                                 <div class="info">
-                                    <h3>Hamma animelar</h3>
+                                    <h3>{{ $t('allanime') }}</h3>
                                     <a href="#">{{
                                         trailer.name[$i18n.locale]
                                     }}</a>

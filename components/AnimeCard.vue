@@ -347,6 +347,14 @@ div.anime-card::before {
         .img {
             height: 230px !important;
         }
+        span.year {
+            padding: 3px 5px !important;
+            font-size: 12px !important;
+        }
+        span.seriya {
+            padding: 3px 5px !important;
+            font-size: 12px !important;
+        }
         .text-bottom {
             h2 {
                 font-size: 13px !important;
@@ -356,6 +364,19 @@ div.anime-card::before {
             }
             .bot {
                 padding: 5px 10px !important;
+                .left {
+                    span {
+                        font-size: 12px !important;
+                        b {
+                            font-size: 12px;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+                .price-type {
+                    padding: 2px 5px !important;
+                    font-size: 11px;
+                }
             }
         }
     }

@@ -129,12 +129,12 @@ export default {
 .slick-next {
     line-height: 0;
     position: absolute;
-    top: 50%;
+    top: 45% !important;
     display: block;
     width: 57px !important;
-    height: 100% !important;
+    height: 92% !important;
     padding: 0;
-    transform: translate(0, -50%);
+    // transform: translate(0, -50%);
     cursor: pointer;
     color: #e10d0d00 !important;
     border: none;
@@ -326,6 +326,20 @@ export default {
 }
 @media (max-width: 576px) {
     .slider {
+        margin-bottom: 0;
+        .slick-slider {
+            padding-bottom: 0px !important;
+        }
+        .slick-prev {
+            width: 30px !important;
+            top: 49%;
+            height: 66% !important;
+        }
+        .slick-next {
+            width: 30px !important;
+            top: 49%;
+            height: 66% !important;
+        }
         .slick-dots {
             bottom: 40px !important;
         }

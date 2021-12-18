@@ -8,8 +8,7 @@
                         <h3>{{ $t('adres') }}</h3>
                         <div class="adres">
                             <p>
-                                O'zbekiston, Toshkent, Mirzo Ulug'bek tumani,
-                                Mahalla TTz-4, 40 dom 26 honadon
+                                {{ $t('address') }}
                             </p>
                         </div>
                     </div>
@@ -46,7 +45,7 @@
                         <div class="social-links">
                             <ul>
                                 <li>
-                                    <a href="#"
+                                    <a href="https://t.me/amediatvuz"
                                         ><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             aria-hidden="true"

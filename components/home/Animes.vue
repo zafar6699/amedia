@@ -76,7 +76,7 @@ export default {
             this.getData()
         },
         clickMore() {
-            this.limit = this.limit + 12
+            this.limit = parseInt(this.limit) + 12
             localStorage.setItem('limit', this.limit)
             this.getData()
         },

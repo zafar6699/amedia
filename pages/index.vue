@@ -1,9 +1,7 @@
 <template>
     <div>
         <Slider />
-
         <Animes />
-
         <Trailer />
         <News />
     </div>
@@ -37,11 +35,7 @@ export default {
     },
 
     mounted() {},
-    methods: {
-        async singGoogle() {
-            await this.$auth.loginWith('google')
-        },
-    },
+    methods: {},
 }
 </script>
 

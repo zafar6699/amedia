@@ -1559,6 +1559,7 @@ header {
                 .logo {
                     img {
                         width: 110px !important;
+                        height: 18px;
                     }
                 }
             }

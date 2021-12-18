@@ -22,7 +22,7 @@
             <div @click="closeModal" v-if="isKadr" class="fixvh"></div>
             <div
                 v-if="isKadr"
-                class="modal-card"
+                class="modal-card kadr-media"
                 style="width: 900px; height: 90vh; overflow: hidden"
             >
                 <div class="modal-title">
@@ -1270,6 +1270,23 @@ div.header-login {
     }
 }
 @media (max-width: 576px) {
+    .kadr-media {
+        height: 300px !important;
+        .modal-title {
+            margin-bottom: 10px !important;
+        }
+        .btn {
+            margin-right: 0 !important;
+            display: flex;
+            align-items: center;
+            span {
+                min-width: 35px !important;
+            }
+            button {
+                padding: 5px 10px !important;
+            }
+        }
+    }
     .comments {
         width: 100% !important;
     }

@@ -37,6 +37,10 @@ export default {
     category: 'Kategoriyalar',
     sotset: 'Ijtimoiy tarmoqlar',
     allzashita: 'Barcha huquqlar himoyalangan',
+    address: 'O\'zbekiston, Toshkent, Mirzo Ulug\'bek tumani, Mahalla TTz-4, 40 dom 26 honadon',
+    /// trailer
+    new: 'Yangilik',
+    allanime: 'Hamma animelar',
 
     // slider
     see: "Ko'rish",

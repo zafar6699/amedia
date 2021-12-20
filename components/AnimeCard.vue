@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="img">
-                    <img :src="$cdn + anime.image" alt="" />
+                    <img :src="$cdn + anime.image" />
                 </div>
 
                 <div class="text-bottom">
@@ -33,11 +33,6 @@
                             </div>
                             <div class="bot">
                                 <div class="left">
-                                    <!-- <span>
-                                <fa icon="film" />
-                                <b>{ 34-55 }</b>
-                            </span> -->
-
                                     <span>
                                         <fa icon="eye" />
                                         <b>{{ anime.view }}</b>
@@ -145,8 +140,7 @@ div.anime-card {
         background: $gc;
         // position: absolute;
         background-color: rgba($color: #000000, $alpha: 0.5);
-        -webkit-backdrop-filter: blur(3px);
-        backdrop-filter: blur(3px);
+
         // top: 15px;
         // left: 50%;
         // transform: translate(-50%, 0);
@@ -254,7 +248,7 @@ div.anime-card {
         div.text-inner {
             position: relative;
             z-index: 6;
-            background-color: rgba($color: #000000, $alpha: 0.5);
+            background-color: rgba($color: #000000, $alpha: 0.6);
         }
         div.blur {
             position: absolute;
@@ -264,8 +258,6 @@ div.anime-card {
             height: 100%;
             top: 0;
             left: 0;
-            -webkit-backdrop-filter: blur(3px);
-            backdrop-filter: blur(3px);
         }
         div.text {
             position: relative;
@@ -344,38 +336,53 @@ div.anime-card::before {
 @media (max-width: 576px) {
     .anime-card {
         margin-bottom: 20px !important;
+        div.top {
+            padding: 2px !important;
+
+            span.year {
+                font-size: 11px !important;
+                line-height: 14px !important;
+                padding: 0px 5px;
+                height: 16px;
+            }
+            span.seriya {
+                font-size: 11px !important;
+                line-height: 14px !important;
+                padding: 0px 5px !important;
+                height: 16px !important;
+            }
+            button.like {
+                svg {
+                    font-size: 18px;
+                }
+            }
+        }
         .img {
             height: 230px !important;
-        }
-        span.year {
-            padding: 3px 5px !important;
-            font-size: 12px !important;
-        }
-        span.seriya {
-            padding: 3px 5px !important;
-            font-size: 12px !important;
         }
         .text-bottom {
             h2 {
                 font-size: 13px !important;
+                line-height: 18px !important;
+                height: 36px !important;
             }
             .title {
                 padding: 5px 10px !important;
             }
             .bot {
                 padding: 5px 10px !important;
-                .left {
-                    span {
-                        font-size: 12px !important;
-                        b {
-                            font-size: 12px;
-                            margin-left: 5px;
-                        }
-                    }
+
+                svg {
+                    font-size: 12px !important;
                 }
+                b {
+                    font-size: 12px !important;
+                    margin-left: 5px !important;
+                }
+
                 .price-type {
+                    font-size: 12px !important;
                     padding: 2px 5px !important;
-                    font-size: 11px;
                 }
             }
         }

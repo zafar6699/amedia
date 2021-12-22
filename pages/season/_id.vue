@@ -175,23 +175,90 @@
                                         v-if="viewSeria != null"
                                     >
                                         <div class="video">
-                                            <iframe
-                                                :src="viewSeria.video"
-                                                frameborder="0"
-                                                allowfullscreen="allowfullscreen"
-                                            ></iframe>
-                                            <div v-if="viewSeria != null">
-                                                <a
-                                                    target="_blank"
-                                                    :href="viewSeria.url"
-                                                    class="btn-simple down"
-                                                >
-                                                    <span>
-                                                        <fa icon="download" />
-                                                    </span>
-                                                    {{ $t('down') }}
-                                                </a>
+                                            <div
+                                                v-if="
+                                                    anime.price == 'free' ||
+                                                    ($auth.loggedIn &&
+                                                        $auth.user.status ==
+                                                            'vip' &&
+                                                        anime.price ==
+                                                            'selling')
+                                                "
+                                            >
+                                                <iframe
+                                                    :src="viewSeria.video"
+                                                    frameborder="0"
+                                                    allowfullscreen="allowfullscreen"
+                                                ></iframe>
+                                                <div v-if="viewSeria != null">
+                                                    <a
+                                                        target="_blank"
+                                                        :href="viewSeria.url"
+                                                        class="btn-simple down"
+                                                    >
+                                                        <span>
+                                                            <fa
+                                                                icon="download"
+                                                            />
+                                                        </span>
+                                                        {{ $t('down') }}
+                                                    </a>
+                                                </div>
                                             </div>
+
+                                            <div
+                                                v-if="
+                                                    anime.price == 'selling' &&
+                                                    $auth.loggedIn &&
+                                                    $auth.user.status == 'user'
+                                                "
+                                            >
+                                                <div class="iframe">
+                                                    <h3>
+                                                        Vidoeni ko'rish uchun
+                                                        Vip status obunani
+                                                        yoqing
+                                                    </h3>
+                                                    <div class="btns">
+                                                        <nuxt-link
+                                                            :to="{
+                                                                name:
+                                                                    'profile___' +
+                                                                    $i18n.locale,
+                                                            }"
+                                                        >
+                                                            Vip status yoqish
+                                                        </nuxt-link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                v-if="
+                                                    !$auth.loggedIn &&
+                                                    anime.price == 'selling'
+                                                "
+                                            >
+                                                <div class="iframe">
+                                                    <h3>
+                                                        Vidoeni ko'rish uchun
+                                                        ro'yhatdan o'ting va
+                                                        obunani yoqing
+                                                    </h3>
+                                                    <div class="btns">
+                                                        <button
+                                                            class="simple-btn"
+                                                            @click="
+                                                                $store.commit(
+                                                                    'CHANGE_LOG'
+                                                                )
+                                                            "
+                                                        >
+                                                            Kirish
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div
                                                 class="down-btn"
                                                 v-if="viewSeria != null"
@@ -357,6 +424,19 @@
                                                                     item.user
                                                                         .name
                                                                 }}
+                                                                <span
+                                                                    v-if="
+                                                                        item
+                                                                            .user
+                                                                            .status ==
+                                                                        'vip'
+                                                                    "
+                                                                >
+                                                                    <img
+                                                                        src="@/assets/img/staradmin.png"
+                                                                        alt=""
+                                                                    />
+                                                                </span>
                                                             </h4>
                                                             <p class="date">
                                                                 {{
@@ -395,6 +475,9 @@
                                                                 "
                                                             >
                                                                 <button
+                                                                    class="
+                                                                        replybtn
+                                                                    "
                                                                     @click="
                                                                         clickReply(
                                                                             i
@@ -411,6 +494,29 @@
                                                                             'reply'
                                                                         )
                                                                     }}
+                                                                </button>
+                                                                <button
+                                                                    v-if="
+                                                                        $auth
+                                                                            .user
+                                                                            .role ==
+                                                                        'admin'
+                                                                    "
+                                                                    class="
+                                                                        deletebtn
+                                                                    "
+                                                                    @click="
+                                                                        clickReply(
+                                                                            i
+                                                                        )
+                                                                    "
+                                                                >
+                                                                    <span>
+                                                                        <fa
+                                                                            icon="trash-alt"
+                                                                        />
+                                                                    </span>
+                                                                    O'chirish
                                                                 </button>
                                                             </div>
 
@@ -609,11 +715,42 @@ export default {
             commentText: '',
         }
     },
+    computed: {
+        isLoginModal() {
+            return this.$store.state.isLoginModal
+        },
+    },
     mounted() {
         this.getData()
         window.scrollTo(0, 0)
     },
+
     methods: {
+        closeModal() {
+            this.isRegister = false
+            this.$store.commit('CHANGE_LOG_FALSE')
+            this.isCheck = false
+            this.isEmailRegister = false
+            this.isJanr = false
+            this.isYear = false
+            this.isEmail = false
+        },
+        clickemail() {
+            this.isEmail = true
+            this.$store.commit('CHANGE_LOG_FALSE')
+        },
+        clickemailregister() {
+            this.isEmailRegister = true
+            this.isEmail = false
+        },
+        openLogin() {
+            this.closeModal()
+            this.isLoginModal = true
+        },
+        openRegister() {
+            this.closeModal()
+            this.isRegister = true
+        },
         clickImg(item, i) {
             this.isKadr = true
             this.image = item
@@ -689,6 +826,7 @@ export default {
                 alert("Matn bo'sh")
             }
         },
+
         clickOut() {
             if (this.commentText == '') {
                 this.isReply = -1
@@ -699,6 +837,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.deletebtn {
+    margin-left: 20px !important;
+}
+.iframe {
+    border: 1px solid $gc;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 400px;
+    border-radius: 10px;
+    h3 {
+        color: #fff;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    .btns {
+        button,
+        a {
+            color: #fff;
+            background: $gc;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    }
+}
 .tag {
     margin: 30px 0;
     display: subgrid;
@@ -1042,6 +1207,11 @@ div.header-login {
                 .name {
                     h4 {
                         color: #333;
+                        span {
+                            img {
+                                width: 20px;
+                            }
+                        }
                     }
                     p {
                         font-size: 12px;

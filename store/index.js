@@ -1,6 +1,7 @@
 export const state = () => ({
     isLoading: false,
-    isLogin: false,
+    isLoginModal: false,
+    isLoggin: false,
     isRegister: false,
 
     janr: [],
@@ -15,6 +16,14 @@ export const mutations = {
         state.isLoading = false
     },
 
+    CHANGE_LOG(state) {
+        state.isLoginModal = true
+
+    },
+    CHANGE_LOG_FALSE(state) {
+        state.isLoginModal = false
+
+    },
     CHANGE_LOGIN(state, data) {
         state.isLogin = data
     },

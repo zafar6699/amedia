@@ -287,8 +287,8 @@
             </div>
         </div>
 
-        <div @click="closeModal" v-if="isLogin" class="fixvh"></div>
-        <div v-if="isLogin" class="modal-card" style="width: 400px">
+        <div @click="closeModal" v-if="isLoginModal" class="fixvh"></div>
+        <div v-if="isLoginModal" class="modal-card" style="width: 400px">
             <div class="modal-title">
                 <h2>{{ $t('kirish') }}</h2>
                 <button @click="closeModal">
@@ -618,7 +618,7 @@
                             <button
                                 v-if="!$auth.loggedIn"
                                 class="login"
-                                @click="openLogin"
+                                @click="$store.commit('CHANGE_LOG')"
                             >
                                 <span>
                                     <fa icon="sign-in-alt" />
@@ -705,7 +705,6 @@ export default {
             year: [],
             isRegister: false,
             isEmailRegister: false,
-            isLogin: false,
             isCheck: false,
             isProfile: false,
             isSearch: false,
@@ -781,6 +780,9 @@ export default {
         janr() {
             return this.$store.state.janr
         },
+        isLoginModal() {
+            return this.$store.state.isLoginModal
+        },
     },
     async mounted() {
         window.addEventListener('scroll', this.scrollBody)
@@ -814,7 +816,7 @@ export default {
         },
         clickemail() {
             this.isEmail = true
-            this.isLogin = false
+            this.$store.commit('CHANGE_LOG_FALSE')
         },
         clickemailregister() {
             this.isEmailRegister = true
@@ -886,7 +888,7 @@ export default {
 
         openLogin() {
             this.closeModal()
-            this.isLogin = true
+            this.isLoginModal = true
         },
         openRegister() {
             this.closeModal()
@@ -894,7 +896,7 @@ export default {
         },
         closeModal() {
             this.isRegister = false
-            this.isLogin = false
+            this.$store.commit('CHANGE_LOG_FALSE')
             this.isCheck = false
             this.isEmailRegister = false
             this.isJanr = false

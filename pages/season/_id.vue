@@ -217,7 +217,7 @@
                                                     <h3>
                                                         Vidoeni ko'rish uchun
                                                         Vip status obunani
-                                                        yoqing
+                                                        yoqing, atiga 10900 so'm
                                                     </h3>
                                                     <div class="btns">
                                                         <nuxt-link
@@ -495,19 +495,20 @@
                                                                         )
                                                                     }}
                                                                 </button>
+
                                                                 <button
+                                                                    class="
+                                                                        deletebtn
+                                                                    "
                                                                     v-if="
                                                                         $auth
                                                                             .user
                                                                             .role ==
                                                                         'admin'
                                                                     "
-                                                                    class="
-                                                                        deletebtn
-                                                                    "
                                                                     @click="
-                                                                        clickReply(
-                                                                            i
+                                                                        deleteComment(
+                                                                            item._id
                                                                         )
                                                                     "
                                                                 >
@@ -796,6 +797,10 @@ export default {
         },
         clickReply(index) {
             this.isReply = index
+        },
+        async deleteComment(id) {
+            await this.$axios.$delete('comment/' + id)
+            this.getData()
         },
         async sendReplyComment(item) {
             // console.log('xxx', item)

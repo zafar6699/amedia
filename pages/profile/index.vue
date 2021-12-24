@@ -301,7 +301,7 @@
                             <div class="card-row">
                                 <div
                                     class="item-3 item-md-3"
-                                    v-for="(item, index) in $store.state.like"
+                                    v-for="(item, index) in likes"
                                     :key="index"
                                 >
                                     <AnimeCard :anime="item.season" />
@@ -362,6 +362,12 @@ export default {
         }
     },
 
+    computed: {
+        likes() {
+            return this.$store.state.like
+        },
+    },
+
     validations: {
         user: {
             name: {
@@ -392,7 +398,7 @@ export default {
                         this.$auth.user.uid +
                         ';a=' +
                         +amount +
-                        ';c=https://new.amediatv.uz/profile'
+                        ';c=https://amediatv.uz/profile'
                     const base64 = btoa(str)
 
                     const link = 'https://checkout.paycom.uz/' + base64

@@ -57,7 +57,7 @@
                                         <b>
                                             {{ item.serial.year }}
                                         </b>
-                                        <h3>720P <span>HD</span></h3>
+                                        <h3>1080 <span>FULL HD</span></h3>
                                         <nuxt-link
                                             class="play"
                                             :to="{

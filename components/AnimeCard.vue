@@ -74,21 +74,14 @@ export default {
             likedAnime: null,
         }
     },
-    mounted() {
-        let likes = this.$store.state.like
-
-        let find = likes.find((item) => item.season._id == this.anime._id)
-
-        if (find) {
-            this.like = true
-            this.likedAnime = find
-        }
+    async mounted() {
+        this.checkLike()
     },
     methods: {
-        likebos() {
+        async likebos() {
             if (this.$auth.loggedIn) {
                 if (!this.like) {
-                    this.$axios
+                    await this.$axios
                         .$post('/like/create', {
                             season: this.anime._id,
                         })
@@ -99,7 +92,7 @@ export default {
                             console.log(err)
                         })
                 } else {
-                    this.$axios
+                    await this.$axios
                         .$delete(`/like/${this.likedAnime._id}`)
                         .then((res) => {
                             this.like = false
@@ -108,8 +101,22 @@ export default {
                             console.log(err)
                         })
                 }
+
+                await this.$store.dispatch('getLike').then((res) => {
+                    this.checkLike()
+                })
             } else {
                 alert("Ro'yxatdan o'tmagansiz")
+            }
+        },
+        async checkLike() {
+            let likes = await this.$store.state.like
+
+            let find = likes.find((item) => item.season._id == this.anime._id)
+
+            if (find) {
+                this.like = true
+                this.likedAnime = find
             }
         },
     },
